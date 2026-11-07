@@ -27,7 +27,8 @@
 
 ```text
 src/
-  config/site.ts            brand / nav / contacts / intake / legal / analytics
+  config/site.ts            brand / contacts / intake / analytics (структурные данные)
+  i18n/en/                  ВСЕ UI-тексты: common, forms, labels, страницы
   content.config.ts         Zod-схемы: programs, universities, faq
   content/
     programs/*.json         7 маршрутов
@@ -85,6 +86,15 @@ BASE_PATH=/china-education/ npm run check:html
 ```
 
 `check:html` резолвит ссылки с учётом base и падает на битых.
+
+## Тексты и i18n
+
+- Весь пользовательский текст — в `src/i18n/en/**`. `src/i18n/index.ts` реэкспортирует `copy`.
+- `labels.ts` — короткие словари значений (degrees, languages, contact methods); их импортирует и клиентская форма, чтобы не тащить весь копирайт в JS.
+- `forms.ts` — только форма: подписи, ошибки, статусы, success.
+- Контент (программы, вузы, FAQ) — JSON в `src/content/**`.
+- `check:html` валидирует отсутствие кириллицы в собранном HTML; это защита от хардкода при английском макете.
+- Будущий язык: новый каталог + переключение `src/i18n/index.ts` + `siteConfig.lang/locale`.
 
 ## Форма заявок
 

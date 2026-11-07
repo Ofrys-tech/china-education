@@ -4,10 +4,10 @@ import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
 import JsonLd from "@/components/JsonLd.astro";
 import { siteConfig } from "@/config/site";
+import { common } from "@/i18n/en/common";
 import { absoluteUrl } from "@/lib/url";
 
 import "@fontsource-variable/golos-text";
-import "@fontsource/prata/cyrillic-400.css";
 import "@fontsource/prata/latin-400.css";
 import "@/styles/global.css";
 
@@ -31,7 +31,7 @@ const organization = {
   logo: absoluteUrl("/apple-touch-icon.png"),
   description: siteConfig.description,
   areaServed: "CN",
-  knowsLanguage: ["ru", "en", "zh"],
+  knowsLanguage: ["en", "zh"],
   ...(siteConfig.contacts.email ? { email: siteConfig.contacts.email } : {}),
 };
 
@@ -40,7 +40,7 @@ const website = {
   "@type": "WebSite",
   name: `${siteConfig.name} — ${siteConfig.tagline}`,
   url: absoluteUrl("/"),
-  inLanguage: "ru",
+  inLanguage: siteConfig.lang,
   publisher: { "@type": "Organization", name: siteConfig.name },
 };
 
@@ -72,7 +72,7 @@ const structuredData = [
 		<slot name="head" />
 	</head>
 	<body>
-		<a class="skip-link" href="#main">Перейти к содержанию</a>
+		<a class="skip-link" href="#main">{common.ui.skipToContent}</a>
 		<Header />
 		<main id="main">
 			<slot />

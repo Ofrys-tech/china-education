@@ -1,6 +1,6 @@
 {
-  "question": "Что входит в услуги и есть ли гарантия зачисления?",
-  "answer": "В работу входят диагностика профиля, подбор программ, проверка требований, подготовка и проверка документов, подача, переписка с вузами, сопровождение до зачисления и помощь с визой и переездом. Гарантии зачисления быть не может: решение принимает вуз. Мы фиксируем объём услуг и стоимость в договоре, честно говорим о вероятностях и не берём деньги за «гарантированное место».",
+  "question": "What's included, and is admission guaranteed?",
+  "answer": "The work includes a profile diagnostic, program matching, requirements checks, document preparation and review, submission, university correspondence, support through admission, and help with the visa and move. No one can guarantee admission: the university decides. We fix the scope and fee in the contract, speak honestly about probabilities and never charge for a 'guaranteed place'.",
   "category": "admission",
   "order": 8,
   "home": false

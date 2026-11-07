@@ -1,52 +1,52 @@
 {
-  "title": "Инженерия и IT",
+  "title": "Engineering & IT",
   "degree": "master",
-  "summary": "Прикладные программы по AI, computer science, электронике и инженерии — с сильной лабораторной базой.",
-  "duration": "2–4 года",
+  "summary": "Applied programs in AI, computer science, electronics and engineering — with strong lab facilities.",
+  "duration": "2–4 years",
   "languages": ["en", "zh"],
-  "tuition": "¥18 000–35 000 / год",
+  "tuition": "¥18,000–35,000 / year",
   "overview": [
-    "Китай — один из крупнейших рынков инженерного образования. Университеты активно инвестируют в лаборатории, а компании — в совместные программы и стажировки. Для поступления важны не только оценки, но и проекты, математическая подготовка и мотивация.",
-    "На бакалавриате большинство программ китаеязычные; на магистратуре англоязычных вариантов больше. Если цель — работа инженером в Китае, стоит планировать китайский язык параллельно с учёбой."
+    "China is one of the largest markets for engineering education. Universities invest in labs, and companies co-run programs and internships. Admission depends not only on grades but on projects, maths and motivation.",
+    "Most bachelor's programs are Chinese-taught; English-taught options are more common at master's level. If you want to work as an engineer in China, plan to build Chinese alongside your degree."
   ],
   "fitFor": [
-    "Сильная математика и профильные предметы",
-    "Есть проекты, олимпиады или опыт работы",
-    "Интересуют AI, embedded, энергетика, электроника",
-    "Нужна лаборатория и стажировки, а не только лекции"
+    "Strong maths and relevant school subjects",
+    "You have projects, competitions or work experience",
+    "You're interested in AI, embedded systems, energy or electronics",
+    "You want labs and internships, not only lectures"
   ],
   "outcomes": [
-    "Диплом инженера или магистра",
-    "Портфолио лабораторных и прикладных проектов",
-    "Стажировка в технологической компании",
-    "База для работы в Азии и международных командах"
+    "An engineering or master's degree",
+    "A portfolio of lab and applied projects",
+    "An internship at a technology company",
+    "A foundation for work in Asia and international teams"
   ],
   "timeline": [
     {
-      "step": "За 10–12 месяцев",
-      "text": "Сопоставляем профиль с программами и лабораториями, проверяем требования по математике."
+      "step": "10–12 months out",
+      "text": "We match your profile to programs and labs and check maths requirements."
     },
     {
-      "step": "За 6–8 месяцев",
-      "text": "Готовим транскрипт, CV, проектное портфолио, рекомендации и языковые сертификаты."
+      "step": "6–8 months out",
+      "text": "We prepare transcripts, a CV, a project portfolio, references and language certificates."
     },
     {
-      "step": "За 4–6 месяцев",
-      "text": "Подача и интервью с кафедрой."
+      "step": "4–6 months out",
+      "text": "Applications and department interviews."
     },
     {
-      "step": "За 2–3 месяца",
-      "text": "Зачисление, стипендия, виза и жильё."
+      "step": "2–3 months out",
+      "text": "Admission, scholarship, visa and housing."
     }
   ],
   "faq": [
     {
-      "question": "Нужен ли IELTS для инженерной магистратуры?",
-      "answer": "Для англоязычных программ часто да, но некоторые вузы принимают обучение на английском как подтверждение уровня или проводят внутренний тест. Требования проверяем по каждой программе."
+      "question": "Do I need IELTS for an engineering master's?",
+      "answer": "For English-taught programs, often yes, but some universities accept previous study in English or run an internal test. We check requirements per program."
     },
     {
-      "question": "Можно ли поступить в IT-магистратуру без профильного диплома?",
-      "answer": "Иногда да, если есть сильная математическая база и портфолио, но большинство программ ожидают профильный диплом или близкую специальность. Это одна из причин, по которой мы собираем академический профиль до выбора вуза."
+      "question": "Can I get into an IT master's without a relevant degree?",
+      "answer": "Sometimes, if you have strong maths and a portfolio, but most programs expect a relevant degree or a close field. That's why we build the academic profile before choosing universities."
     }
   ],
   "featured": false,

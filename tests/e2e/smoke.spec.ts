@@ -6,14 +6,14 @@ test("landing renders content and navigates to programs", async ({ page }) => {
   page.on("pageerror", (error) => errors.push(error.message));
 
   await page.goto("/");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Китай");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("China");
   await expect(page.locator(".program-grid article")).toHaveCount(6);
   await expect(page.locator(".university-row")).toHaveCount(6);
   await expect(page.locator(".faq-item")).toHaveCount(5);
 
-  await page.getByRole("link", { name: "Смотреть направления" }).click();
+  await page.getByRole("link", { name: "Explore programs" }).click();
   await expect(page).toHaveURL(/\/programs\/$/);
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Направления");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Programs");
 
   expect(errors).toEqual([]);
 });
@@ -29,9 +29,9 @@ test.describe("mobile menu", () => {
     await toggle.click();
     await expect(toggle).toHaveAttribute("aria-expanded", "true");
     await expect(menu).toHaveAttribute("data-open", "true");
-    await expect(page.getByRole("navigation", { name: "Мобильная навигация" })).toBeVisible();
+    await expect(page.getByRole("navigation", { name: "Mobile navigation" })).toBeVisible();
 
-    await menu.getByRole("link", { name: "Направления" }).click();
+    await menu.getByRole("link", { name: "Programs" }).click();
     await expect(page).toHaveURL(/\/programs\/$/);
     await expect(menu).toHaveAttribute("data-open", "false");
   });
@@ -50,24 +50,26 @@ test("lead form validates, submits and keeps the payload complete", async ({ pag
   });
 
   await page.goto("/apply/");
-  await page.getByRole("button", { name: "Отправить заявку" }).click();
-  await expect(page.locator("[data-form-status]")).toContainText("Проверьте выделенные поля");
+  await page.getByRole("button", { name: "Send application" }).click();
+  await expect(page.locator("[data-form-status]")).toContainText(
+    "Please check the highlighted fields",
+  );
 
-  await page.fill("#lead-name", "Анна Ли");
+  await page.fill("#lead-name", "Anna Lee");
   await page.selectOption("#lead-contact-method", "telegram");
-  await page.fill("#lead-contact", "@anna_li");
+  await page.fill("#lead-contact", "@anna_lee");
   await page.selectOption("#lead-degree", "master");
   await page.selectOption("#lead-direction", "business");
   await page.selectOption("#lead-intake", "2027");
-  await page.fill("#lead-message", "Финансы, IELTS 7.0, бюджет до 30 000 юаней в год.");
+  await page.fill("#lead-message", "Finance, IELTS 7.0, budget up to ¥30,000 per year.");
   await page.check("input[name='consent']");
   await page.waitForTimeout(350);
-  await page.getByRole("button", { name: "Отправить заявку" }).click();
+  await page.getByRole("button", { name: "Send application" }).click();
 
-  await expect(page.getByRole("heading", { name: /Спасибо/ })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Thank you/ })).toBeVisible();
   expect(payload).toBeTruthy();
-  expect(payload?.name).toBe("Анна Ли");
-  expect(payload?.contact).toBe("@anna_li");
+  expect(payload?.name).toBe("Anna Lee");
+  expect(payload?.contact).toBe("@anna_lee");
   expect(payload?.degree).toBe("master");
   expect(payload?.consent).toBe(true);
   expect(payload?.idempotencyKey).toBeTruthy();

@@ -1,5 +1,7 @@
 ---
 import Icon from "@/components/Icon.astro";
+import { common } from "@/i18n/en/common";
+import { labels } from "@/i18n/en/labels";
 import { withBase } from "@/lib/url";
 
 type Degree = "language" | "bachelor" | "master" | "mba" | "phd" | "short";
@@ -9,7 +11,7 @@ interface Props {
   summary: string;
   degree: Degree;
   duration: string;
-  languages: string[];
+  languages: (keyof typeof labels.languages)[];
   tuition: string;
   href: string;
   index: number;
@@ -38,9 +40,7 @@ const icons = {
   // "phd" content exists in the schema for future programs; the icon is ready.
 } as const;
 
-const languageLabel = languages
-  .map((lang) => (lang === "zh" ? "китайский" : "английский"))
-  .join(" / ");
+const languageLabel = languages.map((lang) => labels.languages[lang]).join(" / ");
 ---
 
 <article class:list={["program-card reveal", { "program-card--featured": featured }]}>
@@ -55,6 +55,6 @@ const languageLabel = languages
 		<span>{languageLabel}</span>
 		<span>{tuition}</span>
 	</div>
-	<a class="program-card__link" href={withBase(href)} aria-label={`Подробнее: ${title}`}></a>
+	<a class="program-card__link" href={withBase(href)} aria-label={`${common.ui.readMore}: ${title}`}></a>
 	<span class="program-card__arrow" aria-hidden="true"><Icon name="arrowUpRight" size={18} /></span>
 </article>

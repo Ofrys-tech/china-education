@@ -3,24 +3,24 @@ import { buildLeadPayload, endpointFor, sanitizeText } from "@/lib/leads/payload
 import type { LeadValues } from "@/lib/leads/schema";
 
 const values: LeadValues = {
-  name: "Анна Ли",
+  name: "Anna Lee",
   contactMethod: "telegram",
-  contact: "@anna_li",
+  contact: "@anna_lee",
   degree: "master",
   direction: "business",
   intake: "2027",
-  message: "Финансы, IELTS 7.0",
+  message: "Finance, IELTS 7.0",
   consent: true,
   website: "",
 };
 
 describe("sanitizeText", () => {
   it("collapses newlines in single-line fields", () => {
-    expect(sanitizeText("Анна\r\nЛи")).toBe("Анна Ли");
+    expect(sanitizeText("Anna\r\nLee")).toBe("Anna Lee");
   });
 
   it("keeps newlines but strips control characters in messages", () => {
-    expect(sanitizeText("Строка 1\r\nСтрока 2\t!", true)).toBe("Строка 1\nСтрока 2 !");
+    expect(sanitizeText("Line 1\r\nLine 2\t!", true)).toBe("Line 1\nLine 2 !");
   });
 });
 
@@ -35,19 +35,19 @@ describe("buildLeadPayload", () => {
       utm: { source: "telegram", campaign: "autumn" },
     });
 
-    expect(payload.name).toBe("Анна Ли");
+    expect(payload.name).toBe("Anna Lee");
     expect(payload.consent).toBe(true);
     expect(payload.source).toBe("apply");
     expect(payload.utm_source).toBe("telegram");
     expect(payload.utm_campaign).toBe("autumn");
     expect(payload.utm_medium).toBe("");
-    expect(String(payload.summary)).toContain("Анна Ли");
-    expect(String(payload.summary)).toContain("Магистратура");
-    expect(String(payload._subject)).toContain("Заявка ChinaPath");
+    expect(String(payload.summary)).toContain("Anna Lee");
+    expect(String(payload.summary)).toContain("Master's");
+    expect(String(payload._subject)).toContain("ChinaPath application");
   });
 
   it("does not let header-breaking characters through the subject", () => {
-    const payload = buildLeadPayload({ ...values, name: "Анна\r\nBcc: evil@example.com" });
+    const payload = buildLeadPayload({ ...values, name: "Anna\r\nBcc: evil@example.com" });
     expect(String(payload._subject)).not.toMatch(/[\r\n]/);
   });
 });

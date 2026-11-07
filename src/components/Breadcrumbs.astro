@@ -1,4 +1,5 @@
 ---
+import { common } from "@/i18n/en/common";
 import { withBase } from "@/lib/url";
 
 interface Crumb {
@@ -13,8 +14,8 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<nav class="breadcrumbs" aria-label="Хлебные крошки">
-	<a href={withBase("/")}>Главная</a>
+<nav class="breadcrumbs" aria-label={common.ui.breadcrumb}>
+	<a href={withBase("/")}>{common.ui.home}</a>
 	{items.map((item) => (
 		item.href ? <a href={withBase(item.href)}>{item.label}</a> : <span aria-current="page">{item.label}</span>
 	))}

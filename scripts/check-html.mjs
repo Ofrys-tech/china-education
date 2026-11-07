@@ -137,6 +137,8 @@ async function checkPage(file) {
   for (const marker of ["TODO", "TBD", "[insert", "lorem ipsum", "undefined", "[object Object]"]) {
     if (bodyText.includes(marker)) fail(`visible placeholder text: "${marker}"`);
   }
+
+  if (/[А-Яа-яЁё]/.test(bodyText)) fail("Cyrillic text found; site copy must be English");
 }
 
 try {

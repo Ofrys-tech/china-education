@@ -2,71 +2,69 @@
 import Icon from "@/components/Icon.astro";
 import Logo from "@/components/Logo.astro";
 import { siteConfig } from "@/config/site";
+import { common } from "@/i18n/en/common";
 import { withBase } from "@/lib/url";
 
 const year = new Date().getFullYear();
 const legalLinks = [
-  { label: "Политика конфиденциальности", href: "/privacy/" },
-  { label: "Как мы работаем", href: "/process/" },
-  { label: "О практике", href: "/about/" },
+  { label: common.footer.privacy, href: "/privacy/" },
+  { label: common.footer.process, href: "/process/" },
+  { label: common.footer.about, href: "/about/" },
 ];
 ---
 
 <footer class="site-footer">
-	<div class="shell">
-		<div class="site-footer__top">
-			<div class="site-footer__brand">
-				<Logo inverse />
-				<p class="site-footer__desc">
-					Подбор программ и вузов Китая, подготовка документов, стипендии и сопровождение
-					до зачисления. Спокойно, прозрачно, с одним куратором на связи.
-				</p>
-			</div>
+  <div class="shell">
+    <div class="site-footer__top">
+      <div class="site-footer__brand">
+        <Logo inverse />
+        <p class="site-footer__desc">{common.footer.description}</p>
+      </div>
 
-			<div>
-				<p class="site-footer__heading">Разделы</p>
-				<ul class="site-footer__links">
-					{siteConfig.nav.map((item) => (
-						<li><a href={withBase(item.href)}>{item.label}</a></li>
-					))}
-					<li><a href={withBase("/apply/")}>Оставить заявку</a></li>
-				</ul>
-			</div>
+      <div>
+        <p class="site-footer__heading">{common.footer.sections}</p>
+        <ul class="site-footer__links">
+          {common.nav.map((item) => (
+            <li><a href={withBase(item.href)}>{item.label}</a></li>
+          ))}
+          <li><a href={withBase("/apply/")}>{common.footer.apply}</a></li>
+        </ul>
+      </div>
 
-			<div>
-				<p class="site-footer__heading">Связь</p>
-				<ul class="site-footer__links">
-					{siteConfig.contacts.email && (
-						<li><a href={`mailto:${siteConfig.contacts.email}`}>{siteConfig.contacts.email}</a></li>
-					)}
-					{siteConfig.contacts.telegram && (
-						<li>
-							<a href={siteConfig.contacts.telegram} rel="noopener noreferrer" target="_blank">
-								Telegram
-							</a>
-						</li>
-					)}
-					<li><a href={withBase("/apply/")}>Форма заявки</a></li>
-				</ul>
-			</div>
+      <div>
+        <p class="site-footer__heading">{common.footer.contact}</p>
+        <ul class="site-footer__links">
+          {siteConfig.contacts.email && (
+            <li><a href={`mailto:${siteConfig.contacts.email}`}>{siteConfig.contacts.email}</a></li>
+          )}
+          {siteConfig.contacts.telegram && (
+            <li>
+              <a href={siteConfig.contacts.telegram} rel="noopener noreferrer" target="_blank">
+                Telegram
+              </a>
+            </li>
+          )}
+          <li><a href={withBase("/apply/")}>{common.footer.form}</a></li>
+        </ul>
+      </div>
 
-			<div>
-				<p class="site-footer__heading">Документы</p>
-				<ul class="site-footer__links">
-					{legalLinks.map((item) => (
-						<li><a href={withBase(item.href)}>{item.label}</a></li>
-					))}
-				</ul>
-			</div>
-		</div>
+      <div>
+        <p class="site-footer__heading">{common.footer.legal}</p>
+        <ul class="site-footer__links">
+          {legalLinks.map((item) => (
+            <li><a href={withBase(item.href)}>{item.label}</a></li>
+          ))}
+        </ul>
+      </div>
+    </div>
 
-		<div class="site-footer__bottom">
-			<p>© {year} {siteConfig.name}. Все права защищены.</p>
-			<p class="site-footer__legal">{siteConfig.legal.disclaimer}</p>
-			<a href={withBase("/apply/")} class="link-arrow" style="color:var(--color-cream)">
-				Обсудить поступление <Icon name="arrowUpRight" size={15} />
-			</a>
-		</div>
-	</div>
-	<span class="site-footer__glyph" aria-hidden="true">{siteConfig.nameZh.charAt(0)}</span>
+    <div class="site-footer__bottom">
+      <p>© {year} {siteConfig.name}. {common.footer.rights}</p>
+      <p class="site-footer__legal">{common.legal.disclaimer}</p>
+      <a href={withBase("/apply/")} class="link-arrow" style="color:var(--color-cream)">
+        {common.footer.discuss} <Icon name="arrowUpRight" size={15} />
+      </a>
+    </div>
+  </div>
+  <span class="site-footer__glyph" aria-hidden="true">{siteConfig.nameZh.charAt(0)}</span>
 </footer>

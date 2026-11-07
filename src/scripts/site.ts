@@ -1,3 +1,4 @@
+import { common } from "@/i18n/en/common";
 import { track } from "@/lib/analytics";
 
 const MOBILE_QUERY = "(max-width: 960px)";
@@ -9,7 +10,8 @@ function setupMenu(): void {
 
   const setOpen = (open: boolean) => {
     toggle.setAttribute("aria-expanded", String(open));
-    toggle.querySelector(".sr-only")!.textContent = open ? "Закрыть меню" : "Открыть меню";
+    const srLabel = toggle.querySelector(".sr-only");
+    if (srLabel) srLabel.textContent = open ? common.header.closeMenu : common.header.openMenu;
     menu.dataset.open = String(open);
     document.body.dataset.menuOpen = String(open);
     if (!open) toggle.focus({ preventScroll: true });

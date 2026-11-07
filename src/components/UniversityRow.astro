@@ -1,5 +1,6 @@
 ---
 import Icon from "@/components/Icon.astro";
+import { common } from "@/i18n/en/common";
 
 interface Props {
   name: string;
@@ -39,7 +40,7 @@ const {
 	<p class="university-row__meta">{language}</p>
 	<div class="university-row__tags">
 		{strengths.slice(0, 2).map((item) => <span class="tag">{item}</span>)}
-		{scholarship && <span class="tag tag--jade">стипендии</span>}
+		{scholarship && <span class="tag tag--jade">{common.ui.scholarships}</span>}
 	</div>
 	<span class="university-row__arrow" aria-hidden="true"><Icon name="arrowUpRight" size={18} /></span>
 	{note && <p class="university-row__note">{note}</p>}

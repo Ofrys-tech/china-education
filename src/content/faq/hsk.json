@@ -1,6 +1,6 @@
 {
-  "question": "Обязателен ли HSK для поступления?",
-  "answer": "Не всегда. Для программ на китайском обычно нужен HSK 4–5, для англоязычных — нет, но вуз может попросить базовый китайский или добавить языковой модуль. Если HSK нет, можно начать с языкового года при университете. Мы подбираем маршрут под текущий уровень, а не требуем «сдать HSK 6» без необходимости.",
+  "question": "Is HSK required for admission?",
+  "answer": "Not always. Chinese-taught programs usually require HSK 4–5; English-taught programs often don't, but the university may ask for basic Chinese or add a language module. If you have no HSK, you can start with a language year at a university. We match the route to your current level instead of demanding HSK 6 without need.",
   "category": "language",
   "order": 4,
   "home": true

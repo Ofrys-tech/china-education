@@ -1,52 +1,52 @@
 {
-  "title": "MBA и бизнес-школы",
+  "title": "MBA & business schools",
   "degree": "mba",
-  "summary": "Программы для тех, кто уже работает: предпринимательство, финансы, управление и китайский рынок.",
-  "duration": "1,5–2 года",
+  "summary": "For working professionals: entrepreneurship, finance, management and the Chinese market.",
+  "duration": "1.5–2 years",
   "languages": ["en", "zh"],
-  "tuition": "от ¥60 000 за программу",
+  "tuition": "from ¥60,000 per program",
   "overview": [
-    "Китайские бизнес-школы всё чаще входят в международные рейтинги и делают ставку на практику: кейсы локальных компаний, нетворкинг и проекты с реальными заказчиками. Англоязычные MBA сосредоточены в Пекине, Шанхае и Шэньчжэне.",
-    "MBA — не программа «с нуля». Обычно нужен опыт работы от 2–3 лет, диплом бакалавра, CV, эссе и рекомендации. Стоимость сильно зависит от школы, поэтому сравнивать нужно не только цену, но и состав потока, карьерную службу и формат."
+    "Chinese business schools increasingly appear in international rankings and focus on practice: local company cases, networking and projects with real clients. English-taught MBAs cluster in Beijing, Shanghai and Shenzhen.",
+    "An MBA isn't a program from zero. Most expect 2–3 years of work experience, a bachelor's degree, a CV, essays and references. Cost varies widely by school, so compare cohort, career service and format, not just price."
   ],
   "fitFor": [
-    "Есть опыт работы 2+ года",
-    "Нужна карьера в Китае или с китайскими партнёрами",
-    "Интересуют финансы, предпринимательство, supply chain",
-    "Готовы инвестировать в нетворкинг и бренд школы"
+    "You have 2+ years of work experience",
+    "You want a career in China or with Chinese partners",
+    "You're interested in finance, entrepreneurship or supply chain",
+    "You're ready to invest in network and school brand"
   ],
   "outcomes": [
-    "Степень MBA или магистра управления",
-    "Портфель кейсов и проектов",
-    "Контакты в локальном бизнесе",
-    "Понимание специфики китайского рынка"
+    "An MBA or management master's degree",
+    "A portfolio of cases and projects",
+    "Contacts in local business",
+    "A working understanding of the Chinese market"
   ],
   "timeline": [
     {
-      "step": "За 9–12 месяцев",
-      "text": "Сравниваем школы по карьерным трекам, аккредитации и составу потока."
+      "step": "9–12 months out",
+      "text": "We compare schools by career track, accreditation and cohort profile."
     },
     {
-      "step": "За 6–8 месяцев",
-      "text": "Готовим CV, эссе, рекомендации и GMAT/GRE, если он требуется."
+      "step": "6–8 months out",
+      "text": "We prepare the CV, essays, references and GMAT/GRE if required."
     },
     {
-      "step": "За 4–6 месяцев",
-      "text": "Подача по раундам, интервью, иногда групповые задания."
+      "step": "4–6 months out",
+      "text": "Round-based applications, interviews and sometimes group exercises."
     },
     {
-      "step": "За 2–3 месяца",
-      "text": "Оффер, депозит, виза и подготовка к переезду."
+      "step": "2–3 months out",
+      "text": "Offer, deposit, visa and relocation."
     }
   ],
   "faq": [
     {
-      "question": "Можно ли поступить на MBA без GMAT?",
-      "answer": "Многие китайские бизнес-школы допускают поступление без GMAT, особенно для опытных кандидатов, но требования зависят от программы. Иногда вместо GMAT учитывают рабочий опыт и внутренний тест."
+      "question": "Can I get into an MBA without GMAT?",
+      "answer": "Many Chinese business schools accept candidates without GMAT, especially with strong work experience, but requirements vary. Some use an internal test or assess experience instead."
     },
     {
-      "question": "Сколько стоит MBA в Китае?",
-      "answer": "Диапазон широкий: от десятков тысяч юаней за программу в региональных школах до значительно более высоких сумм в топовых бизнес-школах. Стоимость и стипендии проверяем по конкретной школе на год поступления."
+      "question": "How much does an MBA in China cost?",
+      "answer": "The range is wide: from tens of thousands of yuan at regional schools to significantly more at top business schools. We verify tuition and scholarships for the specific school and intake year."
     }
   ],
   "featured": false,

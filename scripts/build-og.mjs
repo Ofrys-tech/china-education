@@ -22,11 +22,11 @@ const og = `
 	<text x="1080" y="132" text-anchor="middle" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="46" fill="#B23A2E">留学</text>
 	${seal(84, 96, 84)}
 	<text x="200" y="146" font-family="Georgia, serif" font-size="40" fill="#191512">ChinaPath</text>
-	<text x="96" y="300" font-family="Arial, sans-serif" font-size="76" font-weight="700" fill="#191512">Учёба в Китае</text>
-	<text x="96" y="386" font-family="Arial, sans-serif" font-size="76" font-weight="700" fill="#B23A2E">без хаоса.</text>
-	<text x="98" y="462" font-family="Arial, sans-serif" font-size="25" fill="#6A6055">Подбор вузов · документы · стипендии · виза</text>
+	<text x="96" y="300" font-family="Arial, sans-serif" font-size="76" font-weight="700" fill="#191512">Study in China</text>
+	<text x="96" y="386" font-family="Arial, sans-serif" font-size="68" font-weight="700" fill="#B23A2E">without the guesswork.</text>
+	<text x="98" y="462" font-family="Arial, sans-serif" font-size="25" fill="#6A6055">University matching · documents · scholarships · visa</text>
 	<line x1="96" y1="518" x2="1104" y2="518" stroke="#191512" stroke-opacity=".2"/>
-	<text x="96" y="566" font-family="Arial, sans-serif" font-size="19" letter-spacing="3" fill="#6A6055">CHINAPATH · STUDY IN CHINA · НАБОР 2027</text>
+	<text x="96" y="566" font-family="Arial, sans-serif" font-size="19" letter-spacing="3" fill="#6A6055">CHINAPATH · STUDY IN CHINA · 2027 INTAKE</text>
 	<text x="1104" y="566" text-anchor="end" font-family="Arial, sans-serif" font-size="19" letter-spacing="2" fill="#6A6055">华路</text>
 </svg>`;
 

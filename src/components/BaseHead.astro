@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from "@/config/site";
+import { common } from "@/i18n/en/common";
 import { absoluteUrl, withBase } from "@/lib/url";
 
 interface Props {
@@ -45,7 +46,7 @@ const siteName = `${siteConfig.name} — ${siteConfig.tagline}`;
 <meta property="og:image" content={imageUrl} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content={siteName} />
+<meta property="og:image:alt" content={common.meta.defaultImageAlt} />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={fullTitle} />

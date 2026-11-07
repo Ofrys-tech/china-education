@@ -3,146 +3,117 @@ import { getCollection } from "astro:content";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import CtaBand from "@/components/CtaBand.astro";
 import Icon from "@/components/Icon.astro";
+import Lines from "@/components/Lines.astro";
 import ProgramCard from "@/components/ProgramCard.astro";
 import SectionHead from "@/components/SectionHead.astro";
-import { siteConfig } from "@/config/site";
+import { copy } from "@/i18n";
+import { labels } from "@/i18n/en/labels";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { degreeLabels } from "@/lib/content";
 import { absoluteUrl, withBase } from "@/lib/url";
 
 const programs = (await getCollection("programs")).sort((a, b) => a.data.order - b.data.order);
+const page = copy.programs;
 
 const collectionLd = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  name: "Направления обучения в Китае",
-  description:
-    "Языковой год, бакалавриат, магистратура, MBA, медицина и инженерия в Китае: сроки, язык обучения и ориентировочная стоимость.",
+  name: page.meta.title,
+  description: page.meta.description,
   url: absoluteUrl("/programs/"),
-  isPartOf: { "@type": "WebSite", name: siteConfig.name, url: absoluteUrl("/") },
+  isPartOf: { "@type": "WebSite", name: copy.common.meta.siteName, url: absoluteUrl("/") },
 };
-
-const criteria = [
-  {
-    title: "Сначала цель",
-    text: "Диплом для карьеры, переезд, язык или исследование? От этого зависит ступень и страна обучения внутри Китая.",
-  },
-  {
-    title: "Потом бюджет",
-    text: "Считаем не только tuition, но и жизнь, перелёт, страховку, депозит и языковые курсы. Честная сумма важнее красивой.",
-  },
-  {
-    title: "Затем шансы",
-    text: "Сопоставляем оценки, язык и опыт с требованиями. Подаём в несколько вузов, чтобы не зависеть от одного решения.",
-  },
-];
 ---
 
-<BaseLayout
-	title="Направления обучения в Китае"
-	description="Языковой год, бакалавриат, магистратура, MBA, медицина и инженерия в Китае. Сроки, язык обучения, ориентировочная стоимость и требования."
-	jsonLd={collectionLd}
->
-	<section class="page-hero">
-		<div class="shell">
-			<Breadcrumbs items={[{ label: "Направления" }]} />
-			<div class="page-hero__inner">
-				<div>
-					<span class="eyebrow">Каталог маршрутов</span>
-					<h1 class="display display--l page-hero__title">Направления<br />и ступени.</h1>
-					<p class="lead page-hero__lead">
-						Семь типовых маршрутов — от языкового года до MBA и медицины. Это не жёсткий
-						список: конкретную программу и вуз собираем под ваш профиль.
-					</p>
-				</div>
-				<div class="page-hero__aside">
-					<p>
-						Стоимость в карточках — ориентир по китайским вузам, не оферта. Финальную смету
-						считаем после диагностики: вуз, город и стипендия меняют цифру.
-					</p>
-					<a class="link-arrow mt-2" href={withBase("/apply/")}>
-						Подобрать под себя <Icon name="arrowUpRight" size={14} />
-					</a>
-				</div>
-			</div>
-		</div>
-	</section>
+<BaseLayout title={page.meta.title} description={page.meta.description} jsonLd={collectionLd}>
+  <section class="page-hero">
+    <div class="shell">
+      <Breadcrumbs items={[{ label: page.breadcrumb }]} />
+      <div class="page-hero__inner">
+        <div>
+          <span class="eyebrow">{page.hero.eyebrow}</span>
+          <h1 class="display display--l page-hero__title"><Lines lines={page.hero.titleLines} /></h1>
+          <p class="lead page-hero__lead">{page.hero.lead}</p>
+        </div>
+        <div class="page-hero__aside">
+          <p>{page.hero.aside}</p>
+          <a class="link-arrow mt-2" href={withBase("/apply/")}>
+            {page.hero.link} <Icon name="arrowUpRight" size={14} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-	<section class="section">
-		<div class="shell">
-			<div class="program-grid program-grid--listing">
-				{programs.map((program, index) => (
-					<ProgramCard
-						title={program.data.title}
-						summary={program.data.summary}
-						degree={program.data.degree}
-						duration={program.data.duration}
-						languages={program.data.languages}
-						tuition={program.data.tuition}
-						href={`/programs/${program.id}/`}
-						index={index + 1}
-						featured={program.data.featured}
-					/>
-				))}
-			</div>
-		</div>
-	</section>
+  <section class="section">
+    <div class="shell">
+      <div class="program-grid program-grid--listing">
+        {programs.map((program, index) => (
+          <ProgramCard
+            title={program.data.title}
+            summary={program.data.summary}
+            degree={program.data.degree}
+            duration={program.data.duration}
+            languages={program.data.languages}
+            tuition={program.data.tuition}
+            href={`/programs/${program.id}/`}
+            index={index + 1}
+            featured={program.data.featured}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
 
-	<section class="section section--ruled">
-		<div class="shell">
-			<SectionHead index="01 / Выбор" eyebrow="Логика подбора">
-				<Fragment slot="title">Сначала цель.<br />Потом вуз.</Fragment>
-				<Fragment slot="aside">
-					Название университета — последний слой. Сначала ступень, язык, бюджет и реальная
-					траектория. Иначе красивый вуз может оказаться не тем выбором.
-				</Fragment>
-			</SectionHead>
-			<div class="value-grid reveal">
-				{criteria.map((item, index) => (
-					<article class="value-card">
-						<span class="value-card__index">{String(index + 1).padStart(2, "0")}</span>
-						<div>
-							<h3>{item.title}</h3>
-							<p>{item.text}</p>
-						</div>
-					</article>
-				))}
-			</div>
+  <section class="section section--ruled">
+    <div class="shell">
+      <SectionHead index={page.criteria.index} eyebrow={page.criteria.eyebrow}>
+        <Fragment slot="title"><Lines lines={page.criteria.titleLines} /></Fragment>
+        <Fragment slot="aside">{page.criteria.aside}</Fragment>
+      </SectionHead>
+      <div class="value-grid reveal">
+        {page.criteria.cards.map((item, index) => (
+          <article class="value-card">
+            <span class="value-card__index">{String(index + 1).padStart(2, "0")}</span>
+            <div>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+          </article>
+        ))}
+      </div>
 
-			<div class="table-wrap mt-4 reveal">
-				<table class="data-table">
-					<thead>
-						<tr>
-							<th>Ступень</th>
-							<th>Срок</th>
-							<th>Язык</th>
-							<th>Ориентир стоимости</th>
-						</tr>
-					</thead>
-					<tbody>
-						{programs.map((program) => (
-							<tr>
-								<td><a href={withBase(`/programs/${program.id}/`)}>{degreeLabels[program.data.degree]}</a></td>
-								<td>{program.data.duration}</td>
-								<td>{program.data.languages.map((lang) => (lang === "zh" ? "китайский" : "английский")).join(" / ")}</td>
-								<td>{program.data.tuition}</td>
-							</tr>
-						))}
-					</tbody>
-				</table>
-			</div>
-			<p class="note mt-2">
-				Диапазоны ориентировочные и зависят от вуза, города и года поступления. Точную стоимость
-				программы проверяем по официальному сайту университета до подачи.
-			</p>
-		</div>
-	</section>
+      <div class="table-wrap mt-4 reveal">
+        <table class="data-table">
+          <thead>
+            <tr>
+              {page.table.headers.map((header) => <th>{header}</th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {programs.map((program) => (
+              <tr>
+                <td>
+                  <a href={withBase(`/programs/${program.id}/`)}>
+                    {labels.degrees[program.data.degree]}
+                  </a>
+                </td>
+                <td>{program.data.duration}</td>
+                <td>{program.data.languages.map((lang) => labels.languages[lang]).join(" / ")}</td>
+                <td>{program.data.tuition}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="note mt-2">{page.table.note}</p>
+    </div>
+  </section>
 
-	<CtaBand
-		title="Не знаете, какая ступень ваша?"
-		text="Разберём на бесплатной консультации: 30 минут, конкретные варианты и следующие шаги."
-		ctaLabel="Получить план"
-		secondaryLabel="Как поступить"
-		secondaryHref="/process/"
-	/>
+  <CtaBand
+    title={page.cta.title}
+    text={page.cta.text}
+    ctaLabel={page.cta.primary}
+    secondaryLabel={page.cta.secondary}
+    secondaryHref="/process/"
+  />
 </BaseLayout>

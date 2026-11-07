@@ -1,52 +1,52 @@
 {
-  "title": "Языковой год в Китае",
+  "title": "Language year in China",
   "degree": "language",
-  "summary": "Год китайского с погружением: с нуля до уровня, с которым можно поступать в бакалавриат или магистратуру.",
-  "duration": "1 год · 2 семестра",
+  "summary": "A year of immersive Chinese: from zero to the level needed for a bachelor's or master's.",
+  "duration": "1 year · 2 semesters",
   "languages": ["zh"],
-  "tuition": "¥7 000–14 000 / семестр",
+  "tuition": "¥7,000–14,000 / semester",
   "overview": [
-    "Языковой год — самый гибкий вход в китайское образование. Вы учитесь в кампусе университета, набираете HSK и параллельно понимаете, подходит ли вам страна, город и сам формат учёбы.",
-    "Программы бывают при университетах и при языковых центрах. Первые дают студенческий статус, общежитие и доступ к инфраструктуре, вторые иногда дешевле, но слабее по среде. Мы подбираем вариант под вашу следующую цель: бакалавриат, магистратуру или работу."
+    "A language year is the most flexible entry into Chinese education. You study on a university campus, build HSK and learn whether the country, city and study format suit you.",
+    "Programs exist at universities and private language centres. University programs give student status, housing and campus access; private centres can be cheaper but offer a weaker environment. We choose based on your next goal: bachelor's, master's or work."
   ],
   "fitFor": [
-    "Нет HSK или уровень ниже требуемого",
-    "Нужен академический год перед бакалавриатом",
-    "Хотите проверить Китай до долгой программы",
-    "Планируете магистратуру и хотите подтянуть язык"
+    "No HSK, or a level below the requirement",
+    "You need an academic year before a bachelor's",
+    "You want to test China before a longer program",
+    "You're planning a master's and want to improve the language"
   ],
   "outcomes": [
-    "HSK 3–5 в зависимости от старта и интенсивности",
-    "Студенческий статус и кампусная инфраструктура",
-    "Понимание требований вузов изнутри",
-    "Готовность к подаче на следующую ступень"
+    "HSK 3–5 depending on your start and intensity",
+    "Student status and campus facilities",
+    "First-hand understanding of university requirements",
+    "Readiness to apply for the next level"
   ],
   "timeline": [
     {
-      "step": "За 6–8 месяцев",
-      "text": "Определяем город, бюджет и цель. Собираем языковые школы и университетские программы."
+      "step": "6–8 months out",
+      "text": "We choose the city, budget and goal, then shortlist language schools and university programs."
     },
     {
-      "step": "За 4–6 месяцев",
-      "text": "Готовим паспорт, аттестат или диплом, переводы и справки. Подаём заявки."
+      "step": "4–6 months out",
+      "text": "We prepare the passport, certificate or degree, translations and supporting documents, then apply."
     },
     {
-      "step": "За 2–3 месяца",
-      "text": "Получаем приглашение, вносим депозит, оформляем JW202 и визу X1/X2."
+      "step": "2–3 months out",
+      "text": "Offer, deposit, JW202 and an X1/X2 visa."
     },
     {
-      "step": "До прилёта",
-      "text": "Помогаем с общежитием, страховкой, сим-картой и первыми днями на кампусе."
+      "step": "Before departure",
+      "text": "We help with housing, insurance, a SIM card and your first days on campus."
     }
   ],
   "faq": [
     {
-      "question": "Можно ли учить китайский с нуля?",
-      "answer": "Да. Большинство языковых программ рассчитаны на начальный уровень и распределяют студентов по группам после теста. Для визы и зачисления обычно достаточно школьного образования."
+      "question": "Can I learn Chinese from zero?",
+      "answer": "Yes. Most language programs are designed for beginners and place students in groups after a test. A high school education is usually enough for the visa and enrolment."
     },
     {
-      "question": "Даёт ли языковой год право поступить в китайский вуз?",
-      "answer": "Сам по себе — нет. Год помогает добрать HSK и подготовиться, но для поступления всё равно нужны аттестат или диплом, документы и выполнение требований конкретного вуза."
+      "question": "Does a language year give me the right to enter a Chinese university?",
+      "answer": "Not by itself. The year helps you reach the required HSK and prepare, but admission still requires a certificate or degree, documents and the specific university's requirements."
     }
   ],
   "featured": false,

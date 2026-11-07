@@ -1,3 +1,4 @@
+import { labels } from "@/i18n/en/labels";
 import type { LeadValues } from "./schema";
 
 export type LeadProvider = "formspree" | "webhook";
@@ -24,34 +25,17 @@ export function sanitizeText(value: string, multiline = false): string {
     : singleLine(normalized);
 }
 
-const summaryLabels = {
-  language: "Языковой год",
-  bachelor: "Бакалавриат",
-  master: "Магистратура",
-  mba: "MBA / бизнес-школа",
-  phd: "Аспирантура",
-  short: "Короткая программа / лето",
-  undecided: "Пока не определился(ась)",
-} as const;
-
 export function buildLeadPayload(values: LeadValues, meta: LeadMeta = {}): LeadPayload {
   const url = meta.pageUrl ?? "";
   const utm = meta.utm ?? {};
-  const methodLabel =
-    values.contactMethod === "telegram"
-      ? "Telegram"
-      : values.contactMethod === "whatsapp"
-        ? "WhatsApp"
-        : values.contactMethod === "phone"
-          ? "Телефон"
-          : "E-mail";
+  const methodLabel = labels.contactMethods[values.contactMethod].label;
 
   const summary = [
     `${sanitizeText(values.name)} — ${methodLabel}: ${sanitizeText(values.contact)}`,
-    `Программа: ${summaryLabels[values.degree]}`,
-    `Направление: ${values.direction}`,
-    `Старт: ${values.intake}`,
-    values.message ? `О себе: ${sanitizeText(values.message, true)}` : "",
+    `Program: ${labels.degrees[values.degree]}`,
+    `Field: ${values.direction}`,
+    `Start: ${values.intake}`,
+    values.message ? `About: ${sanitizeText(values.message, true)}` : "",
   ]
     .filter(Boolean)
     .join("\n");
@@ -67,7 +51,7 @@ export function buildLeadPayload(values: LeadValues, meta: LeadMeta = {}): LeadP
     message: sanitizeText(values.message, true),
     consent: values.consent === true,
     summary,
-    _subject: `Заявка ChinaPath · ${sanitizeText(values.name)} · ${summaryLabels[values.degree]}`,
+    _subject: `ChinaPath application · ${sanitizeText(values.name)} · ${labels.degrees[values.degree]}`,
     page: url,
     source: sanitizeText(meta.source ?? ""),
     referrer: sanitizeText(meta.referrer ?? ""),

@@ -51,16 +51,16 @@ CORS обязателен: браузер отправляет JSON-запрос
 ```json
 {
   "_type": "chinapath_lead",
-  "_subject": "Заявка ChinaPath · Анна Ли · Магистратура",
-  "name": "Анна Ли",
+  "_subject": "ChinaPath application · Anna Lee · Master's",
+  "name": "Anna Lee",
   "contactMethod": "telegram",
-  "contact": "@anna_li",
+  "contact": "@anna_lee",
   "degree": "master",
   "direction": "business",
   "intake": "2027",
-  "message": "Финансы, IELTS 7.0",
+  "message": "Finance, IELTS 7.0",
   "consent": true,
-  "summary": "Анна Ли — Telegram: @anna_li\nПрограмма: Магистратура\n...",
+  "summary": "Anna Lee — Telegram: @anna_lee\nProgram: Master's\n...",
   "page": "https://example.com/apply/",
   "source": "apply",
   "referrer": "https://t.me/...",
@@ -82,7 +82,7 @@ CORS обязателен: браузер отправляет JSON-запрос
 - Все строки очищаются от control-characters; `message` сохраняет переводы строк.
 - `consent` всегда boolean.
 
-Схема: `src/lib/leads/schema.ts`. Payload: `src/lib/leads/payload.ts`.
+Схема: `src/lib/leads/schema.ts` (валидация возвращает коды ошибок, тексты — в `src/i18n/en/forms.ts`). Payload: `src/lib/leads/payload.ts`.
 
 ## Анти-спам
 

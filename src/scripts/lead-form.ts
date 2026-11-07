@@ -1,6 +1,7 @@
+import { forms } from "@/i18n/en/forms";
 import { track } from "@/lib/analytics";
 import { buildLeadPayload, endpointFor, type LeadProvider } from "@/lib/leads/payload";
-import { type LeadValues, validateLead } from "@/lib/leads/schema";
+import { type LeadErrors, type LeadValues, validateLead } from "@/lib/leads/schema";
 
 const UTM_KEYS = ["source", "medium", "campaign", "content", "term"] as const;
 
@@ -47,15 +48,13 @@ function clearErrors(form: FormElement): void {
   });
 }
 
-function showErrors(
-  form: FormElement,
-  errors: Partial<Record<string, string>>,
-): HTMLElement | null {
+function showErrors(form: FormElement, errors: LeadErrors): HTMLElement | null {
   clearErrors(form);
   let firstInvalid: HTMLElement | null = null;
 
-  for (const [key, message] of Object.entries(errors)) {
-    if (!message) continue;
+  for (const [key, code] of Object.entries(errors)) {
+    if (!code) continue;
+    const message = forms.errors[code] ?? forms.errors.contact_short;
     const errorElement = form.querySelector<HTMLElement>(`[data-error-for="${key}"]`);
     const input = form.querySelector<HTMLElement>(`[name="${key}"]`);
 
@@ -97,12 +96,12 @@ function setBusy(form: FormElement, busy: boolean): void {
   const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
   if (button) button.disabled = busy;
   const label = form.querySelector<HTMLElement>("[data-submit-label]");
-  if (label) label.textContent = busy ? "Отправляем…" : "Отправить заявку";
+  if (label) label.textContent = busy ? forms.submit.busy : forms.submit.idle;
 }
 
-function utmFromLocation(): Partial<Record<(typeof UTM_KEYS)[number], string>> {
+function utmFromLocation(): Utm {
   const params = new URLSearchParams(window.location.search);
-  const result: Partial<Record<(typeof UTM_KEYS)[number], string>> = {};
+  const result: Utm = {};
   for (const key of UTM_KEYS) {
     const value = params.get(`utm_${key}`);
     if (value) result[key] = value.slice(0, 120);
@@ -110,7 +109,7 @@ function utmFromLocation(): Partial<Record<(typeof UTM_KEYS)[number], string>> {
   return result;
 }
 
-function loadUtm(): Partial<Record<(typeof UTM_KEYS)[number], string>> {
+function loadUtm(): Utm {
   const fresh = utmFromLocation();
   if (Object.keys(fresh).length) {
     try {
@@ -130,14 +129,17 @@ function loadUtm(): Partial<Record<(typeof UTM_KEYS)[number], string>> {
   return {};
 }
 
-function fillTrackingFields(form: FormElement, utm: ReturnType<typeof loadUtm>): void {
+type Utm = Partial<Record<(typeof UTM_KEYS)[number], string>>;
+
+function fillTrackingFields(form: FormElement, utm: Utm): void {
   const pageUrl = form.querySelector<HTMLInputElement>("[data-page-url]");
   const referrer = form.querySelector<HTMLInputElement>("[data-referrer]");
   const startedAt = form.querySelector<HTMLInputElement>("[data-started-at]");
 
   if (pageUrl) pageUrl.value = window.location.href;
-  if (referrer)
+  if (referrer) {
     referrer.value = document.referrer.startsWith(window.location.origin) ? "" : document.referrer;
+  }
   if (startedAt && !startedAt.value) startedAt.value = String(Date.now());
 
   form.querySelectorAll<HTMLInputElement>("[data-utm]").forEach((input) => {
@@ -153,10 +155,8 @@ function updateContactField(form: FormElement): void {
   if (!select || !input) return;
 
   const option = select.selectedOptions[0];
-  const methodLabel = option?.dataset.label ?? "Контакт";
-  if (label) label.textContent = methodLabel;
-
-  input.placeholder = option?.dataset.placeholder ?? "Выберите способ связи";
+  if (label) label.textContent = option?.dataset.label ?? forms.labels.contact;
+  input.placeholder = option?.dataset.placeholder ?? forms.placeholders.contactFallback;
   input.type =
     select.value === "email"
       ? "email"
@@ -190,14 +190,14 @@ function fallbackContact(form: FormElement, message: string): void {
   if (!email && !telegram) return;
 
   const paragraph = document.createElement("p");
-  paragraph.append("Напишите напрямую: ");
+  paragraph.append(forms.status.direct);
   if (email) {
     const link = document.createElement("a");
     link.href = `mailto:${email}`;
     link.textContent = email;
     paragraph.append(link);
   }
-  if (email && telegram) paragraph.append(" или ");
+  if (email && telegram) paragraph.append(forms.status.or);
   if (telegram) {
     const link = document.createElement("a");
     link.href = telegram;
@@ -230,26 +230,20 @@ async function send(form: FormElement, values: LeadValues): Promise<void> {
     const telegram = form.dataset.telegram ?? "";
     if (email) {
       const subject = encodeURIComponent(String(payload._subject));
-      const body = encodeURIComponent(`${payload.summary}\n\nСтраница: ${payload.page}`);
+      const body = encodeURIComponent(`${payload.summary}\n\nPage: ${payload.page}`);
       window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
-      setStatus(
-        form,
-        "info",
-        "Открываем почтовый клиент. Если он не открылся — напишите на почту напрямую.",
-      );
+      setStatus(form, "info", forms.status.emailOpen);
       return;
     }
-    fallbackContact(
-      form,
-      telegram
-        ? "Форма пока не подключена к приёмнику. Напишите нам в Telegram."
-        : "Форма пока не подключена к приёмнику. Настройте PUBLIC_LEAD_ENDPOINT перед запуском.",
-    );
+    if (!telegram) {
+      console.warn("[lead-form] PUBLIC_LEAD_ENDPOINT is not set; the application cannot be sent.");
+    }
+    fallbackContact(form, telegram ? forms.status.telegramOnly : forms.status.unavailable);
     return;
   }
 
   setBusy(form, true);
-  setStatus(form, "info", "Отправляем заявку…");
+  setStatus(form, "info", forms.status.sending);
 
   const controller = new AbortController();
   const timeout = window.setTimeout(() => controller.abort(), 15_000);
@@ -274,12 +268,7 @@ async function send(form: FormElement, values: LeadValues): Promise<void> {
       source: form.dataset.source ?? "site",
       reason: aborted ? "timeout" : "request_failed",
     });
-    fallbackContact(
-      form,
-      aborted
-        ? "Сервер не ответил вовремя. Попробуйте ещё раз или напишите напрямую."
-        : "Не получилось отправить заявку. Попробуйте ещё раз или напишите напрямую.",
-    );
+    fallbackContact(form, aborted ? forms.status.timeout : forms.status.failed);
   } finally {
     window.clearTimeout(timeout);
     setBusy(form, false);
@@ -325,7 +314,7 @@ function initForm(form: FormElement): void {
     const parsed = validateLead(raw);
     if (!parsed.success) {
       const firstInvalid = showErrors(form, parsed.errors);
-      setStatus(form, "error", "Проверьте выделенные поля.");
+      setStatus(form, "error", forms.status.invalid);
       firstInvalid?.focus({ preventScroll: false });
       return;
     }

@@ -1,13 +1,13 @@
 {
   "name": "Tsinghua University",
   "nameZh": "清华大学",
-  "city": "Пекин",
+  "city": "Beijing",
   "type": "public",
   "founded": 1911,
-  "strengths": ["Инженерия", "IT", "Архитектура"],
-  "language": "Английский / китайский",
+  "strengths": ["Engineering", "Computer science", "Architecture"],
+  "language": "English / Chinese",
   "scholarship": true,
-  "note": "Один из самых конкурентных вузов Китая. Для иностранцев отдельные квоты и требования — важна сильная академическая история.",
+  "note": "One of China's most competitive universities. International applicants have separate quotas and requirements — a strong academic record matters.",
   "officialUrl": "https://www.tsinghua.edu.cn/en/",
   "featured": true,
   "order": 1

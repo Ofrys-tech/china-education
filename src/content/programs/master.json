@@ -1,52 +1,52 @@
 {
-  "title": "Магистратура в Китае",
+  "title": "Master's in China",
   "degree": "master",
-  "summary": "2–3 года, англоязычные и китайские программы, исследовательская работа и доступ к азиатскому рынку.",
-  "duration": "2–3 года",
+  "summary": "Two to three years, English- and Chinese-taught programs, research work and access to the Asian market.",
+  "duration": "2–3 years",
   "languages": ["zh", "en"],
-  "tuition": "¥20 000–40 000 / год",
+  "tuition": "¥20,000–40,000 / year",
   "overview": [
-    "Магистратура — самый востребованный формат для международных студентов в Китае. Лучшие программы требуют диплом бакалавра, мотивационное письмо, рекомендации и часто исследовательское предложение.",
-    "Англоязычных магистратур больше, чем бакалавриатов, но конкурс выше. Китайские программы дают доступ к более широкому выбору и дешевле, однако обычно требуют HSK 4–5. Для карьеры в Китае китайский язык почти обязателен."
+    "A master's is the most popular route for international students in China. Top programs require a bachelor's degree, a motivation letter, references and often a research proposal.",
+    "There are more English-taught master's than bachelor's, but competition is higher. Chinese-taught programs offer a wider choice and lower tuition, yet usually require HSK 4–5. For a career in China, Chinese is almost mandatory."
   ],
   "fitFor": [
-    "Есть диплом бакалавра",
-    "Нужна магистратура с обучением на английском",
-    "Планируете карьеру в Азии или международных компаниях",
-    "Интересует исследование и дальнейшая аспирантура"
+    "You already hold a bachelor's degree",
+    "You need a master's taught in English",
+    "You're planning a career in Asia or with international companies",
+    "You're interested in research and a future PhD"
   ],
   "outcomes": [
-    "Степень магистра и диплом китайского вуза",
-    "Портфолио проектов и публикаций",
-    "Практика и стажировки в компаниях региона",
-    "База для PhD и работы в международной среде"
+    "A master's degree and a Chinese university diploma",
+    "A portfolio of projects and publications",
+    "Internships with companies in the region",
+    "A foundation for a PhD and an international career"
   ],
   "timeline": [
     {
-      "step": "За 10–12 месяцев",
-      "text": "Формируем шорт-лист программ и проверяем требования к диплому, языку и рекомендациям."
+      "step": "10–12 months out",
+      "text": "We build a shortlist of programs and check degree, language and reference requirements."
     },
     {
-      "step": "За 7–9 месяцев",
-      "text": "Готовим эссе, CV, рекомендации, исследовательское предложение и языковые сертификаты."
+      "step": "7–9 months out",
+      "text": "We prepare essays, a CV, references, a research proposal and language certificates."
     },
     {
-      "step": "За 4–6 месяцев",
-      "text": "Подача, переписка с кафедрами, интервью, иногда вступительные экзамены."
+      "step": "4–6 months out",
+      "text": "Applications, correspondence with departments, interviews and sometimes entrance exams."
     },
     {
-      "step": "За 2–3 месяца",
-      "text": "Зачисление, депозит, JW202, виза и переезд."
+      "step": "2–3 months out",
+      "text": "Offer, deposit, JW202, visa and relocation."
     }
   ],
   "faq": [
     {
-      "question": "Обязателен ли HSK для англоязычной магистратуры?",
-      "answer": "Обычно нет, но некоторые вузы просят базовый китайский или добавляют языковой модуль. Требования меняются от программы к программе — проверяем по официальному списку каждого вуза."
+      "question": "Is HSK required for an English-taught master's?",
+      "answer": "Usually not, but some universities ask for basic Chinese or add a language module. Requirements vary by program — we check the official list for each university."
     },
     {
-      "question": "Можно ли поступить с дипломом из России или СНГ?",
-      "answer": "Да, диплом бакалавра принимают при наличии перевода и легализации/апостиля, если это требуется вузом. Для некоторых специальностей нужен академический транскрипт с оценками."
+      "question": "Can I apply with a degree from my country?",
+      "answer": "Yes, a bachelor's degree is accepted with a translation and legalisation/apostille where required. Some fields also need an academic transcript with grades."
     }
   ],
   "featured": false,

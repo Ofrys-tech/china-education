@@ -1,5 +1,6 @@
 ---
 import Icon from "@/components/Icon.astro";
+import { common } from "@/i18n/en/common";
 import { withBase } from "@/lib/url";
 
 interface Props {
@@ -13,12 +14,12 @@ interface Props {
 }
 
 const {
-  eyebrow = "Следующий шаг",
+  eyebrow = common.ui.nextStep,
   title,
   text,
-  ctaLabel = "Оставить заявку",
+  ctaLabel = common.ui.applyNow,
   ctaHref = "/apply/",
-  secondaryLabel = "Задать вопрос",
+  secondaryLabel = common.ui.askQuestion,
   secondaryHref = "/faq/",
 } = Astro.props;
 ---

@@ -30,7 +30,7 @@ Unit-тесты не рендерят Astro и не требуют браузе�
 
 ### HTML (`scripts/check-html.mjs`)
 
-Пост-сборка: один `<h1>`, title/description/canonical, `lang`, дубли `id`, битые внутренние ссылки и ассеты, `<img alt>`, placeholder-текст, наличие sitemap. Работает с base path.
+Пост-сборка: один `<h1>`, title/description/canonical, `lang`, дубли `id`, битые внутренние ссылки и ассеты, `<img alt>`, placeholder-текст, наличие sitemap, отсутствие кириллицы в HTML. Работает с base path.
 
 ### E2E (`tests/e2e/smoke.spec.ts`)
 

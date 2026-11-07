@@ -417,7 +417,7 @@ ol {
   top: 0;
   z-index: 60;
   height: var(--header-h);
-  background: color-mix(in srgb, var(--color-paper) 82%, transparent);
+  background: var(--color-paper);
   backdrop-filter: blur(16px) saturate(140%);
   -webkit-backdrop-filter: blur(16px) saturate(140%);
   border-bottom: 1px solid var(--color-line);
@@ -906,14 +906,14 @@ body[data-menu-open="true"] {
 }
 
 .float-card--lang {
-  bottom: 12%;
-  left: -2%;
+  bottom: 0;
+  left: 0;
   transform: rotate(-2.4deg);
 }
 
 .orbit-badge {
   position: absolute;
-  right: -1rem;
+  right: 0;
   bottom: -1.5rem;
   width: 7rem;
   height: 7rem;
@@ -959,23 +959,34 @@ body[data-menu-open="true"] {
 
 @media (max-width: 560px) {
   .hero__visual {
-    min-height: 23rem;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.65rem;
   }
 
-  .float-card--scholar {
-    right: 0;
-    top: 1%;
+  .dossier {
+    width: 100%;
+    transform: none;
   }
 
-  .float-card--lang {
-    left: 0;
-    bottom: 4%;
+  .hero__visual:hover .dossier {
+    transform: none;
+  }
+
+  .float-card {
+    position: static;
+    max-width: none;
+    transform: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
   }
 
   .orbit-badge {
-    width: 5.5rem;
-    height: 5.5rem;
-    right: 0;
+    display: none;
   }
 
   .hero__meta-item {
@@ -1783,6 +1794,7 @@ body[data-menu-open="true"] {
 
 .consent a {
   color: var(--color-ink);
+  white-space: nowrap;
   text-decoration: underline;
   text-underline-offset: 0.16em;
 }

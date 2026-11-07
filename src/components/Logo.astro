@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from "@/config/site";
+import { common } from "@/i18n/en/common";
 import { withBase } from "@/lib/url";
 
 interface Props {
@@ -10,7 +11,7 @@ interface Props {
 const { compact = false, inverse = false } = Astro.props;
 ---
 
-<a class="brand" href={withBase("/")} aria-label={`${siteConfig.name} — на главную`}>
+<a class="brand" href={withBase("/")} aria-label={`${siteConfig.name} — ${common.ui.home}`}>
 	<span class="brand__seal" aria-hidden="true">华</span>
 	<span>
 		<span class="brand__name" style={inverse ? "color:var(--color-cream)" : ""}>

@@ -1,0 +1,14 @@
+---
+interface Props {
+  lines: readonly string[];
+}
+
+const { lines } = Astro.props;
+---
+
+{lines.map((line, index) => (
+  <>
+    {line}
+    {index < lines.length - 1 && <br />}
+  </>
+))}

@@ -1,52 +1,52 @@
 {
-  "title": "Бакалавриат в Китае",
+  "title": "Bachelor's in China",
   "degree": "bachelor",
-  "summary": "4 года, диплом государственного вуза и сильная база по китайскому языку, экономике или инженерии.",
-  "duration": "4 года",
+  "summary": "Four years, a degree from a public university and a serious foundation in Chinese, business or engineering.",
+  "duration": "4 years",
   "languages": ["zh", "en"],
-  "tuition": "¥16 000–30 000 / год",
+  "tuition": "¥16,000–30,000 / year",
   "overview": [
-    "Бакалавриат в Китае — это полноценная университетская программа на 4 года, чаще всего с обучением на китайском. Англоязычных программ меньше, и конкуренция за них выше: их стоит рассматривать, если нужен быстрый старт без годичной языковой подготовки.",
-    "Сильные стороны — цена относительно США и Великобритании, кампусная жизнь, стажировки в локальных компаниях и китайский язык как второй рабочий. Слабая сторона — бюрократия и разный уровень организации программ, поэтому вуз и город важнее красивого названия."
+    "A bachelor's in China is a full four-year university program, usually taught in Chinese. English-taught options are fewer and more competitive: they make sense if you need to start without a language year.",
+    "The strengths are cost relative to the US and UK, campus life, internships with local companies and Chinese as a second working language. The weakness is bureaucracy and uneven program quality, so the university and city matter more than a pretty name."
   ],
   "fitFor": [
-    "Выпускники 11 класса или колледжа",
-    "Есть аттестат, который можно перевести и легализовать",
-    "Готовы учиться 4 года и инвестировать в язык",
-    "Родители и студент хотят прозрачный бюджет"
+    "High school or college graduates",
+    "You have a certificate that can be translated and legalised",
+    "You're ready for four years and willing to invest in the language",
+    "You and your family want a transparent budget"
   ],
   "outcomes": [
-    "Степень бакалавра и диплом китайского вуза",
-    "Китайский на уровне HSK 4–6 к выпуску",
-    "Стажировки и проекты в кампусе",
-    "Возможность продолжить магистратуру в Китае или за рубежом"
+    "A bachelor's degree and a Chinese university diploma",
+    "Chinese at HSK 4–6 by graduation",
+    "Internships and campus projects",
+    "A path to a master's in China or abroad"
   ],
   "timeline": [
     {
-      "step": "За 10–12 месяцев",
-      "text": "Выбираем направление и стратегию: язык обучения, город, бюджет, шансы на стипендию."
+      "step": "10–12 months out",
+      "text": "We choose the field and strategy: language of instruction, city, budget, scholarship odds."
     },
     {
-      "step": "За 6–8 месяцев",
-      "text": "Собираем аттестат, переводы, рекомендации, мотивационное письмо. Готовим HSK/IELTS при необходимости."
+      "step": "6–8 months out",
+      "text": "We assemble the certificate, translations, references and motivation letter. HSK/IELTS prep if needed."
     },
     {
-      "step": "За 4–6 месяцев",
-      "text": "Подаём в 3–5 вузов, проходим интервью и вступительные испытания, отвечаем на запросы приёмных комиссий."
+      "step": "4–6 months out",
+      "text": "We apply to 3–5 universities, prepare for interviews and entrance tests, and answer admissions requests."
     },
     {
-      "step": "За 2–3 месяца",
-      "text": "Приглашение, депозит, JW202, виза, жильё и перелёт."
+      "step": "2–3 months out",
+      "text": "Offer, deposit, JW202, visa, housing and flights."
     }
   ],
   "faq": [
     {
-      "question": "Можно ли поступить в бакалавриат без HSK?",
-      "answer": "Да, если есть англоязычная программа или вуз допускает обучение с языковым годом. Требования отличаются: часть вузов принимает HSK 4, часть просит HSK 5 для китайской программы, а англоязычные программы могут требовать IELTS/TOEFL."
+      "question": "Can I get into a bachelor's without HSK?",
+      "answer": "Yes, if there is an English-taught program or the university allows a language year. Requirements differ: some accept HSK 4, some ask for HSK 5 for Chinese-taught programs, and English-taught programs may require IELTS/TOEFL."
     },
     {
-      "question": "Признаётся ли китайский диплом бакалавра в России?",
-      "answer": "Дипломы китайских государственных вузов, как правило, признаются, но процедура и требования зависят от специальности и регулятора. Мы проверяем конкретный вуз и направление до подачи, а не после зачисления."
+      "question": "Is a Chinese bachelor's recognised in my country?",
+      "answer": "Degrees from Chinese public universities are generally recognised, but the procedure and requirements depend on the field and regulator. We check the specific university and program before applying, not after enrolment."
     }
   ],
   "featured": true,

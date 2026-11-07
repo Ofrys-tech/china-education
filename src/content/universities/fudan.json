@@ -1,13 +1,13 @@
 {
   "name": "Fudan University",
   "nameZh": "复旦大学",
-  "city": "Шанхай",
+  "city": "Shanghai",
   "type": "public",
   "founded": 1905,
-  "strengths": ["Экономика", "Бизнес", "Медицина"],
-  "language": "Английский / китайский",
+  "strengths": ["Economics", "Business", "Medicine"],
+  "language": "English / Chinese",
   "scholarship": true,
-  "note": "Сильный выбор для финансов, менеджмента и медицины. Шанхай даёт доступ к стажировкам и международному рынку труда.",
+  "note": "A strong choice for finance, management and medicine. Shanghai adds internships and an international job market.",
   "officialUrl": "https://www.fudan.edu.cn/en/",
   "featured": true,
   "order": 3

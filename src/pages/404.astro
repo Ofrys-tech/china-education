@@ -1,29 +1,26 @@
 ---
 import Icon from "@/components/Icon.astro";
+import { copy } from "@/i18n";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { withBase } from "@/lib/url";
+
+const page = copy.notFound;
 ---
 
-<BaseLayout
-	title="Страница не найдена"
-	description="Такой страницы нет. Вернитесь на главную или оставьте заявку на консультацию."
-	noindex
->
-	<section class="section">
-		<div class="shell error-page">
-			<div>
-				<p class="error-page__code">404</p>
-				<h1 class="display display--m mt-2">Страница уехала учиться.</h1>
-				<p class="lead mt-2" style="margin-inline:auto">
-					Возможно, ссылка устарела. Начните с главной или сразу перейдите к заявке.
-				</p>
-				<div class="cluster mt-4" style="justify-content:center">
-					<a class="btn btn--primary" href={withBase("/")}>
-						На главную <Icon name="arrow" size={16} />
-					</a>
-					<a class="btn btn--ghost" href={withBase("/apply/")}>Оставить заявку</a>
-				</div>
-			</div>
-		</div>
-	</section>
+<BaseLayout title={page.meta.title} description={page.meta.description} noindex>
+  <section class="section">
+    <div class="shell error-page">
+      <div>
+        <p class="error-page__code">{page.code}</p>
+        <h1 class="display display--m mt-2">{page.title}</h1>
+        <p class="lead mt-2" style="margin-inline:auto">{page.text}</p>
+        <div class="cluster mt-4" style="justify-content:center">
+          <a class="btn btn--primary" href={withBase("/")}>
+            {page.home} <Icon name="arrow" size={16} />
+          </a>
+          <a class="btn btn--ghost" href={withBase("/apply/")}>{page.apply}</a>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
