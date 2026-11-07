@@ -1,0 +1,97 @@
+---
+type IconName =
+  | "arrow"
+  | "arrowUpRight"
+  | "check"
+  | "x"
+  | "cap"
+  | "globe"
+  | "language"
+  | "briefcase"
+  | "chip"
+  | "flask"
+  | "heart"
+  | "doc"
+  | "shield"
+  | "clock"
+  | "pin"
+  | "spark"
+  | "chat"
+  | "calendar"
+  | "plane"
+  | "yuan"
+  | "book";
+
+interface Props {
+  name: IconName;
+  size?: number;
+  class?: string;
+  strokeWidth?: number;
+}
+
+const { name, size = 20, class: className = "", strokeWidth = 1.5 } = Astro.props;
+
+const paths: Record<IconName, string[]> = {
+  arrow: ["M4 12h16", "m13 5 7 7-7 7"],
+  arrowUpRight: ["M7 17 17 7", "M8 7h9v9"],
+  check: ["m4 12.5 5 5L20 6.5"],
+  x: ["M6 6l12 12", "M18 6 6 18"],
+  cap: ["m2.5 9 9.5-5 9.5 5-9.5 5-9.5-5Z", "M6 11.5V17c0 1.7 2.7 3 6 3s6-1.3 6-3v-5.5"],
+  globe: [
+    "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z",
+    "M3 12h18",
+    "M12 3c2.8 3.5 2.8 14.5 0 18",
+    "M12 3c-2.8 3.5-2.8 14.5 0 18",
+  ],
+  language: [
+    "M3.5 5.5h9",
+    "M8 3v2.5c0 4.2-2.2 7.4-5.2 9.2",
+    "M5.2 9.4c1.5 3 4 5.2 7.1 6.3",
+    "M13.8 21l4.2-10 4.2 10",
+    "M15.3 17.2h5.4",
+  ],
+  briefcase: ["M9 7V4.8h6V7", "M3 9.5h18V20H3z", "M3 13.5h18"],
+  chip: [
+    "M8 3v3M16 3v3M8 18v3M16 18v3M3 8h3M3 16h3M18 8h3M18 16h3",
+    "M6.5 6.5h11v11h-11z",
+    "M10 10h4v4h-4z",
+  ],
+  flask: ["M9 3h6", "M10 3v6l-5 8a2 2 0 0 0 1.7 3h10.6A2 2 0 0 0 19 17l-5-8V3", "M7.5 14h9"],
+  heart: [
+    "M12 20.5S3.5 15.4 3.5 9.3A4.8 4.8 0 0 1 12 6a4.8 4.8 0 0 1 8.5 3.3c0 6.1-8.5 11.2-8.5 11.2Z",
+  ],
+  doc: ["M6.5 3h7l4 4v14h-11z", "M13.5 3v4.5h4", "M9.5 12h5", "M9.5 16h5"],
+  shield: ["M12 3 5 6v5.7c0 4.1 2.9 7.3 7 9.3 4.1-2 7-5.2 7-9.3V6z", "m9 12 2.2 2.2L15.5 10"],
+  clock: ["M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z", "M12 7v5.2l3.3 2"],
+  pin: [
+    "M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z",
+    "M12 12.2a2.3 2.3 0 1 0 0-4.6 2.3 2.3 0 0 0 0 4.6Z",
+  ],
+  spark: [
+    "M12 3v4M12 17v4M3 12h4M17 12h4",
+    "M6 6l2.6 2.6M15.4 15.4 18 18M18 6l-2.6 2.6M8.6 15.4 6 18",
+  ],
+  chat: ["M4 4.5h16v11.2H9.2L4 20z", "M8 9h8M8 12.2h5"],
+  calendar: ["M4 6h16v15H4z", "M4 10h16", "M8 3v5M16 3v5"],
+  plane: ["M2.5 12.5 21 4l-6.2 17-3.6-7.2z", "M11.2 13.8 21 4"],
+  yuan: ["M7 4.5 12 12l5-7.5", "M12 12v8", "M8 14h8M8 17.5h8"],
+  book: ["M4 5.2A2.2 2.2 0 0 1 6.2 3H20v18H6.2A2.2 2.2 0 0 0 4 23z", "M8 7h8M8 11h6"],
+};
+---
+
+<svg
+	xmlns="http://www.w3.org/2000/svg"
+	width={size}
+	height={size}
+	viewBox="0 0 24 24"
+	fill="none"
+	stroke="currentColor"
+	stroke-width={strokeWidth}
+	stroke-linecap="round"
+	stroke-linejoin="round"
+	class={className}
+	aria-hidden="true"
+	focusable="false"
+>
+	{paths[name].map((d) => <path d={d} />)}
+</svg>

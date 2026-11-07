@@ -1,0 +1,60 @@
+---
+import Icon from "@/components/Icon.astro";
+import { withBase } from "@/lib/url";
+
+type Degree = "language" | "bachelor" | "master" | "mba" | "phd" | "short";
+
+interface Props {
+  title: string;
+  summary: string;
+  degree: Degree;
+  duration: string;
+  languages: string[];
+  tuition: string;
+  href: string;
+  index: number;
+  featured?: boolean;
+}
+
+const {
+  title,
+  summary,
+  degree,
+  duration,
+  languages,
+  tuition,
+  href,
+  index,
+  featured = false,
+} = Astro.props;
+
+const icons = {
+  language: "language",
+  bachelor: "cap",
+  master: "book",
+  mba: "briefcase",
+  phd: "flask",
+  short: "spark",
+  // "phd" content exists in the schema for future programs; the icon is ready.
+} as const;
+
+const languageLabel = languages
+  .map((lang) => (lang === "zh" ? "китайский" : "английский"))
+  .join(" / ");
+---
+
+<article class:list={["program-card reveal", { "program-card--featured": featured }]}>
+	<div class="program-card__top">
+		<span class="program-card__icon"><Icon name={icons[degree]} size={20} /></span>
+		<span class="program-card__num">{String(index).padStart(2, "0")}</span>
+	</div>
+	<h3 class="program-card__title">{title}</h3>
+	<p class="program-card__desc">{summary}</p>
+	<div class="program-card__meta">
+		<span>{duration}</span>
+		<span>{languageLabel}</span>
+		<span>{tuition}</span>
+	</div>
+	<a class="program-card__link" href={withBase(href)} aria-label={`Подробнее: ${title}`}></a>
+	<span class="program-card__arrow" aria-hidden="true"><Icon name="arrowUpRight" size={18} /></span>
+</article>

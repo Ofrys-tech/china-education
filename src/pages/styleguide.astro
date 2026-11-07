@@ -1,0 +1,146 @@
+---
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import Icon from "@/components/Icon.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { withBase } from "@/lib/url";
+
+const colors = [
+  ["paper", "#f7f3eb", "--color-paper"],
+  ["paper-soft", "#fbf8f2", "--color-paper-soft"],
+  ["paper-deep", "#efe8db", "--color-paper-deep"],
+  ["ink", "#191512", "--color-ink"],
+  ["muted", "#6a6055", "--color-muted"],
+  ["red", "#b23a2e", "--color-red"],
+  ["jade", "#2c5f50", "--color-jade"],
+  ["gold", "#b08a45", "--color-gold"],
+];
+
+const type = [
+  ["Display hero", "display display--hero", "Китай, в который"],
+  ["Display L", "display display--l", "Понятный маршрут"],
+  ["Display M", "display display--m", "Не только топ-10"],
+  ["Lead", "lead", "Подбираем вуз и программу под ваш профиль, бюджет и амбиции."],
+];
+
+const buttons = [
+  ["Primary", "btn btn--primary"],
+  ["Ghost", "btn btn--ghost"],
+  ["Light", "btn btn--light"],
+];
+
+const tags = ["Языковой год", "Бакалавриат", "Стипендии"];
+---
+
+<BaseLayout
+	title="Дизайн-система"
+	description="Внутренняя страница с токенами, типографикой и компонентами ChinaPath."
+	noindex
+>
+	<section class="page-hero">
+		<div class="shell">
+			<Breadcrumbs items={[{ label: "Дизайн-система" }]} />
+			<div class="page-hero__inner">
+				<div>
+					<span class="eyebrow">Внутренний инструмент</span>
+					<h1 class="display display--l page-hero__title">Дизайн-<br />система.</h1>
+					<p class="lead page-hero__lead">
+						Палитра, типографика и базовые компоненты. Меняйте токены в
+						<code>src/styles/tokens.css</code> — страницы подхватят изменения.
+					</p>
+				</div>
+				<div class="page-hero__aside">
+					<p>
+						Страница не индексируется. Используйте её для обсуждения редизайна и проверки
+						новых компонентов.
+					</p>
+					<a class="link-arrow mt-2" href={withBase("/")}>На главную <Icon name="arrowUpRight" size={14} /></a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="shell">
+			<div class="section-head">
+				<div>
+					<span class="section-head__index">01 / Цвет</span>
+					<div class="display display--m">Палитра</div>
+				</div>
+				<div class="section-head__aside">Тёплая бумага, чернила, печатная киноварь.</div>
+			</div>
+			<div class="swatches">
+				{colors.map(([name, hex, token]) => (
+					<div class="swatch">
+						<div class="swatch__color" style={`background:${hex}`}></div>
+						<div class="swatch__label">{name}<br />{hex}<br />{token}</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--ruled">
+		<div class="shell">
+			<div class="section-head">
+				<div>
+					<span class="section-head__index">02 / Типографика</span>
+					<div class="display display--m">Prata + Golos Text</div>
+				</div>
+				<div class="section-head__aside">Serif для голоса, sans для интерфейса.</div>
+			</div>
+			{type.map(([label, className, sample]) => (
+				<div class="specimen">
+					<span class="specimen__meta">{label} · .{className}</span>
+					<span class={className}>{sample}</span>
+				</div>
+			))}
+		</div>
+	</section>
+
+	<section class="section section--ruled">
+		<div class="shell">
+			<div class="section-head">
+				<div>
+					<span class="section-head__index">03 / Компоненты</span>
+					<div class="display display--m">Кнопки и метки</div>
+				</div>
+				<div class="section-head__aside">Все состояния проверяем в браузере, не только в коде.</div>
+			</div>
+			<div class="cluster">
+				{buttons.map(([label, className]) => (
+					<a class={className} href={withBase("/apply/")}>
+						{label} <Icon name="arrowUpRight" size={15} />
+					</a>
+				))}
+			</div>
+			<div class="cluster mt-3">
+				{tags.map((tag, index) => (
+					<span class:list={["tag", { "tag--red": index === 2, "tag--jade": index === 1 }]}>{tag}</span>
+				))}
+			</div>
+
+			<div class="split mt-5">
+				<div class="panel panel--ruled">
+					<p class="mono-label">Поля формы</p>
+					<div class="field mt-2">
+						<label for="demo-name">Имя</label>
+						<input id="demo-name" type="text" placeholder="Анна Ли" />
+					</div>
+					<div class="field mt-2">
+						<label for="demo-select">Направление</label>
+						<select id="demo-select">
+							<option>Бизнес, экономика, финансы</option>
+							<option>Инженерия</option>
+						</select>
+					</div>
+				</div>
+				<div class="panel">
+					<p class="mono-label">Статусы</p>
+					<div class="form-status mt-2" data-state="success">Заявка принята. Ответим в течение рабочего дня.</div>
+					<div class="form-status mt-2" data-state="error">Проверьте выделенные поля.</div>
+					<div class="form-status mt-2" data-state="info">Отправляем заявку…</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</BaseLayout>

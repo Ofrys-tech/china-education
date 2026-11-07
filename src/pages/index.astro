@@ -1,0 +1,462 @@
+---
+import { getCollection } from "astro:content";
+import CtaBand from "@/components/CtaBand.astro";
+import FaqList from "@/components/FaqList.astro";
+import Icon from "@/components/Icon.astro";
+import LeadForm from "@/components/LeadForm.astro";
+import ProgramCard from "@/components/ProgramCard.astro";
+import SectionHead from "@/components/SectionHead.astro";
+import UniversityRow from "@/components/UniversityRow.astro";
+import { siteConfig } from "@/config/site";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { withBase } from "@/lib/url";
+
+const [programs, universities, faq] = await Promise.all([
+  getCollection("programs"),
+  getCollection("universities"),
+  getCollection("faq"),
+]);
+
+const featuredPrograms = programs.sort((a, b) => a.data.order - b.data.order).slice(0, 6);
+const featuredUniversities = universities.sort((a, b) => a.data.order - b.data.order).slice(0, 6);
+const homeFaq = faq
+  .filter((item) => item.data.home)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 5);
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: homeFaq.map((item) => ({
+    "@type": "Question",
+    name: item.data.question,
+    acceptedAnswer: { "@type": "Answer", text: item.data.answer },
+  })),
+};
+
+const steps = [
+  {
+    title: "Диагностика",
+    text: "30 минут без продаж: цели, оценки, язык, бюджет, сроки. Честно говорим, какие варианты реальны.",
+  },
+  {
+    title: "Стратегия",
+    text: "3–5 программ в разных вузах, с шансами, дедлайнами и стоимостью. Выбираете вы, не алгоритм.",
+  },
+  {
+    title: "Документы",
+    text: "Переводы, легализация, рекомендации, эссе и портфолио. Проверяем каждую строку до отправки.",
+  },
+  {
+    title: "Подача",
+    text: "Заявки, переписка с комиссиями, интервью и экзамены. Держим все дедлайны в одном трекере.",
+  },
+  {
+    title: "Зачисление и переезд",
+    text: "Приглашение, депозит, JW202, виза, жильё, страховка и первые дни на кампусе.",
+  },
+];
+
+const included = [
+  "Диагностика профиля и подбор программ",
+  "Проверка требований по официальным источникам",
+  "Переводы, легализация и комплектность документов",
+  "Мотивационные письма и рекомендации",
+  "Подача и переписка с приёмными комиссиями",
+  "Виза, жильё и брифинг перед перелётом",
+];
+
+const notPromised = [
+  "Гарантия зачисления или стипендии",
+  "«Место в топ-вузе» вне конкурса",
+  "Экзамены и эссе вместо студента",
+];
+---
+
+<BaseLayout
+	title={`${siteConfig.name} — ${siteConfig.tagline}`}
+	description={siteConfig.description}
+	jsonLd={faqLd}
+>
+	<section class="hero">
+		<div class="hero__bg" aria-hidden="true"></div>
+		<span class="hero__glyph" aria-hidden="true">留</span>
+
+		<div class="shell hero__inner">
+			<div class="hero__grid">
+				<div class="hero__copy">
+					<span class="eyebrow">Набор {siteConfig.intake} · Китай</span>
+					<h1 class="display display--hero hero__title">
+						<span class="line">Китай,</span>
+						<span class="line">в который</span>
+						<span class="line"><span class="accent">хочется</span></span>
+						<span class="line">поехать.</span>
+					</h1>
+					<p class="lead hero__lead">
+						Подбираем вуз и программу под ваш профиль, бюджет и амбиции. Берём на себя
+						документы, стипендии и переезд — вы принимаете решения, а не разбираетесь в
+						бюрократии.
+					</p>
+					<div class="hero__actions">
+						<a class="btn btn--primary" href={withBase("/apply/")} data-track="hero_cta">
+							Подобрать программу
+							<Icon name="arrowUpRight" size={17} />
+						</a>
+						<a class="btn btn--ghost" href={withBase("/programs/")}>
+							Смотреть направления
+							<Icon name="arrow" size={17} />
+						</a>
+					</div>
+					<p class="hero__note">
+						Первая консультация бесплатно · без обязательств и навязчивых звонков
+					</p>
+
+					<div class="hero__meta">
+						<div class="hero__meta-item">
+							<span class="hero__meta-value">3 000+</span>
+							<span class="hero__meta-label">вузов в Китае</span>
+						</div>
+						<div class="hero__meta-item">
+							<span class="hero__meta-value">2 языка</span>
+							<span class="hero__meta-label">обучения</span>
+						</div>
+						<div class="hero__meta-item">
+							<span class="hero__meta-value">1 куратор</span>
+							<span class="hero__meta-label">на всех этапах</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="hero__visual" aria-hidden="true">
+					<div class="dossier">
+						<div class="dossier__top">
+							<span>Application / {siteConfig.intake}</span>
+							<span>№ 014</span>
+						</div>
+						<div class="dossier__body">
+							<p class="dossier__label">Программа</p>
+							<p class="dossier__value">International Business</p>
+							<div class="dossier__rows">
+								<div class="dossier__row"><span>Вуз</span><strong>Zhejiang University</strong></div>
+								<div class="dossier__row"><span>Язык</span><strong>English</strong></div>
+								<div class="dossier__row"><span>Дедлайн</span><strong>31 марта</strong></div>
+							</div>
+							<div class="dossier__progress">
+								<span class="dossier__step is-done"></span>
+								<span class="dossier__step is-done"></span>
+								<span class="dossier__step is-current"></span>
+								<span class="dossier__step"></span>
+							</div>
+						</div>
+						<div class="dossier__footer">
+							<span class="muted">Статус</span>
+							<span class="dossier__status">Документы проверены</span>
+						</div>
+					</div>
+
+					<div class="float-card float-card--scholar">
+						<span>CSC / scholarship</span>
+						<strong>Стипендии и гранты</strong>
+					</div>
+					<div class="float-card float-card--lang">
+						<span>HSK / language</span>
+						<strong>Языковой маршрут</strong>
+					</div>
+
+					<div class="orbit-badge">
+						<svg viewBox="0 0 120 120" aria-hidden="true">
+							<defs>
+								<path id="orbit-path" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0" />
+							</defs>
+							<text font-size="8.4" letter-spacing="2.6" fill="currentColor">
+								<textPath href="#orbit-path">CHINAPATH · STUDY IN CHINA · 华路 ·</textPath>
+							</text>
+						</svg>
+						<span class="orbit-badge__zh">留学</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="marquee" aria-hidden="true">
+		<div class="marquee__track">
+			{["CSC", "HSK", "JW202", "X1 VISA", "CAMPUS LIFE", "PEKING", "SHANGHAI", "HANGZHOU", "NANJING", "SUZHOU"].map(
+				(item) => <span class="marquee__item">{item}</span>,
+			)}
+			{["CSC", "HSK", "JW202", "X1 VISA", "CAMPUS LIFE", "PEKING", "SHANGHAI", "HANGZHOU", "NANJING", "SUZHOU"].map(
+				(item) => <span class="marquee__item">{item}</span>,
+			)}
+		</div>
+	</div>
+
+	<section class="section">
+		<div class="shell">
+			<SectionHead index="01 / Почему" eyebrow="Контекст">
+				<Fragment slot="title">Не экзотика.<br />Рабочий маршрут.</Fragment>
+				<Fragment slot="aside">
+					Китай давно перестал быть выбором «на всякий случай». Это крупный рынок
+					образования, работы и партнёрств — со своей логикой и своими требованиями.
+				</Fragment>
+			</SectionHead>
+
+			<div class="value-grid reveal">
+				<article class="value-card">
+					<span class="value-card__index">01</span>
+					<div>
+						<h3>Диплом, который читают</h3>
+						<p>Ведущие университеты Китая входят в мировые рейтинги и ведут исследования на уровне лучших школ Азии.</p>
+					</div>
+				</article>
+				<article class="value-card">
+					<span class="value-card__index">02</span>
+					<div>
+						<h3>Дешевле, чем кажется</h3>
+						<p>Обучение и жизнь часто дешевле, чем в США, Великобритании или Австралии, при сопоставимой амбиции.</p>
+					</div>
+				</article>
+				<article class="value-card">
+					<span class="value-card__index">03</span>
+					<div>
+						<h3>Два языка. Один рынок.</h3>
+						<p>Можно учиться на английском, а китайский добирать параллельно — это меняет карьерную оптику.</p>
+					</div>
+				</article>
+				<article class="value-card">
+					<span class="value-card__index">04</span>
+					<div>
+						<h3>Стипендии, а не мечты</h3>
+						<p>CSC, провинциальные и университетские гранты. Конкуренция высокая, но правила понятные.</p>
+					</div>
+				</article>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--ruled">
+		<div class="shell">
+			<SectionHead index="02 / Направления" eyebrow="Маршруты">
+				<Fragment slot="title">Вход есть<br />с любой ступени.</Fragment>
+				<Fragment slot="aside">
+					От языкового года до MBA и медицины. Ниже — типовые маршруты; конкретную программу
+					собираем под ваш профиль.
+					<a class="link-arrow mt-2" href={withBase("/programs/")} style="display:inline-flex">
+						Все направления <Icon name="arrowUpRight" size={14} />
+					</a>
+				</Fragment>
+			</SectionHead>
+
+			<div class="program-grid">
+				{featuredPrograms.map((program, index) => (
+					<ProgramCard
+						title={program.data.title}
+						summary={program.data.summary}
+						degree={program.data.degree}
+						duration={program.data.duration}
+						languages={program.data.languages}
+						tuition={program.data.tuition}
+						href={`/programs/${program.id}/`}
+						index={index + 1}
+						featured={program.data.featured}
+					/>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--ruled">
+		<div class="shell">
+			<SectionHead index="03 / Вузы" eyebrow="География">
+				<Fragment slot="title">Не только топ-10.<br />Тот, что подходит.</Fragment>
+				<Fragment slot="aside">
+					Подбираем по профилю, бюджету и реальным шансам, а не по красивому логотипу. Список
+					ниже — примеры, а не закрытый партнёрский пул.
+					<a class="link-arrow mt-2" href={withBase("/universities/")} style="display:inline-flex">
+						Все вузы <Icon name="arrowUpRight" size={14} />
+					</a>
+				</Fragment>
+			</SectionHead>
+
+			<div class="university-list">
+				{featuredUniversities.map((university, index) => (
+					<UniversityRow
+						name={university.data.name}
+						nameZh={university.data.nameZh}
+						city={university.data.city}
+						strengths={university.data.strengths}
+						language={university.data.language}
+						scholarship={university.data.scholarship}
+						href={withBase("/universities/")}
+						index={index + 1}
+					/>
+				))}
+			</div>
+			<p class="note mt-2">
+				Названия и ссылки ведут на официальные сайты вузов. Упоминание не означает партнёрство
+				или гарантию зачисления.
+			</p>
+		</div>
+	</section>
+
+	<section class="dark section">
+		<div class="shell">
+			<SectionHead index="04 / Процесс" eyebrow="Как это работает">
+				<Fragment slot="title">Понятный маршрут<br />без сюрпризов.</Fragment>
+				<Fragment slot="aside">
+					От первого разговора до первого дня на кампусе. У каждого этапа есть результат,
+					срок и ответственный — вы всегда знаете, что происходит.
+				</Fragment>
+			</SectionHead>
+
+			<div class="steps">
+				{steps.map((step, index) => (
+					<article class="step">
+						<span class="step__num">{String(index + 1).padStart(2, "0")}</span>
+						<h3 class="step__title">{step.title}</h3>
+						<p class="step__text">{step.text}</p>
+					</article>
+				))}
+			</div>
+
+			<div class="cluster mt-4" style="justify-content:space-between">
+				<p class="note" style="max-width:34rem;color:rgba(255,252,246,.55)">
+					Сроки зависят от вуза и программы. Оптимально начинать за 8–12 месяцев до сентября;
+					для стипендий — ещё раньше.
+				</p>
+				<a class="btn btn--light" href={withBase("/process/")}>
+					Подробный процесс
+					<Icon name="arrowUpRight" size={16} />
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="shell">
+			<SectionHead index="05 / Деньги" eyebrow="Стипендии">
+				<Fragment slot="title">Стипендия —<br />не лотерея.</Fragment>
+				<Fragment slot="aside">
+					Это отдельная работа: раньше дедлайн, сильнее мотивация, точнее выбор вуза. Мы
+					оцениваем шансы до подачи и не продаём воздух.
+				</Fragment>
+			</SectionHead>
+
+			<div class="scholar">
+				<div>
+					<p class="scholar__mark">CSC<small>China Scholarship Council</small></p>
+				</div>
+				<div>
+					<p class="lead">
+						Государственная стипендия Китая — самый известный, но не единственный маршрут.
+						Часто комбинация университетской скидки и провинциальной стипендии даёт более
+						предсказуемый результат.
+					</p>
+					<div class="scholar__list">
+						<div class="scholar__item"><strong>CSC</strong><span>Обучение, общежитие и стипендия на жизнь — по конкурсу.</span></div>
+						<div class="scholar__item"><strong>Провинции</strong><span>Отдельные квоты для иностранцев в ряде регионов.</span></div>
+						<div class="scholar__item"><strong>Университеты</strong><span>Скидки и гранты для сильных кандидатов.</span></div>
+						<div class="scholar__item"><strong>Confucius</strong><span>Поддержка программ китайского языка и культуры.</span></div>
+					</div>
+					<a class="link-arrow mt-3" href={withBase("/apply/")}>
+						Проверить шансы <Icon name="arrowUpRight" size={15} />
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--ruled">
+		<div class="shell">
+			<SectionHead index="06 / Услуги" eyebrow="Что входит">
+				<Fragment slot="title">Что берём<br />на себя.</Fragment>
+				<Fragment slot="aside">
+					Работаем как штаб поступления: собираем стратегию, документы и коммуникацию. Вы
+					остаётесь владельцем решения.
+				</Fragment>
+			</SectionHead>
+
+			<div class="split">
+				<div>
+					<ul class="checklist">
+						{included.map((item) => (
+							<li><Icon name="check" size={16} /> {item}</li>
+						))}
+					</ul>
+				</div>
+				<div class="panel panel--ruled">
+					<p class="mono-label">Чего не обещаем</p>
+					<ul class="checklist checklist--cross mt-2" style="grid-template-columns:1fr">
+						{notPromised.map((item) => (
+							<li><Icon name="x" size={16} /> {item}</li>
+						))}
+					</ul>
+					<p class="note mt-3">
+						Стоимость и объём услуг фиксируются в договоре после диагностики. Первая
+						консультация — бесплатна. {siteConfig.legal.disclaimer}
+					</p>
+					<a class="btn btn--ghost mt-3" href={withBase("/about/")}>
+						Наши принципы <Icon name="arrow" size={15} />
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--ruled">
+		<div class="shell">
+			<SectionHead index="07 / Вопросы" eyebrow="FAQ">
+				<Fragment slot="title">Коротко<br />о главном.</Fragment>
+				<Fragment slot="aside">
+					Собрали то, что спрашивают чаще всего. Если вопроса нет в списке — задайте его на
+					первой консультации.
+					<a class="link-arrow mt-2" href={withBase("/faq/")} style="display:inline-flex">
+						Все вопросы <Icon name="arrowUpRight" size={14} />
+					</a>
+				</Fragment>
+			</SectionHead>
+			<FaqList items={homeFaq.map((item) => item.data)} openFirst />
+		</div>
+	</section>
+
+	<section class="section section--ruled" id="start">
+		<div class="shell">
+			<div class="split">
+				<div>
+					<span class="eyebrow">Первый шаг</span>
+					<h2 class="display display--l mt-2">Начнём<br />с разговора.</h2>
+					<p class="lead mt-3">
+						30 минут, чтобы понять вашу ситуацию и честно сказать, какие варианты реальны.
+						Без презентаций на час и давления.
+					</p>
+					<div class="hero__meta" style="max-width:34rem">
+						<div class="hero__meta-item">
+							<span class="hero__meta-value">01</span>
+							<span class="hero__meta-label">Заявка и созвон</span>
+						</div>
+						<div class="hero__meta-item">
+							<span class="hero__meta-value">02</span>
+							<span class="hero__meta-label">План и смета</span>
+						</div>
+						<div class="hero__meta-item">
+							<span class="hero__meta-value">03</span>
+							<span class="hero__meta-label">Документы</span>
+						</div>
+					</div>
+					<p class="note mt-3">
+						Отвечаем в течение рабочего дня. Данные используем только для связи и подбора
+						программы — <a href={withBase("/privacy/")} style="text-decoration:underline">политика конфиденциальности</a>.
+					</p>
+				</div>
+				<LeadForm variant="compact" source="home" />
+			</div>
+		</div>
+	</section>
+
+	<CtaBand
+		title="Хотите учиться в Китае — но не знаете, с чего начать?"
+		text="Начните с бесплатного разговора. Придём с вариантами, сроками и бюджетом, а не с общими словами."
+		ctaLabel="Оставить заявку"
+		secondaryLabel="Читать FAQ"
+		secondaryHref="/faq/"
+	/>
+</BaseLayout>

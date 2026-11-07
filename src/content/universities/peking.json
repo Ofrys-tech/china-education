@@ -1,0 +1,14 @@
+{
+  "name": "Peking University",
+  "nameZh": "北京大学",
+  "city": "Пекин",
+  "type": "public",
+  "founded": 1898,
+  "strengths": ["Экономика", "Гуманитарные", "Медицина"],
+  "language": "Английский / китайский",
+  "scholarship": true,
+  "note": "Классический исследовательский университет с сильными гуманитарными и социальными науками. Конкурс высокий, особенно на англоязычные программы.",
+  "officialUrl": "https://english.pku.edu.cn/",
+  "featured": true,
+  "order": 2
+}

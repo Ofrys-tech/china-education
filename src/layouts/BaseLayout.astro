@@ -1,0 +1,85 @@
+---
+import BaseHead from "@/components/BaseHead.astro";
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
+import JsonLd from "@/components/JsonLd.astro";
+import { siteConfig } from "@/config/site";
+import { absoluteUrl } from "@/lib/url";
+
+import "@fontsource-variable/golos-text";
+import "@fontsource/prata/cyrillic-400.css";
+import "@fontsource/prata/latin-400.css";
+import "@/styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  noindex?: boolean;
+  type?: "website" | "article";
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const { title, description, image, noindex = false, type = "website", jsonLd } = Astro.props;
+
+const organization = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: siteConfig.name,
+  alternateName: `${siteConfig.nameZh} ${siteConfig.tagline}`,
+  url: absoluteUrl("/"),
+  logo: absoluteUrl("/apple-touch-icon.png"),
+  description: siteConfig.description,
+  areaServed: "CN",
+  knowsLanguage: ["ru", "en", "zh"],
+  ...(siteConfig.contacts.email ? { email: siteConfig.contacts.email } : {}),
+};
+
+const website = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: `${siteConfig.name} — ${siteConfig.tagline}`,
+  url: absoluteUrl("/"),
+  inLanguage: "ru",
+  publisher: { "@type": "Organization", name: siteConfig.name },
+};
+
+const structuredData = [
+  organization,
+  website,
+  ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : []),
+];
+---
+
+<!doctype html>
+<html lang={siteConfig.lang}>
+	<head>
+		<BaseHead title={title} description={description} image={image} noindex={noindex} type={type} />
+		<script is:inline>
+			document.documentElement.classList.add("js");
+		</script>
+		{
+			siteConfig.analytics.src && (
+				<script
+					is:inline
+					defer
+					src={siteConfig.analytics.src}
+					data-domain={siteConfig.analytics.domain || undefined}
+				/>
+			)
+		}
+		<JsonLd data={structuredData} />
+		<slot name="head" />
+	</head>
+	<body>
+		<a class="skip-link" href="#main">Перейти к содержанию</a>
+		<Header />
+		<main id="main">
+			<slot />
+		</main>
+		<Footer />
+		<script>
+			import "@/scripts/site";
+		</script>
+	</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "Nanjing University",
+  "nameZh": "南京大学",
+  "city": "Нанкин",
+  "type": "public",
+  "founded": 1902,
+  "strengths": ["Гуманитарные", "Науки", "Бизнес"],
+  "language": "Английский / китайский",
+  "scholarship": true,
+  "note": "Сильный академический вуз с историческим кампусом и более спокойным темпом жизни, чем в Шанхае или Пекине.",
+  "officialUrl": "https://www.nju.edu.cn/en/",
+  "featured": true,
+  "order": 6
+}

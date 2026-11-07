@@ -1,0 +1,67 @@
+---
+import Icon from "@/components/Icon.astro";
+import Logo from "@/components/Logo.astro";
+import { siteConfig } from "@/config/site";
+import { withBase } from "@/lib/url";
+
+const path = Astro.url.pathname;
+const isActive = (href: string) => {
+  const target = withBase(href);
+  if (href === "/") return path === target;
+  return path.startsWith(target);
+};
+---
+
+<header class="site-header">
+	<div class="shell site-header__inner">
+		<Logo />
+
+		<nav class="nav" aria-label="Основная навигация">
+			{siteConfig.nav.map((item) => (
+				<a
+					class="nav__link"
+					href={withBase(item.href)}
+					aria-current={isActive(item.href) ? "page" : undefined}
+				>{item.label}</a>
+			))}
+		</nav>
+
+		<a class="btn btn--primary btn--sm header-cta" href={withBase("/apply/")} data-track="header_cta">
+			Консультация
+			<Icon name="arrowUpRight" size={15} />
+		</a>
+
+		<button
+			class="menu-toggle"
+			type="button"
+			aria-expanded="false"
+			aria-controls="mobile-menu"
+			data-menu-toggle
+		>
+			<span class="sr-only">Открыть меню</span>
+			<span class="menu-toggle__bars" aria-hidden="true">
+				<span></span><span></span><span></span>
+			</span>
+		</button>
+	</div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" data-menu data-open="false">
+	<nav aria-label="Мобильная навигация">
+		{siteConfig.nav.map((item, index) => (
+			<a class="mobile-menu__link" href={withBase(item.href)} data-menu-link>
+				<span>{item.label}</span>
+				<span class="mobile-menu__index">{String(index + 1).padStart(2, "0")}</span>
+			</a>
+		))}
+	</nav>
+	<div class="mobile-menu__footer">
+		<a class="btn btn--primary" href={withBase("/apply/")} data-menu-link>
+			Получить консультацию
+			<Icon name="arrowUpRight" size={16} />
+		</a>
+		<p class="note">
+			Первый разговор — бесплатно. Расскажем, какие варианты реальны именно в вашей ситуации.
+		</p>
+	</div>
+</div>

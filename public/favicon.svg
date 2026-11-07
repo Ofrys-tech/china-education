@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="ChinaPath">
+	<rect width="64" height="64" rx="10" fill="#B23A2E"/>
+	<rect x="5" y="5" width="54" height="54" rx="7" fill="none" stroke="#F7F3EB" stroke-opacity=".35"/>
+	<text x="32" y="45" text-anchor="middle" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="38" fill="#F7F3EB">华</text>
+</svg>

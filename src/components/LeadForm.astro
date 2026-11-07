@@ -1,0 +1,202 @@
+---
+import Icon from "@/components/Icon.astro";
+import { endpointFor, type LeadProvider } from "@/lib/leads/payload";
+import {
+  CONTACT_METHODS,
+  DEGREE_OPTIONS,
+  DIRECTION_OPTIONS,
+  INTAKE_OPTIONS,
+} from "@/lib/leads/schema";
+
+interface Props {
+  variant?: "full" | "compact";
+  source?: string;
+}
+
+const { variant = "full", source = "site" } = Astro.props;
+const isCompact = variant === "compact";
+
+const provider = (import.meta.env.PUBLIC_LEAD_PROVIDER ?? "formspree") as LeadProvider;
+const configuredEndpoint = (import.meta.env.PUBLIC_LEAD_ENDPOINT ?? "").trim();
+const action = endpointFor(provider, configuredEndpoint);
+const email = (import.meta.env.PUBLIC_CONTACT_EMAIL ?? "").trim();
+const telegram = (import.meta.env.PUBLIC_TELEGRAM_URL ?? "").trim();
+---
+
+<div class="lead-form-wrap" id="lead-form">
+	<form
+		class="lead-form"
+		data-lead-form
+		data-source={source}
+		data-email={email}
+		data-telegram={telegram}
+		method="post"
+		action={action || undefined}
+		novalidate
+	>
+		<div class="lead-form__grid">
+			<div class="field">
+				<label for="lead-name">Имя и фамилия <span aria-hidden="true">*</span></label>
+				<input
+					id="lead-name"
+					name="name"
+					type="text"
+					autocomplete="name"
+					placeholder="Анна Ли"
+					required
+					aria-describedby="lead-name-error"
+				/>
+				<p class="field__error" id="lead-name-error" data-error-for="name" hidden></p>
+			</div>
+
+			<div class="field">
+				<label for="lead-contact-method">Способ связи <span aria-hidden="true">*</span></label>
+				<select id="lead-contact-method" name="contactMethod" required data-contact-method>
+					<option value="">Выберите</option>
+					{CONTACT_METHODS.map((option) => (
+						<option
+							value={option.value}
+							data-label={option.label}
+							data-placeholder={option.placeholder}
+							data-inputmode={option.inputmode}
+						>
+							{option.label}
+						</option>
+					))}
+				</select>
+				<p class="field__error" data-error-for="contactMethod" hidden></p>
+			</div>
+
+			<div class="field lead-form__grid--full">
+				<label for="lead-contact">
+					<span data-contact-label-text>Контакт</span> <span aria-hidden="true">*</span>
+				</label>
+				<input
+					id="lead-contact"
+					name="contact"
+					type="text"
+					autocomplete="tel"
+					placeholder="Выберите способ связи"
+					required
+					data-contact-input
+					aria-describedby="lead-contact-error lead-contact-hint"
+				/>
+				<p class="field__error" id="lead-contact-error" data-error-for="contact" hidden></p>
+				<p class="field__hint" id="lead-contact-hint">Ник, номер или e-mail — как вам удобнее.</p>
+			</div>
+
+			{!isCompact && (
+				<>
+					<div class="field">
+						<label for="lead-degree">Программа <span aria-hidden="true">*</span></label>
+						<select id="lead-degree" name="degree" required>
+							<option value="">Выберите</option>
+							{DEGREE_OPTIONS.map((option) => <option value={option.value}>{option.label}</option>)}
+						</select>
+						<p class="field__error" data-error-for="degree" hidden></p>
+					</div>
+				</>
+			)}
+
+			<div class="field">
+				<label for="lead-direction">Направление <span aria-hidden="true">*</span></label>
+				<select id="lead-direction" name="direction" required>
+					<option value="">Выберите</option>
+					{DIRECTION_OPTIONS.map((option) => <option value={option.value}>{option.label}</option>)}
+				</select>
+				<p class="field__error" data-error-for="direction" hidden></p>
+			</div>
+
+			{!isCompact && (
+				<>
+					<div class="field">
+						<label for="lead-intake">Планируемый старт <span aria-hidden="true">*</span></label>
+						<select id="lead-intake" name="intake" required>
+							<option value="">Выберите</option>
+							{INTAKE_OPTIONS.map((option) => <option value={option.value}>{option.label}</option>)}
+						</select>
+						<p class="field__error" data-error-for="intake" hidden></p>
+					</div>
+					<div class="field lead-form__grid--full">
+						<label for="lead-message">Коротко о себе</label>
+						<textarea
+							id="lead-message"
+							name="message"
+							rows="4"
+							maxlength="1000"
+							placeholder="Что уже есть: образование, GPA, HSK/IELTS, бюджет, желаемые города. Чем честнее — тем точнее подбор."
+						></textarea>
+						<p class="field__error" data-error-for="message" hidden></p>
+					</div>
+				</>
+			)}
+		</div>
+
+		{isCompact && (
+			<>
+				<input type="hidden" name="degree" value="undecided" />
+				<input type="hidden" name="intake" value="2027" />
+				<input type="hidden" name="message" value="" />
+			</>
+		)}
+
+		<input type="hidden" name="startedAt" value="" data-started-at />
+		<input type="hidden" name="pageUrl" value="" data-page-url />
+		<input type="hidden" name="referrer" value="" data-referrer />
+		<input type="hidden" name="utm_source" value="" data-utm="source" />
+		<input type="hidden" name="utm_medium" value="" data-utm="medium" />
+		<input type="hidden" name="utm_campaign" value="" data-utm="campaign" />
+		<input type="hidden" name="utm_content" value="" data-utm="content" />
+		<input type="hidden" name="utm_term" value="" data-utm="term" />
+
+		<div class="honeypot" aria-hidden="true">
+			<label for="lead-website">Website</label>
+			<input id="lead-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+		</div>
+
+		<label class="consent">
+			<input type="checkbox" name="consent" value="true" required />
+			<span>
+				Согласен(а) на обработку персональных данных и получение ответа по указанному каналу.
+				<a href="/privacy/">Политика конфиденциальности</a>.
+			</span>
+		</label>
+		<p class="field__error" data-error-for="consent" hidden></p>
+
+		<div class="form-status" data-form-status hidden aria-live="polite"></div>
+
+		<button class="btn btn--primary" type="submit">
+			<span data-submit-label>Отправить заявку</span>
+			<Icon name="arrowUpRight" size={16} />
+		</button>
+		<p class="note">
+			Первая консультация бесплатна. Отвечаем в течение рабочего дня, без спама и звонков «в
+			холодную».
+		</p>
+	</form>
+
+	<div class="form-success" data-form-success hidden aria-live="polite">
+		<span class="eyebrow">Заявка принята</span>
+		<h3>Спасибо! Уже смотрим вашу ситуацию.</h3>
+		<p class="muted">
+			Куратор свяжется с вами в указанном канале в течение рабочего дня. Если хотите добавить
+			детали — ответьте на это сообщение или напишите нам ещё раз.
+		</p>
+		<button class="link-arrow" type="button" data-form-reset style="justify-self:start">
+			Отправить ещё одну заявку
+		</button>
+	</div>
+
+	<noscript>
+		<p class="note mt-2">
+			Для отправки формы нужен JavaScript. Напишите нам напрямую:
+			{email ? <a href={`mailto:${email}`}>{email}</a> : null}
+			{telegram ? <a href={telegram}>Telegram</a> : null}
+			{!email && !telegram ? "включите JavaScript или вернитесь позже." : null}
+		</p>
+	</noscript>
+</div>
+
+<script>
+	import "@/scripts/lead-form";
+</script>

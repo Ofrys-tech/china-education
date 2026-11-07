@@ -1,0 +1,56 @@
+{
+  "name": "china-education",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "ChinaPath — admissions website for studying in China",
+  "engines": {
+    "node": ">=22.23.4"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "verify": "npm run lint && npm run check && npm run test && npm run check:assets && npm run build && npm run check:html",
+    "check:html": "node scripts/check-html.mjs",
+    "check:assets": "node scripts/check-assets.mjs",
+    "check:links": "node scripts/check-links.mjs",
+    "og": "node scripts/build-og.mjs",
+    "prepare": "simple-git-hooks",
+    "assets:preview": "node scripts/optimize-assets.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "3.7.4",
+    "@fontsource-variable/golos-text": "5.3.0",
+    "@fontsource/prata": "5.3.0",
+    "astro": "7.4.7"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.12",
+    "@axe-core/playwright": "^4.14.0",
+    "@biomejs/biome": "2.6.6",
+    "@playwright/test": "1.65.0",
+    "@tailwindcss/vite": "4.3.5",
+    "lint-staged": "17.6.0",
+    "node-html-parser": "^9.0.7",
+    "sharp": "0.34.5",
+    "simple-git-hooks": "2.14.0",
+    "tailwindcss": "4.3.5",
+    "typescript": "5.9.3",
+    "vitest": "5.1.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged",
+    "pre-push": "npm run lint && npm run check && npm run test"
+  },
+  "lint-staged": {
+    "*.{js,mjs,cjs,ts,tsx,json,jsonc,astro,css}": "biome check --write --no-errors-on-unmatched"
+  }
+}

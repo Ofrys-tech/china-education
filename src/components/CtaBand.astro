@@ -1,0 +1,52 @@
+---
+import Icon from "@/components/Icon.astro";
+import { withBase } from "@/lib/url";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  text: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+}
+
+const {
+  eyebrow = "Следующий шаг",
+  title,
+  text,
+  ctaLabel = "Оставить заявку",
+  ctaHref = "/apply/",
+  secondaryLabel = "Задать вопрос",
+  secondaryHref = "/faq/",
+} = Astro.props;
+---
+
+<section class="cta-band">
+	<div class="shell">
+		<div class="cta-band__inner">
+			<div>
+				<span class="eyebrow eyebrow--light">{eyebrow}</span>
+				<h2 class="display display--l mt-2">{title}</h2>
+			</div>
+			<div>
+				<p class="lead" style="color:var(--color-cream)">{text}</p>
+				<div class="hero__actions">
+					<a class="btn btn--light" href={withBase(ctaHref)} data-track="band_cta">
+						{ctaLabel}
+						<Icon name="arrowUpRight" size={16} />
+					</a>
+					<a
+						class="btn btn--ghost"
+						style="--btn-fg:var(--color-cream);--btn-bd:rgba(255,252,246,.4)"
+						href={withBase(secondaryHref)}
+					>
+						{secondaryLabel}
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<span class="cta-band__glyph" aria-hidden="true">往</span>
+</section>

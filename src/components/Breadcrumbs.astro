@@ -1,0 +1,21 @@
+---
+import { withBase } from "@/lib/url";
+
+interface Crumb {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: Crumb[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav class="breadcrumbs" aria-label="Хлебные крошки">
+	<a href={withBase("/")}>Главная</a>
+	{items.map((item) => (
+		item.href ? <a href={withBase(item.href)}>{item.label}</a> : <span aria-current="page">{item.label}</span>
+	))}
+</nav>

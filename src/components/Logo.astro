@@ -1,0 +1,25 @@
+---
+import { siteConfig } from "@/config/site";
+import { withBase } from "@/lib/url";
+
+interface Props {
+  compact?: boolean;
+  inverse?: boolean;
+}
+
+const { compact = false, inverse = false } = Astro.props;
+---
+
+<a class="brand" href={withBase("/")} aria-label={`${siteConfig.name} — на главную`}>
+	<span class="brand__seal" aria-hidden="true">华</span>
+	<span>
+		<span class="brand__name" style={inverse ? "color:var(--color-cream)" : ""}>
+			{siteConfig.name}
+		</span>
+		{!compact && (
+			<span class="brand__zh" style={inverse ? "color:rgba(255,252,246,.64)" : ""}>
+				{siteConfig.nameZh} · {siteConfig.tagline}
+			</span>
+		)}
+	</span>
+</a>

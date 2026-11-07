@@ -1,0 +1,14 @@
+{
+  "name": "Zhejiang University",
+  "nameZh": "浙江大学",
+  "city": "Ханчжоу",
+  "type": "public",
+  "founded": 1897,
+  "strengths": ["Инженерия", "IT", "Бизнес"],
+  "language": "Английский / китайский",
+  "scholarship": true,
+  "note": "Один из ведущих технических и исследовательских вузов. Ханчжоу — технологический центр с сильным IT-рынком.",
+  "officialUrl": "https://www.zju.edu.cn/english/",
+  "featured": true,
+  "order": 4
+}

@@ -1,0 +1,25 @@
+---
+interface Props {
+  index: string;
+  eyebrow?: string;
+  class?: string;
+}
+
+const { index, eyebrow, class: className = "" } = Astro.props;
+const hasAside = Astro.slots.has("aside");
+---
+
+<div class={`section-head reveal ${className}`.trim()}>
+	<div>
+		<span class="section-head__index">{index}</span>
+		{eyebrow && <span class="eyebrow">{eyebrow}</span>}
+		<div class="display display--l">
+			<slot name="title" />
+		</div>
+	</div>
+	{hasAside && (
+		<div class="section-head__aside">
+			<slot name="aside" />
+		</div>
+	)}
+</div>

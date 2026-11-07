@@ -1,0 +1,194 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import CtaBand from "@/components/CtaBand.astro";
+import FaqList from "@/components/FaqList.astro";
+import Icon from "@/components/Icon.astro";
+import ProgramCard from "@/components/ProgramCard.astro";
+import { siteConfig } from "@/config/site";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { degreeLabels, languageLabels } from "@/lib/content";
+import { absoluteUrl, withBase } from "@/lib/url";
+
+interface Props {
+  program: CollectionEntry<"programs">;
+}
+
+export async function getStaticPaths() {
+  const programs = await getCollection("programs");
+  return programs.map((program) => ({
+    params: { id: program.id },
+    props: { program },
+  }));
+}
+
+const { program } = Astro.props;
+const data = program.data;
+const url = absoluteUrl(`/programs/${program.id}/`);
+
+const others = (await getCollection("programs"))
+  .filter((item) => item.id !== program.id)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: data.faq.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: { "@type": "Answer", text: item.answer },
+  })),
+};
+
+const courseLd = {
+  "@context": "https://schema.org",
+  "@type": "Course",
+  name: data.title,
+  description: data.summary,
+  url,
+  inLanguage: data.languages.map((lang) => (lang === "zh" ? "zh" : "en")),
+  provider: {
+    "@type": "Organization",
+    name: siteConfig.name,
+    url: absoluteUrl("/"),
+  },
+  hasCourseInstance: {
+    "@type": "CourseInstance",
+    courseMode: "full-time",
+    courseWorkload: data.duration,
+  },
+};
+---
+
+<BaseLayout title={data.title} description={data.summary} jsonLd={[courseLd, faqLd]}>
+	<section class="page-hero">
+		<div class="shell">
+			<Breadcrumbs
+				items={[
+					{ label: "Направления", href: "/programs/" },
+					{ label: degreeLabels[data.degree] },
+				]}
+			/>
+			<div class="page-hero__inner">
+				<div>
+					<span class="eyebrow">{degreeLabels[data.degree]} · Китай</span>
+					<h1 class="display display--l page-hero__title">{data.title}</h1>
+					<p class="lead page-hero__lead">{data.summary}</p>
+					<div class="cluster mt-3">
+						<span class="tag">{data.duration}</span>
+						<span class="tag">{data.languages.map((lang) => languageLabels[lang]).join(" / ")}</span>
+						<span class="tag tag--red">{data.tuition}</span>
+					</div>
+				</div>
+				<div class="page-hero__aside">
+					<p class="mono-label">Стоимость</p>
+					<p>{data.tuition}</p>
+					<p class="note mt-2">
+						Ориентир по китайским вузам. Финальная стоимость зависит от университета, города
+						и года поступления — проверяем до подачи.
+					</p>
+					<a class="btn btn--primary mt-3" href={withBase("/apply/")}>
+						Обсудить поступление <Icon name="arrowUpRight" size={15} />
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="shell">
+			<div class="detail-grid">
+				<div class="prose">
+					{data.overview.map((paragraph) => <p>{paragraph}</p>)}
+
+					<h2>Как выглядит маршрут</h2>
+					<div class="timeline mt-2">
+						{data.timeline.map((item) => (
+							<div class="timeline__item">
+								<span class="timeline__step">{item.step}</span>
+								<p class="timeline__text">{item.text}</p>
+							</div>
+						))}
+					</div>
+
+					<h2>Что в итоге</h2>
+					<ul>
+						{data.outcomes.map((item) => <li>{item}</li>)}
+					</ul>
+
+					{data.faq.length > 0 && (
+						<>
+							<h2>Частые вопросы</h2>
+							<FaqList items={data.faq} openFirst />
+						</>
+					)}
+				</div>
+
+				<aside class="detail-aside">
+					<div class="panel panel--ruled">
+						<p class="mono-label">Кому подходит</p>
+						<ul class="checklist mt-2" style="grid-template-columns:1fr">
+							{data.fitFor.map((item) => (
+								<li><Icon name="check" size={15} /> {item}</li>
+							))}
+						</ul>
+					</div>
+					<div class="panel">
+						<p class="mono-label">Что дальше</p>
+						<p class="mt-2" style="font-size:.9rem">
+							Начнём с диагностики: посмотрим оценки, язык, бюджет и сроки. Придём с
+							3–5 вариантами программ и понятной сметой.
+						</p>
+						<a class="btn btn--primary mt-3" href={withBase("/apply/")}>
+							Оставить заявку <Icon name="arrowUpRight" size={15} />
+						</a>
+					</div>
+					<p class="note">
+						{siteConfig.legal.disclaimer}
+					</p>
+				</aside>
+			</div>
+		</div>
+	</section>
+
+	{others.length > 0 && (
+		<section class="section section--ruled">
+			<div class="shell">
+				<div class="section-head">
+					<div>
+						<span class="section-head__index">Дальше</span>
+						<div class="display display--m">Другие маршруты</div>
+					</div>
+					<div class="section-head__aside">
+						<a class="link-arrow" href={withBase("/programs/")}>
+							Все направления <Icon name="arrowUpRight" size={14} />
+						</a>
+					</div>
+				</div>
+				<div class="program-grid">
+					{others.map((item, index) => (
+						<ProgramCard
+							title={item.data.title}
+							summary={item.data.summary}
+							degree={item.data.degree}
+							duration={item.data.duration}
+							languages={item.data.languages}
+							tuition={item.data.tuition}
+							href={`/programs/${item.id}/`}
+							index={index + 1}
+						/>
+					))}
+				</div>
+			</div>
+		</section>
+	)}
+
+	<CtaBand
+		title="Обсудим ваш маршрут?"
+		text="Бесплатная консультация: разберём профиль, сроки и реальные варианты. Без давления и обещаний чуда."
+		ctaLabel="Записаться на разговор"
+		secondaryLabel="Все направления"
+		secondaryHref="/programs/"
+	/>
+</BaseLayout>

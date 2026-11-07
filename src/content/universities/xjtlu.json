@@ -1,0 +1,14 @@
+{
+  "name": "Xi'an Jiaotong-Liverpool University",
+  "nameZh": "西交利物浦大学",
+  "city": "Сучжоу",
+  "type": "joint",
+  "founded": 2006,
+  "strengths": ["Бизнес", "IT", "Дизайн"],
+  "language": "Английский",
+  "scholarship": true,
+  "note": "Совместный проект китайского и британского вузов: обучение полностью на английском, британский диплом, более высокая стоимость.",
+  "officialUrl": "https://www.xjtlu.edu.cn/en/",
+  "featured": false,
+  "order": 7
+}

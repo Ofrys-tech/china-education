@@ -1,0 +1,155 @@
+---
+import { getCollection } from "astro:content";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import CtaBand from "@/components/CtaBand.astro";
+import Icon from "@/components/Icon.astro";
+import SectionHead from "@/components/SectionHead.astro";
+import UniversityRow from "@/components/UniversityRow.astro";
+import { siteConfig } from "@/config/site";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { absoluteUrl, withBase } from "@/lib/url";
+
+const universities = (await getCollection("universities")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const criteria = [
+  {
+    title: "Профиль и язык",
+    text: "Сильные кафедры, лаборатории и реальный язык обучения важнее общего рейтинга. Проверяем, на каком языке идут ключевые курсы.",
+  },
+  {
+    title: "Бюджет целиком",
+    text: "Считаем обучение, общежитие, страховку, сборы и жизнь в городе. Дешёвый tuition в дорогом городе может выйти дороже.",
+  },
+  {
+    title: "Шансы и дедлайны",
+    text: "Смотрим квоты для иностранцев, требования и сроки. Один вуз — не стратегия: подаём несколько вариантов.",
+  },
+];
+
+const pageLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Вузы Китая",
+  description:
+    "Примеры университетов Китая для международных студентов: города, сильные направления, язык обучения и стипендии.",
+  url: absoluteUrl("/universities/"),
+  isPartOf: { "@type": "WebSite", name: siteConfig.name, url: absoluteUrl("/") },
+};
+---
+
+<BaseLayout
+	title="Вузы Китая"
+	description="Примеры университетов Китая: Пекин, Шанхай, Ханчжоу, Нанкин, Сучжоу. Сильные направления, язык обучения, стипендии и как выбирать вуз."
+	jsonLd={pageLd}
+>
+	<section class="page-hero">
+		<div class="shell">
+			<Breadcrumbs items={[{ label: "Вузы" }]} />
+			<div class="page-hero__inner">
+				<div>
+					<span class="eyebrow">География · 7 примеров</span>
+					<h1 class="display display--l page-hero__title">Вуз —<br />это среда.</h1>
+					<p class="lead page-hero__lead">
+						Не только рейтинг. Город, кафедра, язык, состав потока и карьерная служба часто
+						влияют сильнее строчки в таблице.
+					</p>
+				</div>
+				<div class="page-hero__aside">
+					<p>
+						Ниже — примеры вузов, которые часто рассматривают международные студенты. Это не
+						партнёрский список и не гарантия зачисления.
+					</p>
+					<a class="link-arrow mt-2" href={withBase("/apply/")}>
+						Собрать шорт-лист <Icon name="arrowUpRight" size={14} />
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="shell">
+			<div class="university-list">
+				{universities.map((university, index) => (
+					<UniversityRow
+						name={university.data.name}
+						nameZh={university.data.nameZh}
+						city={university.data.city}
+						strengths={university.data.strengths}
+						language={university.data.language}
+						scholarship={university.data.scholarship}
+						href={university.data.officialUrl}
+						index={index + 1}
+						external
+						note={university.data.note}
+					/>
+				))}
+			</div>
+			<p class="note mt-3">
+				Ссылки ведут на официальные сайты университетов. Упоминание вуза не означает
+				партнёрство, квоту или гарантию зачисления. Требования и стоимость проверяем на год
+				поступления.
+			</p>
+		</div>
+	</section>
+
+	<section class="section section--ruled">
+		<div class="shell">
+			<SectionHead index="01 / Выбор" eyebrow="Критерии">
+				<Fragment slot="title">Как выбирать<br />без магии рейтинга.</Fragment>
+				<Fragment slot="aside">
+					Мы не ранжируем вузы «вообще». Сравниваем только те, где ваш профиль, бюджет и язык
+					складываются в реальный сценарий.
+				</Fragment>
+			</SectionHead>
+			<div class="value-grid reveal">
+				{criteria.map((item, index) => (
+					<article class="value-card">
+						<span class="value-card__index">{String(index + 1).padStart(2, "0")}</span>
+						<div>
+							<h3>{item.title}</h3>
+							<p>{item.text}</p>
+						</div>
+					</article>
+				))}
+			</div>
+
+			<div class="split mt-5">
+				<div class="panel panel--ruled">
+					<p class="mono-label">Что проверяем до подачи</p>
+					<ul class="checklist checklist--cross mt-2" style="grid-template-columns:1fr">
+						<li><Icon name="check" size={15} /> Язык обучения ключевых курсов</li>
+						<li><Icon name="check" size={15} /> Признание диплома для вашей страны</li>
+						<li><Icon name="check" size={15} /> Полную стоимость и депозит</li>
+						<li><Icon name="check" size={15} /> Дедлайны и квоты для иностранцев</li>
+					</ul>
+				</div>
+				<div>
+					<h3 class="display display--m">Топ-10 не всегда лучший выбор</h3>
+					<p class="muted mt-2" style="font-size:.95rem">
+						В престижном вузе выше конкурс и требования к языку, а поддержка иностранных
+						студентов не всегда сильнее. Иногда региональный университет с сильной кафедрой
+						даёт больше практики, внимания и шансов на стипендию.
+					</p>
+					<p class="muted mt-3" style="font-size:.95rem">
+						Поэтому шорт-лист строится в трёх категориях: амбициозные, реалистичные и
+						страховочные варианты. Вы видите вероятности до того, как платите за подачу.
+					</p>
+					<a class="link-arrow mt-3" href={withBase("/process/")}>
+						Как проходит подбор <Icon name="arrowUpRight" size={14} />
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<CtaBand
+		title="Нужен шорт-лист под ваш профиль?"
+		text="Соберём 3–5 вузов с разными шансами, бюджетом и языком обучения. Объясним, почему именно эти."
+		ctaLabel="Получить шорт-лист"
+		secondaryLabel="Все направления"
+		secondaryHref="/programs/"
+	/>
+</BaseLayout>

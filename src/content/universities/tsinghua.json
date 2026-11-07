@@ -1,0 +1,14 @@
+{
+  "name": "Tsinghua University",
+  "nameZh": "清华大学",
+  "city": "Пекин",
+  "type": "public",
+  "founded": 1911,
+  "strengths": ["Инженерия", "IT", "Архитектура"],
+  "language": "Английский / китайский",
+  "scholarship": true,
+  "note": "Один из самых конкурентных вузов Китая. Для иностранцев отдельные квоты и требования — важна сильная академическая история.",
+  "officialUrl": "https://www.tsinghua.edu.cn/en/",
+  "featured": true,
+  "order": 1
+}

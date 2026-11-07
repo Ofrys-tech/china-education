@@ -1,0 +1,129 @@
+---
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import Icon from "@/components/Icon.astro";
+import LeadForm from "@/components/LeadForm.astro";
+import { siteConfig } from "@/config/site";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { absoluteUrl, withBase } from "@/lib/url";
+
+const after = [
+  {
+    title: "Смотрим заявку",
+    text: "Проверяем профиль и подбираем удобное время для короткого созвона. Обычно — в течение рабочего дня.",
+  },
+  {
+    title: "Разговор 30 минут",
+    text: "Без презентации на час: цели, оценки, язык, бюджет, сроки. Честно говорим, что реально.",
+  },
+  {
+    title: "План и смета",
+    text: "Присылаем 3–5 вариантов программ и понятную смету. Дальше решаете вы, без давления.",
+  },
+];
+
+const bring = [
+  "Аттестат или диплом (хотя бы скан)",
+  "Оценки / транскрипт",
+  "Результаты HSK, IELTS или TOEFL, если есть",
+  "Ориентир по бюджету на год",
+  "Желаемый город или регион",
+  "Вопросы, которые важны именно вам",
+];
+
+const pageLd = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: "Заявка на консультацию",
+  url: absoluteUrl("/apply/"),
+  about: { "@type": "Organization", name: siteConfig.name },
+};
+---
+
+<BaseLayout
+	title="Заявка на консультацию"
+	description="Оставьте заявку на бесплатную консультацию по поступлению в Китай: подбор программ, документы, стипендии и сроки."
+	jsonLd={pageLd}
+>
+	<section class="page-hero">
+		<div class="shell">
+			<Breadcrumbs items={[{ label: "Заявка" }]} />
+			<div class="page-hero__inner">
+				<div>
+					<span class="eyebrow">Бесплатно · 30 минут</span>
+					<h1 class="display display--l page-hero__title">Расскажите о себе.<br />Вернёмся с планом.</h1>
+					<p class="lead page-hero__lead">
+						Не нужно готовить идеальную анкету. Достаточно того, что есть сейчас: мы сами
+						зададим недостающие вопросы на созвоне.
+					</p>
+				</div>
+				<div class="page-hero__aside">
+					<p>
+						Отвечаем в течение рабочего дня. Никаких звонков «в холодную», передачи данных
+						третьим лицам и спама.
+					</p>
+					<p class="mt-2">
+						<a href={withBase("/privacy/")} style="text-decoration:underline">Политика конфиденциальности</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section" id="form">
+		<div class="shell">
+			<div class="detail-grid">
+				<div>
+					<p class="mono-label">Форма заявки</p>
+					<h2 class="display display--m mt-1">Начнём с вашей ситуации.</h2>
+					<p class="muted mt-2" style="max-width:38rem">
+						Поля со звёздочкой обязательны. Чем точнее контакт и направление — тем полезнее
+						будет первый разговор.
+					</p>
+					<div class="mt-4">
+						<LeadForm variant="full" source="apply" />
+					</div>
+				</div>
+
+				<aside class="detail-aside">
+					<div class="panel panel--ruled">
+						<p class="mono-label">Что будет после заявки</p>
+						<ol class="mt-2" style="display:grid;gap:1.1rem">
+							{after.map((item, index) => (
+								<li>
+									<span class="mono-label" style="color:var(--color-red)">{String(index + 1).padStart(2, "0")}</span>
+									<p style="font-weight:600;margin-top:.2rem">{item.title}</p>
+									<p class="note" style="margin-top:.25rem">{item.text}</p>
+								</li>
+							))}
+						</ol>
+					</div>
+
+					<div class="panel">
+						<p class="mono-label">Что поможет на первом разговоре</p>
+						<ul class="checklist mt-2" style="grid-template-columns:1fr">
+							{bring.map((item) => (
+								<li><Icon name="check" size={15} /> {item}</li>
+							))}
+						</ul>
+					</div>
+
+					{(siteConfig.contacts.email || siteConfig.contacts.telegram) && (
+						<div class="panel">
+							<p class="mono-label">Написать напрямую</p>
+							<div class="cluster mt-2">
+								{siteConfig.contacts.email && (
+									<a class="link-arrow" href={`mailto:${siteConfig.contacts.email}`}>{siteConfig.contacts.email}</a>
+								)}
+								{siteConfig.contacts.telegram && (
+									<a class="link-arrow" href={siteConfig.contacts.telegram} rel="noopener noreferrer" target="_blank">Telegram</a>
+								)}
+							</div>
+						</div>
+					)}
+
+					<p class="note">{siteConfig.legal.disclaimer}</p>
+				</aside>
+			</div>
+		</div>
+	</section>
+</BaseLayout>

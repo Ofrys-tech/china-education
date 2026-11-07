@@ -1,0 +1,27 @@
+---
+interface FaqEntry {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items: FaqEntry[];
+  openFirst?: boolean;
+}
+
+const { items, openFirst = false } = Astro.props;
+---
+
+<div class="faq-list">
+	{items.map((item, index) => (
+		<details class="faq-item" open={openFirst && index === 0}>
+			<summary>
+				<span>{item.question}</span>
+				<span class="faq-item__icon" aria-hidden="true"></span>
+			</summary>
+			<div class="faq-item__answer">
+				{item.answer.split("\n\n").map((paragraph) => <p>{paragraph}</p>)}
+			</div>
+		</details>
+	))}
+</div>

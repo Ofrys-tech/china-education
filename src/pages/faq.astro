@@ -1,0 +1,84 @@
+---
+import { getCollection } from "astro:content";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import CtaBand from "@/components/CtaBand.astro";
+import FaqList from "@/components/FaqList.astro";
+import Icon from "@/components/Icon.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { faqCategoryLabels } from "@/lib/content";
+import { withBase } from "@/lib/url";
+
+const faq = (await getCollection("faq")).sort((a, b) => a.data.order - b.data.order);
+const groupOrder = ["admission", "money", "language", "documents", "life"] as const;
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((item) => ({
+    "@type": "Question",
+    name: item.data.question,
+    acceptedAnswer: { "@type": "Answer", text: item.data.answer },
+  })),
+};
+---
+
+<BaseLayout
+	title="Частые вопросы о поступлении в Китай"
+	description="Стоимость, стипендии, HSK, сроки, документы и признание диплома — отвечаем на частые вопросы о поступлении в Китай."
+	jsonLd={faqLd}
+>
+	<section class="page-hero">
+		<div class="shell">
+			<Breadcrumbs items={[{ label: "FAQ" }]} />
+			<div class="page-hero__inner">
+				<div>
+					<span class="eyebrow">Вопросы и ответы</span>
+					<h1 class="display display--l page-hero__title">Без тумана<br />и обещаний.</h1>
+					<p class="lead page-hero__lead">
+						Собрали то, что важно знать до подачи: деньги, язык, сроки, документы и границы
+						наших возможностей.
+					</p>
+				</div>
+				<div class="page-hero__aside">
+					<p>
+						Не нашли свой вопрос? Напишите в форме — ответим лично, без шаблонов.
+					</p>
+					<a class="link-arrow mt-2" href={withBase("/apply/")}>
+						Задать вопрос <Icon name="arrowUpRight" size={14} />
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="shell" style="max-width:62rem">
+			{groupOrder.map((category) => {
+				const items = faq.filter((item) => item.data.category === category);
+				if (!items.length) return null;
+				return (
+					<div class="faq-group">
+						<div class="faq-group__head">
+							<span class="mono-label">{faqCategoryLabels[category]}</span>
+							<span class="mono-label">{String(items.length).padStart(2, "0")}</span>
+						</div>
+						<FaqList items={items.map((item) => item.data)} />
+					</div>
+				);
+			})}
+			<p class="note mt-4">
+				Ответы носят общий информационный характер и не являются юридической гарантией. Требования
+				вузов, визовые правила и стоимость меняются — проверяем актуальные условия на год
+				поступления.
+			</p>
+		</div>
+	</section>
+
+	<CtaBand
+		title="Остался вопрос про вашу ситуацию?"
+		text="Обсудим на бесплатной консультации. Придём с вариантами, сроками и бюджетом — без общих слов."
+		ctaLabel="Оставить заявку"
+		secondaryLabel="Как поступить"
+		secondaryHref="/process/"
+	/>
+</BaseLayout>
