@@ -19,7 +19,8 @@ interface Props {
 const { variant = "full", source = "site" } = Astro.props;
 const isCompact = variant === "compact";
 
-const provider = (import.meta.env.PUBLIC_LEAD_PROVIDER ?? "formspree") as LeadProvider;
+const provider: LeadProvider =
+  import.meta.env.PUBLIC_LEAD_PROVIDER === "webhook" ? "webhook" : "formspree";
 const configuredEndpoint = (import.meta.env.PUBLIC_LEAD_ENDPOINT ?? "").trim();
 const action = endpointFor(provider, configuredEndpoint);
 const email = (import.meta.env.PUBLIC_CONTACT_EMAIL ?? "").trim();

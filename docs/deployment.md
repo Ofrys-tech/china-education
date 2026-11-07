@@ -52,15 +52,17 @@ gh api --method PUT repos/<owner>/china-education/pages -f build_type=workflow
 | `PUBLIC_ANALYTICS_SRC`    | там же                                 | URL скрипта Plausible/Umami (пусто = выключено) |
 | `PUBLIC_ANALYTICS_DOMAIN` | там же                                 | domain для аналитики                            |
 
-Добавить в `.github/workflows/deploy.yml`:
+`deploy.yml` читает эти значения из **repository variables** (Settings → Secrets and variables → Actions → Variables), поэтому код править не нужно:
 
-```yaml
-env:
-  PUBLIC_LEAD_ENDPOINT: https://formspree.io/f/xxxxxxx
-  PUBLIC_LEAD_PROVIDER: formspree
-  PUBLIC_CONTACT_EMAIL: hello@example.com
-  PUBLIC_TELEGRAM_URL: https://t.me/example
+```bash
+gh variable set PUBLIC_LEAD_PROVIDER --body formspree --repo Ofrys-tech/china-education
+gh variable set PUBLIC_LEAD_ENDPOINT --body mqkr1234 --repo Ofrys-tech/china-education
+# опционально:
+gh variable set PUBLIC_CONTACT_EMAIL --body hello@example.com --repo Ofrys-tech/china-education
+gh variable set PUBLIC_TELEGRAM_URL --body https://t.me/example --repo Ofrys-tech/china-education
 ```
+
+После изменения переменных: **Actions → Deploy to GitHub Pages → Re-run all jobs** (public env встраивается на сборке).
 
 Секреты сюда не нужны: endpoint по определению публичный. Приватные токены в статический сайт не попадают.
 

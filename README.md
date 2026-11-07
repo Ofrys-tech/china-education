@@ -91,7 +91,7 @@ tests/unit|e2e
 
 ## Перед запуском
 
-1. **Подключить заявки.** Задайте `PUBLIC_LEAD_ENDPOINT` (Formspree short code или полный URL) и пересоберите сайт. Без него форма показывает служебное сообщение и не отправляет данные. Минимум — задайте `PUBLIC_CONTACT_EMAIL`/`PUBLIC_TELEGRAM_URL` для mailto/прямого контакта.
+1. **Подключить заявки.** В GitHub → Settings → Secrets and variables → Actions → Variables задайте `PUBLIC_LEAD_ENDPOINT` (Formspree short code или полный URL) и `PUBLIC_LEAD_PROVIDER=formspree`, затем перезапустите deploy. Без endpoint форма показывает служебное сообщение. Минимум — задайте `PUBLIC_CONTACT_EMAIL`/`PUBLIC_TELEGRAM_URL` для mailto/прямого контакта. Подробно: [docs/leads.md](docs/leads.md).
 2. **Проверить факты.** Стоимость, дедлайны, требования и признание дипломов — ориентиры, а не оферта. Обновите под актуальный год и юрисдикции.
 3. **Проверить юридические формулировки.** Дисклеймер и политика конфиденциальности — рабочая основа, не заменяют консультацию юриста.
 4. **Заменить бренд при необходимости.** `siteConfig.name`, `nameZh`, тексты и `public/favicon.svg`; OG пересобрать через `npm run og`.

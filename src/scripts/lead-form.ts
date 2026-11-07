@@ -1,6 +1,6 @@
 import { forms } from "@/i18n/en/forms";
 import { track } from "@/lib/analytics";
-import { buildLeadPayload, endpointFor, type LeadProvider } from "@/lib/leads/payload";
+import { buildLeadPayload, endpointFor } from "@/lib/leads/payload";
 import { type LeadErrors, type LeadValues, validateLead } from "@/lib/leads/schema";
 
 const UTM_KEYS = ["source", "medium", "campaign", "content", "term"] as const;
@@ -211,7 +211,7 @@ function fallbackContact(form: FormElement, message: string): void {
 
 async function send(form: FormElement, values: LeadValues): Promise<void> {
   const endpoint = endpointFor(
-    (import.meta.env.PUBLIC_LEAD_PROVIDER as LeadProvider | undefined) ?? "formspree",
+    import.meta.env.PUBLIC_LEAD_PROVIDER === "webhook" ? "webhook" : "formspree",
     (import.meta.env.PUBLIC_LEAD_ENDPOINT ?? "").trim(),
   );
 
