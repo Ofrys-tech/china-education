@@ -913,8 +913,8 @@ body[data-menu-open="true"] {
 
 .orbit-badge {
   position: absolute;
-  right: 0;
-  bottom: -1.5rem;
+  right: -2rem;
+  bottom: -3.5rem;
   width: 7rem;
   height: 7rem;
   color: var(--color-red);

@@ -7,7 +7,7 @@ export const apply = {
   },
   hero: {
     eyebrow: "Free · 30 minutes",
-    titleLines: ["Tell us about you.", "We'll come back with a plan."],
+    titleLines: ["Tell us about you.", "We'll bring a plan."],
     lead: "You don't need a perfect profile. What you have now is enough — we'll ask the missing questions on the call.",
     aside: "We reply within one business day. No cold calls, no selling your data, no spam.",
     privacyLink: "Privacy policy",
