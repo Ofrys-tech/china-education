@@ -8,7 +8,7 @@ const { lines } = Astro.props;
 
 {lines.map((line, index) => (
   <>
-    {line}
+    {line}{" "}
     {index < lines.length - 1 && <br />}
   </>
 ))}
