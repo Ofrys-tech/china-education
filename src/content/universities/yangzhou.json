@@ -1,0 +1,16 @@
+{
+  "name": "Yangzhou University",
+  "nameZh": "扬州大学",
+  "city": "Yangzhou",
+  "province": "Jiangsu",
+  "type": "public",
+  "founded": 1902,
+  "strengths": ["Agriculture", "Engineering", "Medicine"],
+  "levels": ["language", "bachelor", "master", "phd"],
+  "language": "English / Chinese",
+  "scholarship": true,
+  "note": "Comprehensive university in Jiangsu with a dedicated overseas education college. Application guidance, fee schedule and document rules are published by the college.",
+  "officialUrl": "https://english.yzu.edu.cn/",
+  "featured": false,
+  "order": 14
+}

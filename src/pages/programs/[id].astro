@@ -1,9 +1,9 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
-import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import CtaBand from "@/components/CtaBand.astro";
 import FaqList from "@/components/FaqList.astro";
 import Icon from "@/components/Icon.astro";
+import PageHero from "@/components/PageHero.astro";
 import ProgramCard from "@/components/ProgramCard.astro";
 import { siteConfig } from "@/config/site";
 import { copy } from "@/i18n";
@@ -64,36 +64,15 @@ const courseLd = {
 ---
 
 <BaseLayout title={data.title} description={data.summary} jsonLd={[courseLd, faqLd]}>
-  <section class="page-hero">
-    <div class="shell">
-      <Breadcrumbs
-        items={[
-          { label: page.breadcrumb, href: "/programs/" },
-          { label: labels.degrees[data.degree] },
-        ]}
-      />
-      <div class="page-hero__inner">
-        <div>
-          <span class="eyebrow">{labels.degrees[data.degree]}{detail.eyebrowSuffix}</span>
-          <h1 class="display display--l page-hero__title">{data.title}</h1>
-          <p class="lead page-hero__lead">{data.summary}</p>
-          <div class="cluster mt-3">
-            <span class="tag">{data.duration}</span>
-            <span class="tag">{data.languages.map((lang) => labels.languages[lang]).join(" / ")}</span>
-            <span class="tag tag--red">{data.tuition}</span>
-          </div>
-        </div>
-        <div class="page-hero__aside">
-          <p class="mono-label">{detail.costLabel}</p>
-          <p>{data.tuition}</p>
-          <p class="note mt-2">{detail.costNote}</p>
-          <a class="btn btn--primary mt-3" href={withBase("/apply/")}>
-            {detail.cta} <Icon name="arrowUpRight" size={15} />
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <PageHero
+    breadcrumb={`${page.breadcrumb} / ${labels.degrees[data.degree]}`}
+    eyebrow={`${labels.degrees[data.degree]}${detail.eyebrowSuffix}`}
+    titleLines={[data.title]}
+    lead={data.summary}
+    aside={`${data.duration} · ${data.languages.map((lang) => labels.languages[lang]).join(" / ")} · ${data.tuition}`}
+    link={detail.cta}
+    linkHref="/apply/"
+  />
 
   <section class="section">
     <div class="shell">

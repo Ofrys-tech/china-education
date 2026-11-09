@@ -10,7 +10,7 @@
 4. проверяет HTML (`check:html`);
 5. загружает `dist/` как Pages artifact;
 6. деплоит через `actions/deploy-pages`;
-7. делает live-smoke: `curl` страницы и поиск `ChinaPath`.
+7. делает live-smoke: `curl` страницы и поиск `ADLAS`.
 
 `BASE_PATH` вычисляется из имени репозитория. Для репозитория `<owner>.github.io` автоматически используется `/`.
 
@@ -47,8 +47,6 @@ gh api --method PUT repos/<owner>/china-education/pages -f build_type=workflow
 | `BASE_PATH`               | workflow env                           | `/<repo>/` или `/` для user site                |
 | `PUBLIC_LEAD_ENDPOINT`    | workflow env / GitHub Secrets не нужны | Formspree short code или URL webhook            |
 | `PUBLIC_LEAD_PROVIDER`    | там же                                 | `formspree` или `webhook`                       |
-| `PUBLIC_CONTACT_EMAIL`    | там же                                 | публичный email для mailto/footer               |
-| `PUBLIC_TELEGRAM_URL`     | там же                                 | ссылка на Telegram                              |
 | `PUBLIC_ANALYTICS_SRC`    | там же                                 | URL скрипта Plausible/Umami (пусто = выключено) |
 | `PUBLIC_ANALYTICS_DOMAIN` | там же                                 | domain для аналитики                            |
 
@@ -58,8 +56,6 @@ gh api --method PUT repos/<owner>/china-education/pages -f build_type=workflow
 gh variable set PUBLIC_LEAD_PROVIDER --body formspree --repo Ofrys-tech/china-education
 gh variable set PUBLIC_LEAD_ENDPOINT --body mqkr1234 --repo Ofrys-tech/china-education
 # опционально:
-gh variable set PUBLIC_CONTACT_EMAIL --body hello@example.com --repo Ofrys-tech/china-education
-gh variable set PUBLIC_TELEGRAM_URL --body https://t.me/example --repo Ofrys-tech/china-education
 ```
 
 После изменения переменных: **Actions → Deploy to GitHub Pages → Re-run all jobs** (public env встраивается на сборке).

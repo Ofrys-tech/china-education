@@ -1,0 +1,16 @@
+{
+  "name": "Wuhan University",
+  "nameZh": "武汉大学",
+  "city": "Wuhan",
+  "province": "Hubei",
+  "type": "public",
+  "founded": 1893,
+  "strengths": ["Surveying", "Geosciences", "Law"],
+  "levels": ["language", "bachelor", "master", "phd"],
+  "language": "English / Chinese",
+  "scholarship": true,
+  "note": "Comprehensive university in Wuhan, known for surveying, geosciences, law and medicine. The campus is large; on-campus housing should be reserved early.",
+  "officialUrl": "https://en.whu.edu.cn/",
+  "featured": false,
+  "order": 7
+}

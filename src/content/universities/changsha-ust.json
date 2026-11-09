@@ -1,0 +1,16 @@
+{
+  "name": "Changsha University of Science and Technology",
+  "nameZh": "长沙理工大学",
+  "city": "Changsha",
+  "province": "Hunan",
+  "type": "public",
+  "founded": 1956,
+  "strengths": ["Transportation", "Civil engineering", "Electrical engineering"],
+  "levels": ["language", "foundation", "bachelor", "master", "phd"],
+  "language": "English / Chinese",
+  "scholarship": true,
+  "note": "Engineering-focused university in Changsha with transportation, civil and electrical programs. Several English-taught engineering routes are available for international students.",
+  "officialUrl": "https://www.csust.edu.cn/gjxy/info/1195/8412.htm",
+  "featured": false,
+  "order": 16
+}

@@ -1,0 +1,140 @@
+---
+import { Image } from "astro:assets";
+import globalCommunity from "@/assets/generated/icons/global-community.png";
+import CtaBand from "@/components/CtaBand.astro";
+import Icon from "@/components/Icon.astro";
+import Lines from "@/components/Lines.astro";
+import PageHero from "@/components/PageHero.astro";
+import SectionHead from "@/components/SectionHead.astro";
+import SuccessCard from "@/components/SuccessCard.astro";
+import { copy } from "@/i18n";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { absoluteUrl, withBase } from "@/lib/url";
+
+const page = copy.experience;
+
+const pageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: page.meta.title,
+  description: page.meta.description,
+  url: absoluteUrl("/experience/"),
+};
+---
+
+<BaseLayout title={page.meta.title} description={page.meta.description} jsonLd={pageLd}>
+  <PageHero
+    breadcrumb={page.breadcrumb}
+    eyebrow={page.hero.eyebrow}
+    titleLines={page.hero.titleLines}
+    lead={page.hero.lead}
+    aside={page.hero.aside}
+    link={page.hero.link}
+    linkHref="/contact/"
+  />
+
+  <section class="section">
+    <div class="shell">
+      <SectionHead index={page.community.index} eyebrow={page.community.eyebrow}>
+        <Fragment slot="title"><Lines lines={page.community.titleLines} /></Fragment>
+        <Fragment slot="aside">{page.community.aside}</Fragment>
+      </SectionHead>
+
+      <div class="pill-list">
+        {page.community.countries.map((country) => <span>{country}</span>)}
+      </div>
+
+      <Image
+        src={globalCommunity}
+        alt="Gold orbital sphere — the international ADLAS student community"
+        width={112}
+        widths={[64, 112, 224]}
+        sizes="112px"
+        format="webp"
+        class="section-emblem"
+        loading="lazy"
+      />
+      <div class="statement mt-5">
+        <div class="statement__inner">
+          <p class="display display--l" style="max-width:44rem">{page.community.statement}</p>
+          <span class="statement__mark" aria-hidden="true">A</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ruled">
+    <div class="shell">
+      <SectionHead index={page.stories.index} eyebrow={page.stories.eyebrow}>
+        <Fragment slot="title"><Lines lines={page.stories.titleLines} /></Fragment>
+        <Fragment slot="aside">{page.stories.aside}</Fragment>
+      </SectionHead>
+
+      <div class="quote-grid">
+        {page.stories.items.map((story) => (
+          <article class="quote-card reveal">
+            <div>
+              <span class="quote-card__flag">{story.country}</span>
+              <blockquote class="mt-2">“{story.quote}”</blockquote>
+            </div>
+            <div>
+              <p class="quote-card__meta">{story.meta}</p>
+              <span class="demo-badge mt-2">{page.stories.demoLabel}</span>
+            </div>
+          </article>
+        ))}
+      </div>
+      <p class="note mt-3">{page.stories.note}</p>
+    </div>
+  </section>
+
+  <section class="ink section" id="results">
+    <div class="shell">
+      <SectionHead index={page.results.index} eyebrow={page.results.eyebrow}>
+        <Fragment slot="title"><Lines lines={page.results.titleLines} /></Fragment>
+        <Fragment slot="aside">{page.results.aside}</Fragment>
+      </SectionHead>
+
+      <div class="success-grid">
+        {page.results.cards.map((card) => (
+          <div style="--color-paper-soft:rgba(251,247,238,.05);--color-line:rgba(251,247,238,.14);--color-ink:#fbf7ee;--color-muted:rgba(251,247,238,.52)">
+            <SuccessCard card={card} />
+          </div>
+        ))}
+      </div>
+      <p class="note mt-3" style="color:rgba(251,247,238,.52)">{page.results.note}</p>
+      <p class="note mt-2" style="color:rgba(251,247,238,.4)">{page.results.footnote}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <SectionHead index={page.diversity.index} eyebrow={page.diversity.eyebrow}>
+        <Fragment slot="title"><Lines lines={page.diversity.titleLines} /></Fragment>
+        <Fragment slot="aside">{page.diversity.aside}</Fragment>
+      </SectionHead>
+      <div class="split">
+        <ul class="checklist" style="grid-template-columns:1fr">
+          {page.diversity.points.map((point) => (
+            <li><Icon name="check" size={16} /> {point}</li>
+          ))}
+        </ul>
+        <div class="panel panel--gold">
+          <p class="display display--m">{copy.common.meta.siteName}</p>
+          <p class="mt-2">{copy.common.legal.disclaimer}</p>
+          <a class="btn btn--primary mt-3" href={withBase("/apply/")}>
+            Join the community <Icon name="arrowUpRight" size={16} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title={page.cta.title}
+    text={page.cta.text}
+    ctaLabel={page.cta.primary}
+    secondaryLabel={page.cta.secondary}
+    secondaryHref="/process/"
+  />
+</BaseLayout>

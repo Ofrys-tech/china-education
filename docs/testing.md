@@ -22,9 +22,9 @@
 
 ### Unit (`tests/unit`)
 
-- `leads.test.ts` — валидация имени, e-mail, телефона, Telegram, consent, лимитов, enum-ошибок.
+- `leads.test.ts` — валидация имени, e-mail, телефона, WhatsApp/Instagram, гражданства, бюджета, consent, enum-ошибок.
 - `payload.test.ts` — sanitize control-characters/CRLF, подстановка UTM, `_subject`, Formspree/webhook endpoint.
-- `content.test.ts` — ≥7 программ, уникальные `order`, обязательные поля, HTTPS-ссылки вузов, ≥8 FAQ, `home`-флаг, отсутствие placeholder-маркеров.
+- `content.test.ts` — ≥5 программ, уникальные `order`, обязательные поля, HTTPS-ссылки вузов, ≥8 FAQ, `home`-флаг, отсутствие placeholder-маркеров.
 
 Unit-тесты не рендерят Astro и не требуют браузера.
 
@@ -34,9 +34,10 @@ Unit-тесты не рендерят Astro и не требуют браузе�
 
 ### E2E (`tests/e2e/smoke.spec.ts`)
 
-- лендинг: h1, 6 программ, 6 вузов, 5 FAQ, переход в каталог;
+- лендинг: h1, 5 программ, 6 featured-вузов, 5 FAQ, переход в направления;
 - мобильное меню: открытие, `aria-expanded`, блокировка скролла, закрытие после перехода;
-- форма: пустая отправка → ошибки; заполнение → POST на перехваченный `https://lead.test`; payload (`name`, `contact`, `degree`, `consent`, `idempotencyKey`); success-состояние;
+- каталог: 17 вузов, поиск по городу/названию, фильтр по уровню;
+- форма: пустая отправка → ошибки; заполнение → POST на перехваченный `https://lead.test`; payload (`name`, `nationality`, `contact`, `degree`, `destination`, `consent`, `idempotencyKey`); success-состояние;
 - axe: `/` и `/apply/`, только serious/critical, теги WCAG 2.0 A/AA.
 
 E2E собирает сайт с `PUBLIC_LEAD_ENDPOINT=https://lead.test/submit`; реальная сеть не нужна. Сервер — `python3 -m http.server` на порту 4325.

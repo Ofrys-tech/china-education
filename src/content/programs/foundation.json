@@ -1,0 +1,54 @@
+{
+  "title": "Foundation Year",
+  "degree": "foundation",
+  "summary": "An academic bridge year for students who need stronger language or subject preparation before a Chinese bachelor's degree.",
+  "duration": "1 year · 2 semesters",
+  "languages": ["zh", "en"],
+  "tuition": "Indicative: ¥12,000–25,000 / year",
+  "overview": [
+    "A foundation year combines language study with subject modules such as mathematics, physics, chemistry or business. It is designed for students whose school certificate is accepted but whose language level or subject background does not yet meet direct-entry requirements.",
+    "Not every university runs a foundation program, and completion does not automatically guarantee a degree place. We check the progression agreement in writing: which degree programs accept the foundation certificate, what grades are required and whether the visa status continues without interruption."
+  ],
+  "fitFor": [
+    "Your Chinese is below the direct-entry level for a bachelor's",
+    "Your school curriculum did not cover the required subjects",
+    "You need a structured transition year inside a university",
+    "You want to improve your academic English or Chinese before choosing a major"
+  ],
+  "outcomes": [
+    "Language level aligned with the partner degree",
+    "Subject foundations for engineering, science or business",
+    "A documented progression route, where the university offers one",
+    "Time to choose a major with real information"
+  ],
+  "timeline": [
+    {
+      "step": "7–9 months before",
+      "text": "We compare foundation programs, progression rules and the degrees they feed into — not just the price."
+    },
+    {
+      "step": "5–6 months before",
+      "text": "School certificate, transcript, translations and language evidence are prepared and checked against the program's rules."
+    },
+    {
+      "step": "3–4 months before",
+      "text": "Offer, deposit, JW202 and visa. We confirm housing and the registration date."
+    },
+    {
+      "step": "During the year",
+      "text": "We monitor progression requirements and prepare the degree application before the foundation year ends."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is a foundation year the same as a language year?",
+      "answer": "No. A language year focuses on Mandarin. A foundation year adds academic subjects and is usually tied to a specific university or degree route. Some programs combine both."
+    },
+    {
+      "question": "Does completion guarantee a bachelor's place?",
+      "answer": "Usually not automatically. Many universities require a minimum grade or interview. We confirm the written progression rule before you enrol and never present a foundation year as a guarantee."
+    }
+  ],
+  "featured": true,
+  "order": 2
+}

@@ -1,5 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="ChinaPath">
-	<rect width="64" height="64" rx="10" fill="#B23A2E"/>
-	<rect x="5" y="5" width="54" height="54" rx="7" fill="none" stroke="#F7F3EB" stroke-opacity=".35"/>
-	<text x="32" y="45" text-anchor="middle" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="38" fill="#F7F3EB">华</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="ADLAS STUDY">
+  <rect width="64" height="64" rx="12" fill="#0C0C0D"/>
+  <g transform="translate(6 6) scale(0.8125)">
+    <ellipse cx="32" cy="32" rx="28" ry="10" transform="rotate(-27 32 32)" fill="none" stroke="#C8A45C" stroke-width="1.1" opacity=".65"/>
+    <path d="M32 6.2 11.4 56.4h8.1l4.9-11.9h15.2l4.9 11.9h8.1L32 6.2Zm-5.2 31.1 5.2-12.6 5.2 12.6H26.8Z" fill="#C8A45C"/>
+    <path d="M53.9 9.2c.5 2.9 1.8 4.2 4.7 4.7-2.9.5-4.2 1.8-4.7 4.7-.5-2.9-1.8-4.2-4.7-4.7 2.9-.5 4.2-1.8 4.7-4.7Z" fill="#E8D4A3"/>
+  </g>
 </svg>

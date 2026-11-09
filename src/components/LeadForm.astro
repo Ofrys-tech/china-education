@@ -1,12 +1,17 @@
 ---
 import Icon from "@/components/Icon.astro";
+import { siteConfig } from "@/config/site";
 import { forms } from "@/i18n/en/forms";
 import { labels } from "@/i18n/en/labels";
 import {
+  BUDGET_VALUES,
   CONTACT_METHOD_VALUES,
   DEGREE_VALUES,
+  DESTINATION_VALUES,
   DIRECTION_VALUES,
+  EDUCATION_VALUES,
   INTAKE_VALUES,
+  SCHOLARSHIP_VALUES,
 } from "@/lib/leads/options";
 import { endpointFor, type LeadProvider } from "@/lib/leads/payload";
 import { withBase } from "@/lib/url";
@@ -23,8 +28,7 @@ const provider: LeadProvider =
   import.meta.env.PUBLIC_LEAD_PROVIDER === "webhook" ? "webhook" : "formspree";
 const configuredEndpoint = (import.meta.env.PUBLIC_LEAD_ENDPOINT ?? "").trim();
 const action = endpointFor(provider, configuredEndpoint);
-const email = (import.meta.env.PUBLIC_CONTACT_EMAIL ?? "").trim();
-const telegram = (import.meta.env.PUBLIC_TELEGRAM_URL ?? "").trim();
+const email = siteConfig.contacts.email;
 ---
 
 <div class="lead-form-wrap" id="lead-form">
@@ -33,7 +37,7 @@ const telegram = (import.meta.env.PUBLIC_TELEGRAM_URL ?? "").trim();
     data-lead-form
     data-source={source}
     data-email={email}
-    data-telegram={telegram}
+    data-whatsapp={siteConfig.contacts.whatsapp}
     method="post"
     action={action || undefined}
     novalidate
@@ -54,6 +58,20 @@ const telegram = (import.meta.env.PUBLIC_TELEGRAM_URL ?? "").trim();
       </div>
 
       <div class="field">
+        <label for="lead-nationality">{forms.labels.nationality} <span aria-hidden="true">*</span></label>
+        <input
+          id="lead-nationality"
+          name="nationality"
+          type="text"
+          autocomplete="country-name"
+          placeholder={forms.placeholders.nationality}
+          required
+          aria-describedby="lead-nationality-error"
+        />
+        <p class="field__error" id="lead-nationality-error" data-error-for="nationality" hidden></p>
+      </div>
+
+      <div class="field">
         <label for="lead-contact-method">{forms.labels.contactMethod} <span aria-hidden="true">*</span></label>
         <select id="lead-contact-method" name="contactMethod" required data-contact-method>
           <option value="">{forms.labels.choose}</option>
@@ -71,7 +89,7 @@ const telegram = (import.meta.env.PUBLIC_TELEGRAM_URL ?? "").trim();
         <p class="field__error" data-error-for="contactMethod" hidden></p>
       </div>
 
-      <div class="field lead-form__grid--full">
+      <div class="field">
         <label for="lead-contact">
           <span data-contact-label-text>{forms.labels.contact}</span> <span aria-hidden="true">*</span>
         </label>
@@ -91,22 +109,62 @@ const telegram = (import.meta.env.PUBLIC_TELEGRAM_URL ?? "").trim();
 
       {!isCompact && (
         <div class="field">
-          <label for="lead-degree">{forms.labels.degree} <span aria-hidden="true">*</span></label>
-          <select id="lead-degree" name="degree" required>
+          <label for="lead-education">{forms.labels.education} <span aria-hidden="true">*</span></label>
+          <select id="lead-education" name="education" required>
             <option value="">{forms.labels.choose}</option>
-            {DEGREE_VALUES.map((value) => <option value={value}>{labels.degrees[value]}</option>)}
+            {EDUCATION_VALUES.map((value) => <option value={value}>{labels.education[value]}</option>)}
           </select>
-          <p class="field__error" data-error-for="degree" hidden></p>
+          <p class="field__error" data-error-for="education" hidden></p>
         </div>
       )}
 
       <div class="field">
-        <label for="lead-direction">{forms.labels.direction} <span aria-hidden="true">*</span></label>
-        <select id="lead-direction" name="direction" required>
+        <label for="lead-degree">{forms.labels.degree} <span aria-hidden="true">*</span></label>
+        <select id="lead-degree" name="degree" required>
           <option value="">{forms.labels.choose}</option>
-          {DIRECTION_VALUES.map((value) => <option value={value}>{labels.directions[value]}</option>)}
+          {DEGREE_VALUES.map((value) => <option value={value}>{labels.degrees[value]}</option>)}
         </select>
-        <p class="field__error" data-error-for="direction" hidden></p>
+        <p class="field__error" data-error-for="degree" hidden></p>
+      </div>
+
+      {!isCompact && (
+        <>
+          <div class="field">
+            <label for="lead-direction">{forms.labels.direction} <span aria-hidden="true">*</span></label>
+            <select id="lead-direction" name="direction" required>
+              <option value="">{forms.labels.choose}</option>
+              {DIRECTION_VALUES.map((value) => <option value={value}>{labels.directions[value]}</option>)}
+            </select>
+            <p class="field__error" data-error-for="direction" hidden></p>
+          </div>
+
+          <div class="field">
+            <label for="lead-destination">{forms.labels.destination} <span aria-hidden="true">*</span></label>
+            <select id="lead-destination" name="destination" required>
+              <option value="">{forms.labels.choose}</option>
+              {DESTINATION_VALUES.map((value) => <option value={value}>{labels.destinations[value]}</option>)}
+            </select>
+            <p class="field__error" data-error-for="destination" hidden></p>
+          </div>
+
+          <div class="field">
+            <label for="lead-scholarship">{forms.labels.scholarship} <span aria-hidden="true">*</span></label>
+            <select id="lead-scholarship" name="scholarship" required>
+              <option value="">{forms.labels.choose}</option>
+              {SCHOLARSHIP_VALUES.map((value) => <option value={value}>{labels.scholarships[value]}</option>)}
+            </select>
+            <p class="field__error" data-error-for="scholarship" hidden></p>
+          </div>
+        </>
+      )}
+
+      <div class="field">
+        <label for="lead-budget">{forms.labels.budget} <span aria-hidden="true">*</span></label>
+        <select id="lead-budget" name="budget" required>
+          <option value="">{forms.labels.choose}</option>
+          {BUDGET_VALUES.map((value) => <option value={value}>{labels.budgets[value]}</option>)}
+        </select>
+        <p class="field__error" data-error-for="budget" hidden></p>
       </div>
 
       {!isCompact && (
@@ -131,7 +189,10 @@ const telegram = (import.meta.env.PUBLIC_TELEGRAM_URL ?? "").trim();
 
     {isCompact && (
       <>
-        <input type="hidden" name="degree" value="undecided" />
+        <input type="hidden" name="direction" value="other" />
+        <input type="hidden" name="education" value="other" />
+        <input type="hidden" name="destination" value="china" />
+        <input type="hidden" name="scholarship" value="undecided" />
         <input type="hidden" name="intake" value="2027" />
         <input type="hidden" name="message" value="" />
       </>
@@ -180,10 +241,7 @@ const telegram = (import.meta.env.PUBLIC_TELEGRAM_URL ?? "").trim();
 
   <noscript>
     <p class="note mt-2">
-      {forms.noscript}
-      {email ? <a href={`mailto:${email}`}>{email}</a> : null}
-      {telegram ? <a href={telegram}>Telegram</a> : null}
-      {!email && !telegram ? forms.noscriptNoContact : null}
+      {forms.noscript} <a href={`mailto:${email}`}>{email}</a>.
     </p>
   </noscript>
 </div>

@@ -15,8 +15,13 @@ function rawValues(form: FormElement): Record<string, unknown> {
     name: String(data.get("name") ?? ""),
     contactMethod: String(data.get("contactMethod") ?? ""),
     contact: String(data.get("contact") ?? ""),
+    nationality: String(data.get("nationality") ?? ""),
     degree: String(data.get("degree") ?? ""),
     direction: String(data.get("direction") ?? ""),
+    education: String(data.get("education") ?? ""),
+    destination: String(data.get("destination") ?? ""),
+    budget: String(data.get("budget") ?? ""),
+    scholarship: String(data.get("scholarship") ?? ""),
     intake: String(data.get("intake") ?? ""),
     message: String(data.get("message") ?? ""),
     consent: data.get("consent") === "true" || data.get("consent") === "on",
@@ -164,7 +169,7 @@ function updateContactField(form: FormElement): void {
         ? "tel"
         : "text";
   input.autocomplete =
-    select.value === "email" ? "email" : select.value === "telegram" ? "off" : "tel";
+    select.value === "email" ? "email" : select.value === "instagram" ? "off" : "tel";
   input.inputMode = (option?.dataset.inputmode as "text" | "tel" | "email" | "none") ?? "text";
 }
 
@@ -185,25 +190,25 @@ function showSuccess(form: FormElement): void {
 
 function fallbackContact(form: FormElement, message: string): void {
   const email = form.dataset.email ?? "";
-  const telegram = form.dataset.telegram ?? "";
+  const whatsapp = form.dataset.whatsapp ?? "";
   const status = setStatus(form, "error", message);
-  if (!email && !telegram) return;
+  if (!email && !whatsapp) return;
 
   const paragraph = document.createElement("p");
   paragraph.append(forms.status.direct);
+  if (whatsapp) {
+    const link = document.createElement("a");
+    link.href = whatsapp;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = "WhatsApp";
+    paragraph.append(link);
+  }
+  if (whatsapp && email) paragraph.append(forms.status.or);
   if (email) {
     const link = document.createElement("a");
     link.href = `mailto:${email}`;
     link.textContent = email;
-    paragraph.append(link);
-  }
-  if (email && telegram) paragraph.append(forms.status.or);
-  if (telegram) {
-    const link = document.createElement("a");
-    link.href = telegram;
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    link.textContent = "Telegram";
     paragraph.append(link);
   }
   status.append(paragraph);
@@ -227,7 +232,7 @@ async function send(form: FormElement, values: LeadValues): Promise<void> {
   if (!endpoint) {
     track("lead_fallback", { reason: "no_endpoint" });
     const email = form.dataset.email ?? "";
-    const telegram = form.dataset.telegram ?? "";
+    const whatsapp = form.dataset.whatsapp ?? "";
     if (email) {
       const subject = encodeURIComponent(String(payload._subject));
       const body = encodeURIComponent(`${payload.summary}\n\nPage: ${payload.page}`);
@@ -235,10 +240,10 @@ async function send(form: FormElement, values: LeadValues): Promise<void> {
       setStatus(form, "info", forms.status.emailOpen);
       return;
     }
-    if (!telegram) {
+    if (!whatsapp) {
       console.warn("[lead-form] PUBLIC_LEAD_ENDPOINT is not set; the application cannot be sent.");
     }
-    fallbackContact(form, telegram ? forms.status.telegramOnly : forms.status.unavailable);
+    fallbackContact(form, whatsapp ? forms.status.whatsappOnly : forms.status.unavailable);
     return;
   }
 

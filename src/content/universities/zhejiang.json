@@ -2,13 +2,15 @@
   "name": "Zhejiang University",
   "nameZh": "浙江大学",
   "city": "Hangzhou",
+  "province": "Zhejiang",
   "type": "public",
   "founded": 1897,
-  "strengths": ["Engineering", "Computer science", "Business"],
+  "strengths": ["Engineering", "Computer science", "Agriculture"],
+  "levels": ["language", "bachelor", "master", "phd"],
   "language": "English / Chinese",
   "scholarship": true,
-  "note": "One of China's leading technical and research universities. Hangzhou is a tech hub with a strong IT job market.",
+  "note": "Large comprehensive university in Hangzhou with a broad English-taught catalogue and campus housing. Scholarship rounds usually close earlier than self-funded applications.",
   "officialUrl": "https://www.zju.edu.cn/english/",
-  "featured": true,
-  "order": 4
+  "featured": false,
+  "order": 5
 }

@@ -2,13 +2,15 @@
   "name": "Shanghai Jiao Tong University",
   "nameZh": "上海交通大学",
   "city": "Shanghai",
+  "province": "Shanghai",
   "type": "public",
   "founded": 1896,
-  "strengths": ["Engineering", "Computer science", "Medicine"],
+  "strengths": ["Engineering", "Medicine", "Business"],
+  "levels": ["language", "bachelor", "master", "phd"],
   "language": "English / Chinese",
   "scholarship": true,
-  "note": "Strong engineering and medicine, close industry ties. English-taught programs are competitive; prepare early.",
+  "note": "Engineering, medicine and business in Shanghai. Language of instruction and entry requirements differ by faculty, so the shortlist starts from the official program catalogue.",
   "officialUrl": "https://en.sjtu.edu.cn/",
   "featured": true,
-  "order": 5
+  "order": 4
 }

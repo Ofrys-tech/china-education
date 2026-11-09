@@ -1,0 +1,53 @@
+---
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import Emblem from "@/components/Emblem.astro";
+import Icon from "@/components/Icon.astro";
+import Lines from "@/components/Lines.astro";
+import { withBase } from "@/lib/url";
+
+interface Props {
+  breadcrumb: string;
+  eyebrow: string;
+  titleLines: readonly string[];
+  lead: string;
+  aside?: string;
+  link?: string;
+  linkHref?: string;
+  emblem?: boolean;
+}
+
+const {
+  breadcrumb,
+  eyebrow,
+  titleLines,
+  lead,
+  aside,
+  link,
+  linkHref = "/apply/",
+  emblem = true,
+} = Astro.props;
+---
+
+<section class="page-hero page-hero--lux">
+  <div class="shell">
+    <Breadcrumbs items={[{ label: breadcrumb }]} />
+    <div class="page-hero__inner">
+      <div>
+        <span class="eyebrow eyebrow--light">{eyebrow}</span>
+        <h1 class="display display--l page-hero__title"><Lines lines={titleLines} /></h1>
+        <p class="lead page-hero__lead">{lead}</p>
+      </div>
+      {aside && (
+        <div class="page-hero__aside">
+          <p>{aside}</p>
+          {link && (
+            <a class="link-arrow mt-2" href={withBase(linkHref)}>
+              {link} <Icon name="arrowUpRight" size={14} />
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+  </div>
+  {emblem && <Emblem class="page-hero__emblem" />}
+</section>

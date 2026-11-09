@@ -1,9 +1,9 @@
 {
-  "name": "china-education",
+  "name": "adlas-study",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "ChinaPath — admissions website for studying in China",
+  "description": "ADLAS STUDY — international education platform for studying in China",
   "engines": {
     "node": ">=22.23.4"
   },

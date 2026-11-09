@@ -1,0 +1,54 @@
+{
+  "title": "PhD / Doctoral Research",
+  "degree": "phd",
+  "summary": "Three to four years of doctoral research with a Chinese supervisor, built around a research proposal that fits the lab and the funding.",
+  "duration": "3–4 years",
+  "languages": ["zh", "en"],
+  "tuition": "Indicative: ¥26,000–50,000 / year",
+  "overview": [
+    "A Chinese PhD is a research appointment as much as a degree. The supervisor, lab and publication record matter more than the university's general reputation. English-taught doctoral programs exist in science, engineering, medicine and some social sciences.",
+    "The application is a research proposal, academic CV, references and a supervisor who agrees to take you. Funding can come from a university scholarship, a provincial program or CSC. We help you identify realistic supervisors, prepare the proposal and understand what the funding actually covers."
+  ],
+  "fitFor": [
+    "You hold a master's degree or an equivalent research qualification",
+    "You have a research direction and preferably publications",
+    "You want a supervisor and lab, not just a university name",
+    "You are applying for a funded or partially funded doctorate"
+  ],
+  "outcomes": [
+    "A doctoral degree from a Chinese university",
+    "Supervised research and publication experience",
+    "Access to Chinese laboratories and research networks",
+    "A foundation for an academic or industry research career"
+  ],
+  "timeline": [
+    {
+      "step": "12–15 months before",
+      "text": "We define the research area, map supervisors and check their recent publications and intake capacity."
+    },
+    {
+      "step": "9–12 months before",
+      "text": "Research proposal, academic CV, references and language evidence are prepared; supervisor contact begins."
+    },
+    {
+      "step": "6–9 months before",
+      "text": "University and CSC applications are submitted; interviews and academic reviews are prepared."
+    },
+    {
+      "step": "3–5 months before",
+      "text": "Offer, funding confirmation, JW202, visa and arrival. Lab and housing arrangements are confirmed."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Can I do a PhD in English in China?",
+      "answer": "Yes, at many universities in science, engineering, medicine and some social sciences. The supervisor's working language matters more than the official program label, so we confirm it directly."
+    },
+    {
+      "question": "Is a supervisor's acceptance enough for admission?",
+      "answer": "Not always. Most universities still require a formal application, academic review and sometimes an interview. A supervisor's support is important but does not replace the university's process."
+    }
+  ],
+  "featured": false,
+  "order": 5
+}

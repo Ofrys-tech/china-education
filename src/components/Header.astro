@@ -1,6 +1,7 @@
 ---
 import Icon from "@/components/Icon.astro";
 import Logo from "@/components/Logo.astro";
+import { siteConfig } from "@/config/site";
 import { common } from "@/i18n/en/common";
 import { withBase } from "@/lib/url";
 
@@ -13,53 +14,73 @@ const isActive = (href: string) => {
 ---
 
 <header class="site-header">
-	<div class="shell site-header__inner">
-		<Logo />
+  <div class="shell site-header__inner">
+    <Logo />
 
-		<nav class="nav" aria-label={common.header.mainNav}>
-			{common.nav.map((item) => (
-				<a
-					class="nav__link"
-					href={withBase(item.href)}
-					aria-current={isActive(item.href) ? "page" : undefined}
-				>{item.label}</a>
-			))}
-		</nav>
+    <nav class="nav" aria-label={common.header.mainNav}>
+      {siteConfig.nav.map((item) => (
+        <a
+          class="nav__link"
+          href={withBase(item.href)}
+          aria-current={isActive(item.href) ? "page" : undefined}
+        >{item.label}</a>
+      ))}
+    </nav>
 
-		<a class="btn btn--primary btn--sm header-cta" href={withBase("/apply/")} data-track="header_cta">
-			{common.header.cta}
-			<Icon name="arrowUpRight" size={15} />
-		</a>
+    <div class="header-actions">
+      <a
+        class="header-wa"
+        href={siteConfig.contacts.whatsapp}
+        rel="noopener noreferrer"
+        target="_blank"
+        aria-label={`WhatsApp ${siteConfig.contacts.whatsappLabel}`}
+      >
+        <Icon name="whatsapp" size={17} />
+      </a>
+      <a class="btn btn--primary btn--sm header-cta" href={withBase("/apply/")} data-track="header_cta">
+        {common.header.cta}
+        <Icon name="arrowUpRight" size={15} />
+      </a>
+    </div>
 
-		<button
-			class="menu-toggle"
-			type="button"
-			aria-expanded="false"
-			aria-controls="mobile-menu"
-			data-menu-toggle
-		>
-			<span class="sr-only">{common.header.openMenu}</span>
-			<span class="menu-toggle__bars" aria-hidden="true">
-				<span></span><span></span><span></span>
-			</span>
-		</button>
-	</div>
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      data-menu-toggle
+    >
+      <span class="sr-only">{common.header.openMenu}</span>
+      <span class="menu-toggle__bars" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+  </div>
 </header>
 
 <div class="mobile-menu" id="mobile-menu" data-menu data-open="false">
-	<nav aria-label={common.header.mobileNav}>
-		{common.nav.map((item, index) => (
-			<a class="mobile-menu__link" href={withBase(item.href)} data-menu-link>
-				<span>{item.label}</span>
-				<span class="mobile-menu__index">{String(index + 1).padStart(2, "0")}</span>
-			</a>
-		))}
-	</nav>
-	<div class="mobile-menu__footer">
-		<a class="btn btn--primary" href={withBase("/apply/")} data-menu-link>
-			{common.header.mobileCta}
-			<Icon name="arrowUpRight" size={16} />
-		</a>
-		<p class="note">{common.header.note}</p>
-	</div>
+  <nav aria-label={common.header.mobileNav}>
+    {common.nav.map((item, index) => (
+      <a class="mobile-menu__link" href={withBase(item.href)} data-menu-link>
+        <span>{item.label}</span>
+        <span class="mobile-menu__index">{String(index + 1).padStart(2, "0")}</span>
+      </a>
+    ))}
+  </nav>
+  <div class="mobile-menu__footer">
+    <a class="btn btn--primary" href={withBase("/apply/")} data-menu-link>
+      {common.header.mobileCta}
+      <Icon name="arrowUpRight" size={16} />
+    </a>
+    <a
+      class="btn btn--ghost"
+      href={siteConfig.contacts.whatsapp}
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      <Icon name="whatsapp" size={16} />
+      {siteConfig.contacts.whatsappLabel}
+    </a>
+    <p class="note">{common.header.note}</p>
+  </div>
 </div>

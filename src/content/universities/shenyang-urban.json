@@ -1,0 +1,15 @@
+{
+  "name": "Shenyang Urban Construction University",
+  "nameZh": "沈阳城市建设学院",
+  "city": "Shenyang",
+  "province": "Liaoning",
+  "type": "public",
+  "strengths": ["Architecture", "Engineering", "Construction management"],
+  "levels": ["language", "foundation", "bachelor"],
+  "language": "Chinese / English",
+  "scholarship": true,
+  "note": "Applied university in Shenyang focused on architecture, engineering and construction management. Its International Education College handles language and degree admissions.",
+  "officialUrl": "https://en.syucu.edu.cn/",
+  "featured": false,
+  "order": 15
+}

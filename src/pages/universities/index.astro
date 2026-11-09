@@ -1,11 +1,11 @@
 ---
 import { getCollection } from "astro:content";
-import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import CtaBand from "@/components/CtaBand.astro";
 import Icon from "@/components/Icon.astro";
 import Lines from "@/components/Lines.astro";
+import PageHero from "@/components/PageHero.astro";
 import SectionHead from "@/components/SectionHead.astro";
-import UniversityRow from "@/components/UniversityRow.astro";
+import UniversityCard from "@/components/UniversityCard.astro";
 import { copy } from "@/i18n";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { absoluteUrl, withBase } from "@/lib/url";
@@ -14,6 +14,16 @@ const universities = (await getCollection("universities")).sort(
   (a, b) => a.data.order - b.data.order,
 );
 const page = copy.universities;
+
+const filters = [
+  { value: "all", label: page.search.all },
+  { value: "language", label: page.search.language },
+  { value: "foundation", label: page.search.foundation },
+  { value: "bachelor", label: page.search.bachelor },
+  { value: "master", label: page.search.master },
+  { value: "phd", label: page.search.phd },
+  { value: "vocational", label: page.search.vocational },
+];
 
 const pageLd = {
   "@context": "https://schema.org",
@@ -26,43 +36,50 @@ const pageLd = {
 ---
 
 <BaseLayout title={page.meta.title} description={page.meta.description} jsonLd={pageLd}>
-  <section class="page-hero">
-    <div class="shell">
-      <Breadcrumbs items={[{ label: page.breadcrumb }]} />
-      <div class="page-hero__inner">
-        <div>
-          <span class="eyebrow">{page.hero.eyebrow}</span>
-          <h1 class="display display--l page-hero__title"><Lines lines={page.hero.titleLines} /></h1>
-          <p class="lead page-hero__lead">{page.hero.lead}</p>
-        </div>
-        <div class="page-hero__aside">
-          <p>{page.hero.aside}</p>
-          <a class="link-arrow mt-2" href={withBase("/apply/")}>
-            {page.hero.link} <Icon name="arrowUpRight" size={14} />
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <PageHero
+    breadcrumb={page.breadcrumb}
+    eyebrow={page.hero.eyebrow}
+    titleLines={page.hero.titleLines}
+    lead={page.hero.lead}
+    aside={page.hero.aside}
+    link={page.hero.link}
+    linkHref="/apply/"
+  />
 
   <section class="section">
     <div class="shell">
-      <div class="university-list">
-        {universities.map((university, index) => (
-          <UniversityRow
-            name={university.data.name}
-            nameZh={university.data.nameZh}
-            city={university.data.city}
-            strengths={university.data.strengths}
-            language={university.data.language}
-            scholarship={university.data.scholarship}
-            href={university.data.officialUrl}
-            index={index + 1}
-            external
-            note={university.data.note}
+      <div class="uni-toolbar">
+        <label class="uni-search">
+          <span class="sr-only">{page.search.label}</span>
+          <Icon name="search" size={17} />
+          <input
+            type="search"
+            placeholder={page.search.placeholder}
+            data-uni-search
+            autocomplete="off"
           />
+        </label>
+        <div class="uni-filters" role="group" aria-label={page.search.filtersLabel}>
+          {filters.map((filter) => (
+            <button
+              class="uni-filter"
+              type="button"
+              data-uni-filter={filter.value}
+              aria-pressed={filter.value === "all" ? "true" : "false"}
+            >{filter.label}</button>
+          ))}
+        </div>
+        <span class="uni-count" data-uni-count aria-live="polite">
+          {universities.length} {page.search.count}
+        </span>
+      </div>
+
+      <div class="uni-grid">
+        {universities.map((university) => (
+          <UniversityCard university={university.data} />
         ))}
       </div>
+      <p class="uni-empty" data-uni-empty hidden>{page.search.empty}</p>
       <p class="note mt-3">{page.note}</p>
     </div>
   </section>
@@ -88,7 +105,7 @@ const pageLd = {
       <div class="split mt-5">
         <div class="panel panel--ruled">
           <p class="mono-label">{page.checks.label}</p>
-          <ul class="checklist checklist--cross mt-2" style="grid-template-columns:1fr">
+          <ul class="checklist mt-2" style="grid-template-columns:1fr">
             {page.checks.items.map((item) => (
               <li><Icon name="check" size={15} /> {item}</li>
             ))}
@@ -97,7 +114,7 @@ const pageLd = {
         <div>
           <h3 class="display display--m">{page.fit.title}</h3>
           {page.fit.paragraphs.map((paragraph) => (
-            <p class="muted mt-2" style="font-size:.95rem">{paragraph}</p>
+            <p class="muted mt-2" style="font-size:.98rem">{paragraph}</p>
           ))}
           <a class="link-arrow mt-3" href={withBase("/process/")}>
             {page.fit.link} <Icon name="arrowUpRight" size={14} />
@@ -115,3 +132,7 @@ const pageLd = {
     secondaryHref="/programs/"
   />
 </BaseLayout>
+
+<script>
+  import "@/scripts/university-search";
+</script>

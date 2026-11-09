@@ -1,0 +1,16 @@
+{
+  "name": "Tongji University",
+  "nameZh": "同济大学",
+  "city": "Shanghai",
+  "province": "Shanghai",
+  "type": "public",
+  "founded": 1907,
+  "strengths": ["Architecture", "Civil engineering", "Design"],
+  "levels": ["language", "bachelor", "master", "phd"],
+  "language": "English / Chinese",
+  "scholarship": true,
+  "note": "Architecture, civil engineering, design and medicine in Shanghai. Studio and portfolio requirements apply to several programs, so preparation starts earlier.",
+  "officialUrl": "https://en.tongji.edu.cn/",
+  "featured": false,
+  "order": 10
+}

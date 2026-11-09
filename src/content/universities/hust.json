@@ -1,0 +1,16 @@
+{
+  "name": "Huazhong University of Science and Technology",
+  "nameZh": "华中科技大学",
+  "city": "Wuhan",
+  "province": "Hubei",
+  "type": "public",
+  "founded": 1952,
+  "strengths": ["Engineering", "Medicine", "Computer science"],
+  "levels": ["language", "bachelor", "master", "phd"],
+  "language": "English / Chinese",
+  "scholarship": true,
+  "note": "Science, engineering and medicine in Wuhan with a strong laboratory base. English-taught master's and PhD options are program-specific and confirmed with the faculty.",
+  "officialUrl": "https://english.hust.edu.cn/",
+  "featured": false,
+  "order": 8
+}

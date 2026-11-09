@@ -1,0 +1,173 @@
+---
+import { Image } from "astro:assets";
+import scholarshipLaurel from "@/assets/generated/icons/scholarship-laurel.png";
+import CtaBand from "@/components/CtaBand.astro";
+import Icon from "@/components/Icon.astro";
+import Lines from "@/components/Lines.astro";
+import PageHero from "@/components/PageHero.astro";
+import SectionHead from "@/components/SectionHead.astro";
+import { copy } from "@/i18n";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { absoluteUrl } from "@/lib/url";
+
+const page = copy.scholarships;
+
+const pageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: page.meta.title,
+  description: page.meta.description,
+  url: absoluteUrl("/scholarships/"),
+};
+---
+
+<BaseLayout title={page.meta.title} description={page.meta.description} jsonLd={pageLd}>
+  <PageHero
+    breadcrumb={page.breadcrumb}
+    eyebrow={page.hero.eyebrow}
+    titleLines={page.hero.titleLines}
+    lead={page.hero.lead}
+    aside={page.hero.aside}
+    link={page.hero.link}
+    linkHref="/apply/"
+  />
+
+  <section class="section">
+    <div class="shell">
+      <SectionHead index={page.intro.index} eyebrow={page.intro.eyebrow}>
+        <Fragment slot="title"><Lines lines={page.intro.titleLines} /></Fragment>
+      </SectionHead>
+      <div class="split">
+        <div class="panel panel--gold">
+          <ul class="checklist" style="grid-template-columns:1fr">
+            {page.intro.points.map((point) => (
+              <li><Icon name="check" size={16} /> {point}</li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <Image
+            src={scholarshipLaurel}
+            alt="Gold laurel wreath and star — ADLAS scholarship guidance"
+            width={112}
+            widths={[64, 112, 224]}
+            sizes="112px"
+            format="webp"
+            class="section-emblem"
+            loading="lazy"
+          />
+          <p class="lead">{page.intro.lead}</p>
+          <p class="note mt-3">{copy.common.legal.disclaimer}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ruled">
+    <div class="shell">
+      <SectionHead index={page.categories.index} eyebrow={page.categories.eyebrow}>
+        <Fragment slot="title"><Lines lines={page.categories.titleLines} /></Fragment>
+        <Fragment slot="aside">{page.categories.aside}</Fragment>
+      </SectionHead>
+
+      <div class="value-grid reveal">
+        {page.categories.items.map((item) => (
+          <article class="lux-card">
+            <div class="cluster" style="justify-content:space-between">
+              <span class="lux-card__kicker">{item.level}</span>
+              <Icon name="star" size={16} class="gold-deep" />
+            </div>
+            <h3 class="mt-2">{item.name}</h3>
+            <p>{item.text}</p>
+            <div class="pill-list mt-3">
+              {item.benefits.map((benefit) => <span>{benefit}</span>)}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ruled">
+    <div class="shell">
+      <SectionHead index={page.benefits.index} eyebrow={page.benefits.eyebrow}>
+        <Fragment slot="title"><Lines lines={page.benefits.titleLines} /></Fragment>
+        <Fragment slot="aside">{page.benefits.aside}</Fragment>
+      </SectionHead>
+
+      <div class="split">
+        <div class="scholar__list" style="grid-template-columns:1fr;margin-top:0">
+          {page.benefits.items.map((item) => (
+            <div class="scholar__item" style="padding-right:0">
+              <strong>{item.title}</strong>
+              <span>{item.text}</span>
+            </div>
+          ))}
+        </div>
+        <div class="panel panel--ink" style="padding:1.5rem">
+          <p class="mono-label">Read the fine print</p>
+          <p class="mt-2">{page.benefits.note}</p>
+          <p class="note mt-3" style="color:rgba(251,247,238,.5)">
+            {page.intro.points[3]}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ink section">
+    <div class="shell">
+      <SectionHead index={page.eligibility.index} eyebrow={page.eligibility.eyebrow}>
+        <Fragment slot="title"><Lines lines={page.eligibility.titleLines} /></Fragment>
+        <Fragment slot="aside">{page.eligibility.aside}</Fragment>
+      </SectionHead>
+
+      <div class="split">
+        <ul class="checklist" style="grid-template-columns:1fr">
+          {page.eligibility.items.map((item) => (
+            <li><Icon name="check" size={16} /> {item}</li>
+          ))}
+        </ul>
+        <div>
+          <p class="mono-label">{page.process.eyebrow}</p>
+          <div class="steps mt-2" style="border-color:rgba(251,247,238,.14)">
+            {page.process.steps.map((step, index) => (
+              <article class="step" style="grid-template-columns:2.5rem 1fr;border-color:rgba(251,247,238,.14)">
+                <span class="step__num">{String(index + 1).padStart(2, "0")}</span>
+                <div>
+                  <h3 class="step__title" style="font-size:1.05rem">{step.title}</h3>
+                  <p class="step__text" style="font-size:.86rem">{step.text}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <SectionHead index={page.myths.index} eyebrow={page.myths.eyebrow}>
+        <Fragment slot="title"><Lines lines={page.myths.titleLines} /></Fragment>
+        <Fragment slot="aside">{page.myths.note}</Fragment>
+      </SectionHead>
+      <div class="value-grid">
+        {page.myths.items.map((item) => (
+          <article class="value-card" style="display:flex;gap:.75rem;align-items:flex-start">
+            <Icon name="x" size={18} class="gold-deep" />
+            <p style="margin:0">{item}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title={page.cta.title}
+    text={page.cta.text}
+    ctaLabel={page.cta.primary}
+    secondaryLabel={page.cta.secondary}
+    secondaryHref="/process/"
+  />
+</BaseLayout>

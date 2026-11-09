@@ -1,7 +1,7 @@
 {
-  "question": "What's included, and is admission guaranteed?",
-  "answer": "The work includes a profile diagnostic, program matching, requirements checks, document preparation and review, submission, university correspondence, support through admission, and help with the visa and move. No one can guarantee admission: the university decides. We fix the scope and fee in the contract, speak honestly about probabilities and never charge for a 'guaranteed place'.",
+  "question": "What does ADLAS actually do?",
+  "answer": "ADLAS helps you understand your options, choose realistic universities and programs, prepare documents, apply, compare offers and prepare for departure. We do not write exams for you, invent qualifications or promise admission. The final decision always belongs to the university or scholarship provider.",
   "category": "admission",
-  "order": 8,
+  "order": 10,
   "home": false
 }

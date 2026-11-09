@@ -1,13 +1,13 @@
 {
-  "name": "ChinaPath — Study in China",
-  "short_name": "ChinaPath",
-  "description": "University and program matching for China, document preparation, scholarships and support through enrolment.",
+  "name": "ADLAS STUDY — Education Without Borders",
+  "short_name": "ADLAS",
+  "description": "International education consultancy connecting students with universities, scholarships and opportunities — starting with China.",
   "lang": "en",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f7f3eb",
-  "theme_color": "#f7f3eb",
+  "background_color": "#0c0c0d",
+  "theme_color": "#0c0c0d",
   "icons": [
     { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" },
     { "src": "apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }

@@ -16,9 +16,9 @@ async function readJsonDir(name: string) {
 const placeholder = /TODO|TBD|lorem ipsum|\[insert/i;
 
 describe("content collections", () => {
-  it("ships at least seven complete program routes", async () => {
+  it("ships at least five complete program routes", async () => {
     const programs = await readJsonDir("programs");
-    expect(programs.length).toBeGreaterThanOrEqual(7);
+    expect(programs.length).toBeGreaterThanOrEqual(5);
     expect(new Set(programs.map((program) => program.order)).size).toBe(programs.length);
 
     for (const program of programs) {
@@ -36,7 +36,7 @@ describe("content collections", () => {
 
   it("keeps university links unique, official and HTTPS", async () => {
     const universities = await readJsonDir("universities");
-    expect(universities.length).toBeGreaterThanOrEqual(6);
+    expect(universities.length).toBeGreaterThanOrEqual(17);
     const urls = universities.map((university) => university.officialUrl);
     expect(new Set(urls).size).toBe(urls.length);
     for (const university of universities) {

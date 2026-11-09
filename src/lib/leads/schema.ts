@@ -1,12 +1,20 @@
 import {
+  BUDGET_VALUES,
+  type Budget,
   CONTACT_METHOD_VALUES,
   type ContactMethod,
   DEGREE_VALUES,
+  DESTINATION_VALUES,
   type Degree,
+  type Destination,
   DIRECTION_VALUES,
   type Direction,
+  EDUCATION_VALUES,
+  type Education,
   INTAKE_VALUES,
   type Intake,
+  SCHOLARSHIP_VALUES,
+  type Scholarship,
 } from "@/lib/leads/options";
 
 export type LeadErrorCode =
@@ -17,9 +25,15 @@ export type LeadErrorCode =
   | "contact_long"
   | "contact_email"
   | "contact_phone"
-  | "contact_telegram"
+  | "contact_instagram"
+  | "nationality_short"
+  | "nationality_long"
   | "degree"
   | "direction"
+  | "education"
+  | "destination"
+  | "budget"
+  | "scholarship"
   | "intake"
   | "message_long"
   | "consent";
@@ -28,8 +42,13 @@ export interface LeadValues {
   name: string;
   contactMethod: ContactMethod;
   contact: string;
+  nationality: string;
   degree: Degree;
   direction: Direction;
+  education: Education;
+  destination: Destination;
+  budget: Budget;
+  scholarship: Scholarship;
   intake: Intake;
   message: string;
   consent: boolean;
@@ -69,15 +88,31 @@ export function validateLead(raw: Record<string, unknown>): LeadValidation {
     (contact.replace(/\D/g, "").length < 10 || contact.replace(/\D/g, "").length > 15)
   ) {
     errors.contact = "contact_phone";
-  } else if (contactMethod === "telegram" && !/^@?[a-zA-Z0-9_]{4,64}$/.test(contact)) {
-    errors.contact = "contact_telegram";
+  } else if (contactMethod === "instagram" && !/^@?[a-zA-Z0-9._]{2,30}$/.test(contact)) {
+    errors.contact = "contact_instagram";
   }
+
+  const nationality = asText(raw.nationality);
+  if (nationality.length < 2) errors.nationality = "nationality_short";
+  else if (nationality.length > 60) errors.nationality = "nationality_long";
 
   const degree = asText(raw.degree);
   if (!oneOf(DEGREE_VALUES)(degree)) errors.degree = "degree";
 
   const direction = asText(raw.direction);
   if (!oneOf(DIRECTION_VALUES)(direction)) errors.direction = "direction";
+
+  const education = asText(raw.education);
+  if (!oneOf(EDUCATION_VALUES)(education)) errors.education = "education";
+
+  const destination = asText(raw.destination);
+  if (!oneOf(DESTINATION_VALUES)(destination)) errors.destination = "destination";
+
+  const budget = asText(raw.budget);
+  if (!oneOf(BUDGET_VALUES)(budget)) errors.budget = "budget";
+
+  const scholarship = asText(raw.scholarship);
+  if (!oneOf(SCHOLARSHIP_VALUES)(scholarship)) errors.scholarship = "scholarship";
 
   const intake = asText(raw.intake);
   if (!oneOf(INTAKE_VALUES)(intake)) errors.intake = "intake";
@@ -97,8 +132,13 @@ export function validateLead(raw: Record<string, unknown>): LeadValidation {
       name,
       contactMethod: contactMethod as ContactMethod,
       contact,
+      nationality,
       degree: degree as Degree,
       direction: direction as Direction,
+      education: education as Education,
+      destination: destination as Destination,
+      budget: budget as Budget,
+      scholarship: scholarship as Scholarship,
       intake: intake as Intake,
       message,
       consent: true,

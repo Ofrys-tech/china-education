@@ -19,8 +19,6 @@ env:
   SITE_URL: https://${{ github.repository_owner }}.github.io
   PUBLIC_LEAD_ENDPOINT: ${{ vars.PUBLIC_LEAD_ENDPOINT }}
   PUBLIC_LEAD_PROVIDER: ${{ vars.PUBLIC_LEAD_PROVIDER }}
-  PUBLIC_CONTACT_EMAIL: ${{ vars.PUBLIC_CONTACT_EMAIL }}
-  PUBLIC_TELEGRAM_URL: ${{ vars.PUBLIC_TELEGRAM_URL }}
   PUBLIC_ANALYTICS_SRC: ${{ vars.PUBLIC_ANALYTICS_SRC }}
   PUBLIC_ANALYTICS_DOMAIN: ${{ vars.PUBLIC_ANALYTICS_DOMAIN }}
 
@@ -85,7 +83,7 @@ jobs:
           PAGE_URL: ${{ steps.deployment.outputs.page_url }}
         run: |
           for attempt in $(seq 1 12); do
-            if curl -fsSL "$PAGE_URL" | grep -q "ChinaPath"; then
+            if curl -fsSL "$PAGE_URL" | grep -q "ADLAS"; then
               echo "Live site OK: $PAGE_URL"
               exit 0
             fi

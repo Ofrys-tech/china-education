@@ -1,13 +1,19 @@
 ---
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
+import arrivalKey from "@/assets/generated/icons/arrival-key.png";
+import globalCommunity from "@/assets/generated/icons/global-community.png";
+import scholarshipLaurel from "@/assets/generated/icons/scholarship-laurel.png";
 import CtaBand from "@/components/CtaBand.astro";
+import Emblem from "@/components/Emblem.astro";
 import FaqList from "@/components/FaqList.astro";
 import Icon from "@/components/Icon.astro";
 import LeadForm from "@/components/LeadForm.astro";
 import Lines from "@/components/Lines.astro";
 import ProgramCard from "@/components/ProgramCard.astro";
 import SectionHead from "@/components/SectionHead.astro";
-import UniversityRow from "@/components/UniversityRow.astro";
+import SuccessCard from "@/components/SuccessCard.astro";
+import UniversityCard from "@/components/UniversityCard.astro";
 import { copy } from "@/i18n";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { withBase } from "@/lib/url";
@@ -19,12 +25,16 @@ const [programs, universities, faq] = await Promise.all([
 ]);
 
 const page = copy.home;
-const featuredPrograms = programs.sort((a, b) => a.data.order - b.data.order).slice(0, 6);
-const featuredUniversities = universities.sort((a, b) => a.data.order - b.data.order).slice(0, 6);
+const featuredPrograms = programs.sort((a, b) => a.data.order - b.data.order);
+const featuredUniversities = universities
+  .sort((a, b) => a.data.order - b.data.order)
+  .filter((university) => university.data.featured)
+  .slice(0, 6);
 const homeFaq = faq
   .filter((item) => item.data.home)
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, 5);
+const successCards = copy.experience.results.cards.slice(0, 2);
 
 const faqLd = {
   "@context": "https://schema.org",
@@ -38,15 +48,12 @@ const faqLd = {
 ---
 
 <BaseLayout title={page.meta.title} description={page.meta.description} jsonLd={faqLd}>
-  <section class="hero">
-    <div class="hero__bg" aria-hidden="true"></div>
-    <span class="hero__glyph" aria-hidden="true">{page.hero.glyph}</span>
-
+  <section class="hero hero--lux">
     <div class="shell hero__inner">
       <div class="hero__grid">
         <div class="hero__copy">
           <span class="eyebrow">{page.hero.eyebrow}</span>
-          <h1 class="display display--hero hero__title">
+          <h1 class="display hero__title hero__title--lux">
             <span class="line">{page.hero.title.line1}</span>
             <span class="line">{page.hero.title.line2}</span>
             <span class="line">
@@ -59,94 +66,81 @@ const faqLd = {
               {page.hero.primaryCta}
               <Icon name="arrowUpRight" size={17} />
             </a>
-            <a class="btn btn--ghost" href={withBase("/programs/")}>
+            <a class="btn btn--outline-gold" href={withBase("/destinations/")}>
               {page.hero.secondaryCta}
               <Icon name="arrow" size={17} />
             </a>
           </div>
           <p class="hero__note">{page.hero.note}</p>
 
-          <div class="hero__meta">
-            {page.hero.meta.map((item) => (
-              <div class="hero__meta-item">
-                <span class="hero__meta-value">{item.value}</span>
-                <span class="hero__meta-label">{item.label}</span>
-              </div>
-            ))}
+          <div class="hero__proof">
+            {page.hero.proof.map((item) => <span>{item}</span>)}
           </div>
         </div>
 
-        <div class="hero__visual" aria-hidden="true">
-          <div class="dossier">
-            <div class="dossier__top">
-              <span>{page.hero.dossier.topLabel}</span>
-              <span>{page.hero.dossier.number}</span>
-            </div>
-            <div class="dossier__body">
-              <p class="dossier__label">{page.hero.dossier.programLabel}</p>
-              <p class="dossier__value">{page.hero.dossier.programValue}</p>
-              <div class="dossier__rows">
-                {page.hero.dossier.rows.map((row) => (
-                  <div class="dossier__row">
-                    <span>{row.label}</span>
-                    <strong>{row.value}</strong>
-                  </div>
-                ))}
-              </div>
-              <div class="dossier__progress">
-                <span class="dossier__step is-done"></span>
-                <span class="dossier__step is-done"></span>
-                <span class="dossier__step is-current"></span>
-                <span class="dossier__step"></span>
-              </div>
-            </div>
-            <div class="dossier__footer">
-              <span class="muted">{page.hero.dossier.statusLabel}</span>
-              <span class="dossier__status">{page.hero.dossier.statusValue}</span>
-            </div>
+        <div class="hero__visual">
+          <div class="world-seal" aria-hidden="true">
+            <div class="world-seal__ring"></div>
+            <div class="world-seal__orbit"><i></i></div>
+            <div class="world-seal__orbit world-seal__orbit--b"><i></i></div>
+            <span class="world-seal__label world-seal__label--1">{page.hero.seal.labels[0]}</span>
+            <span class="world-seal__label world-seal__label--2">{page.hero.seal.labels[1]}</span>
+            <span class="world-seal__label world-seal__label--3">{page.hero.seal.labels[2]}</span>
+            <span class="world-seal__label world-seal__label--4">{page.hero.seal.labels[3]}</span>
+            <div class="world-seal__core"><Emblem /></div>
           </div>
 
-          <div class="float-card float-card--scholar">
-            <span>{page.hero.floats.scholarship.eyebrow}</span>
-            <strong>{page.hero.floats.scholarship.title}</strong>
-          </div>
-          <div class="float-card float-card--lang">
-            <span>{page.hero.floats.language.eyebrow}</span>
-            <strong>{page.hero.floats.language.title}</strong>
-          </div>
-
-          <div class="orbit-badge">
-            <svg viewBox="0 0 120 120" aria-hidden="true">
-              <defs>
-                <path id="orbit-path" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"></path>
-              </defs>
-              <text font-size="8.4" letter-spacing="2.6" fill="currentColor">
-                <textPath href="#orbit-path">{page.hero.orbit}</textPath>
-              </text>
-            </svg>
-            <span class="orbit-badge__zh">{page.hero.badge}</span>
+          <div class="hero__quote">
+            <span>{page.hero.seal.quoteLabel}</span>
+            <strong>{page.hero.seal.quote}</strong>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="marquee" aria-hidden="true">
+  <div class="marquee marquee--lux" aria-hidden="true">
     <div class="marquee__track">
       {page.marquee.map((item) => <span class="marquee__item">{item}</span>)}
       {page.marquee.map((item) => <span class="marquee__item">{item}</span>)}
     </div>
   </div>
 
+  <section class="stat-strip">
+    {page.stats.map((stat) => (
+      <div class="stat-strip__item">
+        <span class="stat-strip__value">{stat.value}</span>
+        <span class="stat-strip__label">{stat.label}</span>
+      </div>
+    ))}
+  </section>
+
   <section class="section">
     <div class="shell">
-      <SectionHead index={page.why.index} eyebrow={page.why.eyebrow}>
-        <Fragment slot="title"><Lines lines={page.why.titleLines} /></Fragment>
-        <Fragment slot="aside">{page.why.aside}</Fragment>
-      </SectionHead>
+      <div class="split split--wide">
+        <div>
+          <span class="eyebrow">{page.philosophy.eyebrow}</span>
+          <p class="display display--l mt-3" style="max-width:30ch">{page.philosophy.statement}</p>
+        </div>
+        <div>
+          <p class="lead">{page.philosophy.lead}</p>
+          <p class="muted mt-3" style="font-size:.98rem;line-height:1.7">{page.philosophy.aside}</p>
+          <a class="link-arrow mt-4" href={withBase("/about/")}>
+            Read our philosophy <Icon name="arrowUpRight" size={14} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <section class="section section--ruled">
+    <div class="shell">
+      <SectionHead index={page.values.index} eyebrow={page.values.eyebrow}>
+        <Fragment slot="title"><Lines lines={page.values.titleLines} /></Fragment>
+        <Fragment slot="aside">{page.values.aside}</Fragment>
+      </SectionHead>
       <div class="value-grid reveal">
-        {page.why.cards.map((card, index) => (
+        {page.values.cards.map((card, index) => (
           <article class="value-card">
             <span class="value-card__index">{String(index + 1).padStart(2, "0")}</span>
             <div>
@@ -161,11 +155,55 @@ const faqLd = {
 
   <section class="section section--ruled">
     <div class="shell">
+      <SectionHead index={page.destinations.index} eyebrow={page.destinations.eyebrow}>
+        <Fragment slot="title"><Lines lines={page.destinations.titleLines} /></Fragment>
+        <Fragment slot="aside">
+          {page.destinations.aside}
+          <a class="link-arrow mt-2" href={withBase("/destinations/")}>
+            {page.destinations.link} <Icon name="arrowUpRight" size={14} />
+          </a>
+        </Fragment>
+      </SectionHead>
+
+      <div class="dest-grid">
+        {page.destinations.cards.map((card, index) => (
+          <article class:list={["dest-card reveal", { "dest-card--active": card.status === "Active" }]}>
+            <div>
+              <div class="dest-card__top">
+                <span class="dest-card__index">0{index + 1} / 03</span>
+                <span class:list={["dest-card__status", { "dest-card__status--soon": card.status !== "Active" }]}>
+                  {card.status}
+                </span>
+              </div>
+              <div class="dest-card__glyph" aria-hidden="true">{card.glyph}</div>
+              <h3>{card.country}</h3>
+              <p>{card.text}</p>
+              <div class="dest-card__meta">
+                {card.meta.map((item) => <span>{item}</span>)}
+              </div>
+            </div>
+            {card.status === "Active" ? (
+              <a class="dest-card__link" href={withBase("/destinations/")}>
+                {page.destinations.link} <Icon name="arrowUpRight" size={14} />
+              </a>
+            ) : (
+              <span class="dest-card__link" style="color:rgba(251,247,238,.42)">
+                {page.destinations.soonLabel}
+              </span>
+            )}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ruled">
+    <div class="shell">
       <SectionHead index={page.programs.index} eyebrow={page.programs.eyebrow}>
         <Fragment slot="title"><Lines lines={page.programs.titleLines} /></Fragment>
         <Fragment slot="aside">
           {page.programs.aside}
-          <a class="link-arrow mt-2" href={withBase("/programs/")} style="display:inline-flex">
+          <a class="link-arrow mt-2" href={withBase("/programs/")}>
             {page.programs.link} <Icon name="arrowUpRight" size={14} />
           </a>
         </Fragment>
@@ -195,31 +233,149 @@ const faqLd = {
         <Fragment slot="title"><Lines lines={page.universities.titleLines} /></Fragment>
         <Fragment slot="aside">
           {page.universities.aside}
-          <a class="link-arrow mt-2" href={withBase("/universities/")} style="display:inline-flex">
+          <a class="link-arrow mt-2" href={withBase("/universities/")}>
             {page.universities.link} <Icon name="arrowUpRight" size={14} />
           </a>
         </Fragment>
       </SectionHead>
 
-      <div class="university-list">
-        {featuredUniversities.map((university, index) => (
-          <UniversityRow
-            name={university.data.name}
-            nameZh={university.data.nameZh}
-            city={university.data.city}
-            strengths={university.data.strengths}
-            language={university.data.language}
-            scholarship={university.data.scholarship}
-            href={withBase("/universities/")}
-            index={index + 1}
-          />
+      <div class="uni-grid">
+        {featuredUniversities.map((university) => (
+          <UniversityCard university={university.data} />
         ))}
       </div>
-      <p class="note mt-2">{page.universities.note}</p>
+      <p class="note mt-3">{page.universities.note}</p>
     </div>
   </section>
 
-  <section class="dark section">
+  <section class="section section--ruled">
+    <div class="shell">
+      <SectionHead index={page.scholarships.index} eyebrow={page.scholarships.eyebrow}>
+        <Fragment slot="title"><Lines lines={page.scholarships.titleLines} /></Fragment>
+        <Fragment slot="aside">{page.scholarships.aside}</Fragment>
+      </SectionHead>
+
+      <div class="scholar">
+        <div>
+          <Image
+            src={scholarshipLaurel}
+            alt="Gold laurel wreath and star — ADLAS scholarship guidance"
+            width={112}
+            widths={[64, 112, 224]}
+            sizes="112px"
+            format="webp"
+            class="section-emblem"
+            loading="lazy"
+          />
+          <p class="scholar__mark">
+            {page.scholarships.mark}<small>{page.scholarships.markLabel}</small>
+          </p>
+          <div class="pill-list mt-3">
+            {page.scholarships.benefits.map((item) => <span>{item}</span>)}
+          </div>
+        </div>
+        <div>
+          <p class="lead">{page.scholarships.lead}</p>
+          <div class="scholar__list">
+            {page.scholarships.items.map((item) => (
+              <div class="scholar__item">
+                <strong>{item.title}</strong>
+                <span>{item.text}</span>
+              </div>
+            ))}
+          </div>
+          <a class="link-arrow mt-3" href={withBase("/scholarships/")}>
+            {page.scholarships.cta} <Icon name="arrowUpRight" size={15} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ink section">
+    <div class="shell">
+      <SectionHead index={page.experience.index} eyebrow={page.experience.eyebrow}>
+        <Fragment slot="title"><Lines lines={page.experience.titleLines} /></Fragment>
+        <Fragment slot="aside">
+          <Image
+            src={globalCommunity}
+            alt="Gold orbital sphere — the international ADLAS student community"
+            width={104}
+            widths={[64, 104, 208]}
+            sizes="104px"
+            format="webp"
+            class="section-emblem section-emblem--aside"
+            loading="lazy"
+          />
+          {page.experience.aside}
+          <a class="link-arrow mt-2" href={withBase("/experience/")}>
+            {page.experience.link} <Icon name="arrowUpRight" size={14} />
+          </a>
+        </Fragment>
+      </SectionHead>
+
+      <div class="quote-grid">
+        {page.experience.stories.map((story) => (
+          <article class="quote-card reveal" style="background:rgba(251,247,238,.04);border-color:rgba(251,247,238,.12)">
+            <div>
+              <span class="quote-card__flag">{story.country}</span>
+              <blockquote style="color:var(--color-cream);margin-top:.8rem">“{story.quote}”</blockquote>
+            </div>
+            <div>
+              <p class="quote-card__meta" style="color:rgba(251,247,238,.52)">{story.meta}</p>
+              <span class="demo-badge" style="margin-top:.6rem;border-color:rgba(251,247,238,.24);color:rgba(251,247,238,.5)">
+                {page.experience.demoLabel}
+              </span>
+            </div>
+          </article>
+        ))}
+      </div>
+      <p class="note mt-3" style="color:rgba(251,247,238,.5)">{page.experience.note}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <SectionHead index={page.accommodation.index} eyebrow={page.accommodation.eyebrow}>
+        <Fragment slot="title"><Lines lines={page.accommodation.titleLines} /></Fragment>
+        <Fragment slot="aside">
+          <Image
+            src={arrivalKey}
+            alt="Gold key and orbit — ADLAS accommodation and arrival support"
+            width={96}
+            widths={[64, 96, 192]}
+            sizes="96px"
+            format="webp"
+            class="section-emblem section-emblem--aside"
+            loading="lazy"
+          />
+          {page.accommodation.aside}
+          <a class="link-arrow mt-2" href={withBase("/accommodation/")}>
+            {page.accommodation.link} <Icon name="arrowUpRight" size={14} />
+          </a>
+        </Fragment>
+      </SectionHead>
+
+      <div class="room-grid">
+        {page.accommodation.rooms.map((room, index) => (
+          <article class="room-card reveal">
+            <div class="room-card__art"><span>{String(index + 1).padStart(2, "0")}</span></div>
+            <div class="room-card__body">
+              <h3>{room.name}</h3>
+              <p>{room.text}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="pill-list mt-4">
+        {page.accommodation.facilities.map((item) => <span>{item}</span>)}
+      </div>
+      <p class="note mt-2">{page.accommodation.note}</p>
+    </div>
+  </section>
+
+  <section class="ink section">
     <div class="shell">
       <SectionHead index={page.process.index} eyebrow={page.process.eyebrow}>
         <Fragment slot="title"><Lines lines={page.process.titleLines} /></Fragment>
@@ -237,10 +393,10 @@ const faqLd = {
       </div>
 
       <div class="cluster mt-4" style="justify-content:space-between">
-        <p class="note" style="max-width:34rem;color:rgba(255,252,246,.66)">
+        <p class="note" style="max-width:34rem;color:rgba(251,247,238,.6)">
           {page.process.note}
         </p>
-        <a class="btn btn--light" href={withBase("/process/")}>
+        <a class="btn btn--outline-gold" href={withBase("/process/")}>
           {page.process.cta}
           <Icon name="arrowUpRight" size={16} />
         </a>
@@ -248,34 +404,22 @@ const faqLd = {
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--ruled" id="results">
     <div class="shell">
-      <SectionHead index={page.scholarships.index} eyebrow={page.scholarships.eyebrow}>
-        <Fragment slot="title"><Lines lines={page.scholarships.titleLines} /></Fragment>
-        <Fragment slot="aside">{page.scholarships.aside}</Fragment>
+      <SectionHead index={page.success.index} eyebrow={page.success.eyebrow}>
+        <Fragment slot="title"><Lines lines={page.success.titleLines} /></Fragment>
+        <Fragment slot="aside">
+          {page.success.aside}
+          <a class="link-arrow mt-2" href={withBase("/experience/#results")}>
+            {page.success.link} <Icon name="arrowUpRight" size={14} />
+          </a>
+        </Fragment>
       </SectionHead>
 
-      <div class="scholar">
-        <div>
-          <p class="scholar__mark">
-            {page.scholarships.mark}<small>{page.scholarships.markLabel}</small>
-          </p>
-        </div>
-        <div>
-          <p class="lead">{page.scholarships.lead}</p>
-          <div class="scholar__list">
-            {page.scholarships.items.map((item) => (
-              <div class="scholar__item">
-                <strong>{item.title}</strong>
-                <span>{item.text}</span>
-              </div>
-            ))}
-          </div>
-          <a class="link-arrow mt-3" href={withBase("/apply/")}>
-            {page.scholarships.cta} <Icon name="arrowUpRight" size={15} />
-          </a>
-        </div>
+      <div class="success-grid">
+        {successCards.map((card) => <SuccessCard card={card} />)}
       </div>
+      <p class="note mt-3">{page.success.note}</p>
     </div>
   </section>
 
@@ -294,7 +438,7 @@ const faqLd = {
             ))}
           </ul>
         </div>
-        <div class="panel panel--ruled">
+        <div class="panel panel--gold">
           <p class="mono-label">{page.services.panelLabel}</p>
           <ul class="checklist checklist--cross mt-2" style="grid-template-columns:1fr">
             {page.services.notPromised.map((item) => (
@@ -318,7 +462,7 @@ const faqLd = {
         <Fragment slot="title"><Lines lines={page.faq.titleLines} /></Fragment>
         <Fragment slot="aside">
           {page.faq.aside}
-          <a class="link-arrow mt-2" href={withBase("/faq/")} style="display:inline-flex">
+          <a class="link-arrow mt-2" href={withBase("/faq/")}>
             {page.faq.link} <Icon name="arrowUpRight" size={14} />
           </a>
         </Fragment>

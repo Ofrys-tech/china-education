@@ -4,7 +4,7 @@ import { common } from "@/i18n/en/common";
 import { labels } from "@/i18n/en/labels";
 import { withBase } from "@/lib/url";
 
-type Degree = "language" | "bachelor" | "master" | "mba" | "phd" | "short";
+type Degree = "language" | "foundation" | "bachelor" | "master" | "phd";
 
 interface Props {
   title: string;
@@ -32,12 +32,10 @@ const {
 
 const icons = {
   language: "language",
+  foundation: "book",
   bachelor: "cap",
-  master: "book",
-  mba: "briefcase",
+  master: "doc",
   phd: "flask",
-  short: "spark",
-  // "phd" content exists in the schema for future programs; the icon is ready.
 } as const;
 
 const languageLabel = languages.map((lang) => labels.languages[lang]).join(" / ");

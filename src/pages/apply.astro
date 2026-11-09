@@ -1,12 +1,11 @@
 ---
-import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import Icon from "@/components/Icon.astro";
 import LeadForm from "@/components/LeadForm.astro";
-import Lines from "@/components/Lines.astro";
+import PageHero from "@/components/PageHero.astro";
 import { siteConfig } from "@/config/site";
 import { copy } from "@/i18n";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { absoluteUrl, withBase } from "@/lib/url";
+import { absoluteUrl } from "@/lib/url";
 
 const page = copy.apply;
 
@@ -15,31 +14,20 @@ const pageLd = {
   "@type": "ContactPage",
   name: page.meta.title,
   url: absoluteUrl("/apply/"),
-  about: { "@type": "Organization", name: siteConfig.name },
+  about: { "@type": "Organization", name: siteConfig.fullName },
 };
 ---
 
 <BaseLayout title={page.meta.title} description={page.meta.description} jsonLd={pageLd}>
-  <section class="page-hero">
-    <div class="shell">
-      <Breadcrumbs items={[{ label: page.breadcrumb }]} />
-      <div class="page-hero__inner">
-        <div>
-          <span class="eyebrow">{page.hero.eyebrow}</span>
-          <h1 class="display display--l page-hero__title"><Lines lines={page.hero.titleLines} /></h1>
-          <p class="lead page-hero__lead">{page.hero.lead}</p>
-        </div>
-        <div class="page-hero__aside">
-          <p>{page.hero.aside}</p>
-          <p class="mt-2">
-            <a href={withBase("/privacy/")} style="text-decoration:underline">
-              {page.hero.privacyLink}
-            </a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <PageHero
+    breadcrumb={page.breadcrumb}
+    eyebrow={page.hero.eyebrow}
+    titleLines={page.hero.titleLines}
+    lead={page.hero.lead}
+    aside={page.hero.aside}
+    link={page.hero.privacyLink}
+    linkHref="/privacy/"
+  />
 
   <section class="section" id="form">
     <div class="shell">
@@ -78,28 +66,30 @@ const pageLd = {
             </ul>
           </div>
 
-          {(siteConfig.contacts.email || siteConfig.contacts.telegram) && (
-            <div class="panel">
-              <p class="mono-label">{page.direct.label}</p>
-              <div class="cluster mt-2">
-                {siteConfig.contacts.email && (
-                  <a class="link-arrow" href={`mailto:${siteConfig.contacts.email}`}>
-                    {siteConfig.contacts.email}
-                  </a>
-                )}
-                {siteConfig.contacts.telegram && (
-                  <a
-                    class="link-arrow"
-                    href={siteConfig.contacts.telegram}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    Telegram
-                  </a>
-                )}
-              </div>
+          <div class="panel">
+            <p class="mono-label">{page.direct.label}</p>
+            <div class="cluster mt-2">
+              <a
+                class="btn btn--sm btn--primary"
+                href={siteConfig.contacts.whatsapp}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <Icon name="whatsapp" size={15} /> WhatsApp
+              </a>
+              <a class="btn btn--sm btn--ghost" href={`mailto:${siteConfig.contacts.email}`}>
+                <Icon name="mail" size={15} /> Email
+              </a>
+              <a
+                class="btn btn--sm btn--ghost"
+                href={siteConfig.contacts.instagram}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <Icon name="instagram" size={15} /> Instagram
+              </a>
             </div>
-          )}
+          </div>
 
           <p class="note">{copy.common.legal.disclaimer}</p>
         </aside>

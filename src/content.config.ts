@@ -6,7 +6,7 @@ const programs = defineCollection({
   loader: glob({ base: "./src/content/programs", pattern: "**/*.json" }),
   schema: z.object({
     title: z.string(),
-    degree: z.enum(["language", "bachelor", "master", "mba", "phd", "short"]),
+    degree: z.enum(["language", "foundation", "bachelor", "master", "phd"]),
     summary: z.string(),
     duration: z.string(),
     languages: z.array(z.enum(["zh", "en"])).min(1),
@@ -41,9 +41,13 @@ const universities = defineCollection({
     name: z.string(),
     nameZh: z.string(),
     city: z.string(),
-    type: z.enum(["public", "joint"]),
-    founded: z.number(),
+    province: z.string(),
+    type: z.enum(["public", "vocational"]),
+    founded: z.number().optional(),
     strengths: z.array(z.string()).min(1),
+    levels: z
+      .array(z.enum(["language", "foundation", "bachelor", "master", "phd", "vocational"]))
+      .min(1),
     language: z.string(),
     scholarship: z.boolean(),
     note: z.string(),

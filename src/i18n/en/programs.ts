@@ -1,17 +1,17 @@
 export const programs = {
   breadcrumb: "Programs",
   meta: {
-    title: "Programs in China",
+    title: "Study programs in China — language year to PhD",
     description:
-      "Language year, bachelor's, master's, MBA, medicine and engineering in China: duration, language of instruction, indicative costs and requirements.",
+      "Compare Chinese language year, foundation year, bachelor's, master's and PhD routes in China: duration, language of instruction, indicative costs and entry requirements.",
   },
   hero: {
-    eyebrow: "Program catalogue",
-    titleLines: ["Programs", "& levels."],
-    lead: "Seven typical routes — from a language year to an MBA or medicine. Not a fixed list: we build the actual program and university around your profile.",
+    eyebrow: "Programs · Five pathways",
+    titleLines: ["Five ways in.", "One honest fit."],
+    lead: "Language year, foundation, bachelor's, master's and PhD. We explain the difference, then match the level to your qualifications — not to a sales target.",
     aside:
-      "The figures in the cards are indicative for Chinese universities, not an offer. We budget after the diagnostic: university, city and scholarship change the number.",
-    link: "Find my fit",
+      "The figures on this page are indicative ranges for Chinese universities, not an offer. Your real budget is built after the first conversation, when the university, city and scholarship are known.",
+    link: "Find my level",
   },
   criteria: {
     index: "01 / Choice",
@@ -30,7 +30,7 @@ export const programs = {
       },
       {
         title: "Then the odds",
-        text: "We match grades, language and experience against requirements. Several applications, so one decision doesn't define the year.",
+        text: "We match grades, language and experience against requirements. Several applications, so one decision does not define the year.",
       },
     ],
   },
@@ -40,7 +40,7 @@ export const programs = {
   },
   cta: {
     title: "Not sure which level is yours?",
-    text: "We'll map it on a free call: 30 minutes, concrete options and next steps.",
+    text: "We will map it on a free call: 30 minutes, concrete options and next steps.",
     primary: "Get a plan",
     secondary: "How admissions work",
   },
@@ -53,16 +53,16 @@ export const programs = {
     timelineTitle: "How the route looks",
     outcomesTitle: "What you get",
     faqTitle: "Frequently asked questions",
-    fitLabel: "Who it's for",
+    fitLabel: "Who it is for",
     nextLabel: "Next step",
     nextText:
-      "Start with a diagnostic: grades, language, budget and timeline. We come back with 3–5 program options and a clear budget.",
-    nextCta: "Apply now",
+      "Start with a conversation: grades, language, budget and timeline. We come back with 3–5 program options and a clear budget.",
+    nextCta: "Start your application",
     relatedIndex: "Next",
     relatedTitle: "Other routes",
     allPrograms: "All programs",
     ctaBand: {
-      title: "Let's map your route?",
+      title: "Let's map your route.",
       text: "A free consultation: profile, timeline and realistic options. No pressure, no miracle promises.",
       primary: "Book a conversation",
       secondary: "All programs",

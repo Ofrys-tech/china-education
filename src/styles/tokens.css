@@ -1,18 +1,21 @@
-/* Design tokens. Change this file first when reskinning — pages consume tokens, not raw values. */
+/* ADLAS design tokens — deep black, metallic gold, warm ivory.
+   Pages consume tokens, never raw colours. Change this file first. */
 @theme {
-  --color-paper: #f7f3eb;
-  --color-paper-soft: #fbf8f2;
-  --color-paper-deep: #efe8db;
-  --color-ink: #191512;
-  --color-ink-soft: #2a241f;
-  --color-muted: #6a6055;
-  --color-line: rgba(25, 21, 18, 0.14);
-  --color-line-strong: rgba(25, 21, 18, 0.3);
-  --color-red: #b23a2e;
-  --color-red-deep: #8e2a21;
-  --color-jade: #2c5f50;
-  --color-gold: #b08a45;
-  --color-cream: #fffcf6;
+  --color-paper: #f7f3ea;
+  --color-paper-soft: #fbf8f1;
+  --color-paper-deep: #ece5d6;
+  --color-ink: #0c0c0d;
+  --color-ink-soft: #1b1a1c;
+  --color-muted: #6b655b;
+  --color-line: rgba(12, 12, 13, 0.14);
+  --color-line-strong: rgba(12, 12, 13, 0.32);
+  --color-red: #6f5119;
+  --color-red-deep: #543d12;
+  --color-jade: #2f5548;
+  --color-gold: #c8a45c;
+  --color-gold-light: #e8d4a3;
+  --color-gold-deep: #6f5119;
+  --color-cream: #fbf7ee;
 
   --font-sans:
     "Golos Text Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -21,20 +24,37 @@
 }
 
 :root {
-  --shell: 1280px;
-  --gutter: clamp(1.25rem, 4.5vw, 4rem);
-  --section-y: clamp(4.5rem, 9vw, 8.5rem);
-  --header-h: 4.5rem;
+  --shell: 1300px;
+  --gutter: clamp(1.25rem, 4.2vw, 4rem);
+  --section-y: clamp(4.5rem, 9vw, 8rem);
+  --header-h: 5.25rem;
   --radius-sm: 0.375rem;
   --radius-md: 0.75rem;
   --radius-lg: 1.25rem;
-  --shadow-card: 0 1px 0 rgba(25, 21, 18, 0.04), 0 18px 40px -24px rgba(25, 21, 18, 0.35);
-  --shadow-float: 0 30px 80px -30px rgba(25, 21, 18, 0.4);
+  --shadow-card: 0 1px 0 rgba(12, 12, 13, 0.04), 0 22px 50px -28px rgba(12, 12, 13, 0.45);
+  --shadow-float: 0 34px 90px -34px rgba(12, 12, 13, 0.5);
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --dur: 320ms;
+  --dur: 360ms;
 
-  --text-hero: clamp(3.1rem, 7.6vw, 6.9rem);
-  --text-display: clamp(2.3rem, 4.6vw, 4rem);
-  --text-title: clamp(1.6rem, 2.6vw, 2.3rem);
-  --text-lead: clamp(1.05rem, 1.35vw, 1.3rem);
+  --text-hero: clamp(3.2rem, 7.4vw, 6.6rem);
+  --text-display: clamp(2.35rem, 4.5vw, 4rem);
+  --text-title: clamp(1.65rem, 2.6vw, 2.35rem);
+  --text-lead: clamp(1.12rem, 1.35vw, 1.35rem);
+}
+
+/* Larger, calmer reading sizes. Root scales everything consistently. */
+html {
+  font-size: 18px;
+}
+
+@media (min-width: 960px) {
+  html {
+    font-size: 19px;
+  }
+}
+
+@media (min-width: 1440px) {
+  html {
+    font-size: 20px;
+  }
 }

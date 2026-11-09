@@ -1,51 +1,52 @@
 export const privacy = {
   breadcrumb: "Privacy",
   meta: {
-    title: "Privacy policy",
+    title: "Privacy policy — ADLAS STUDY",
     description:
-      "How ChinaPath collects, uses and stores personal data submitted through the application form.",
+      "How ADLAS STUDY collects, uses and stores personal data submitted through the student inquiry form and official contact channels.",
   },
   hero: {
     eyebrow: "Legal",
     titleLines: ["Privacy", "policy."],
-    lead: "The short version: what we collect, why we need it and how to have it deleted.",
+    lead: "The short version: what we collect, why we need it, who receives it and how to have it deleted.",
     updatedLabel: "Last updated",
-    updated: "7 November 2026",
+    updated: "9 November 2026",
   },
   sections: [
     {
       title: "1. Who processes your data",
       paragraphs: [
-        "The data controller is ChinaPath (华路), an independent admissions consultancy for studying in China. You can reach us through the application form on this site or at the email address published in the footer.",
+        "The data controller is ADLAS STUDY, an independent international education consultancy. You can reach us through the student inquiry form on this site, by email at adlasagency01@gmail.com or on WhatsApp at +86 184 4860 1096.",
       ],
     },
     {
       title: "2. What we collect",
-      paragraphs: ["Through the application form we receive the data you choose to provide:"],
+      paragraphs: ["Through the inquiry form we receive the data you choose to provide:"],
       list: [
         "your name;",
-        "contact method and handle: Telegram, WhatsApp, phone or email;",
-        "the program, field and start year you are interested in;",
+        "contact method and handle: WhatsApp, email, phone or Instagram;",
+        "nationality and highest completed qualification;",
+        "the program, field, destination, budget and start year you are interested in;",
         "a short message about you, if you fill it in;",
         "your consent to data processing;",
         "technical details: the page you submitted from, referral source and UTM tags.",
       ],
       after: [
-        "We do not ask for passport numbers, bank card details or medical information through this form. If documents are needed for an application, they are shared separately through an agreed secure channel.",
+        "We do not ask for passport numbers, bank card details, passwords or medical information through this form. If documents are needed for an application, they are shared separately through an agreed secure channel after you become a client.",
       ],
     },
     {
       title: "3. Why we need it",
       paragraphs: ["We use your data to:"],
       list: [
-        "respond to your request and arrange a consultation;",
-        "assess your profile and match programs and universities;",
+        "respond to your request and arrange a conversation;",
+        "assess your profile and identify realistic programs and universities;",
         "prepare a budget and an admissions plan;",
-        "communicate with you about your request;",
-        "meet legal requirements where they apply.",
+        "communicate with you about your inquiry;",
+        "meet legal and accounting requirements where they apply.",
       ],
       after: [
-        "We do not sell your data, pass it to advertising networks or use it for newsletters you didn't agree to.",
+        "We do not sell your data, pass it to advertising networks or add you to a newsletter you did not agree to receive.",
       ],
     },
     {
@@ -57,53 +58,40 @@ export const privacy = {
     {
       title: "5. Who receives it",
       paragraphs: [
-        "Technical providers help us run the site and receive applications: GitHub Pages for hosting and a form-handling service (for example Formspree or a similar processor configured for the site). They receive only the data needed to deliver the application and act under their own privacy policies.",
-        "If analytics is enabled, it runs without advertising cookies and receives anonymised events. You can block it with an ad blocker; the site will still work.",
+        "Technical providers help us run the site and receive inquiries: GitHub Pages for hosting and a form-handling service (for example Formspree or a similar processor configured for the site). They receive only the data needed to deliver the inquiry and act under their own privacy policies.",
+        "When you become a client, universities and scholarship bodies receive the application documents required by their process. We share only what is necessary and explain what will be shared before submission.",
       ],
     },
     {
-      title: "6. How long we keep it",
+      title: "6. International transfers",
       paragraphs: [
-        "Applications are kept for no longer than 24 months after the last contact unless a working relationship begins. If we sign a contract, retention is governed by that contract and applicable law. After the retention period, data is deleted or anonymised.",
+        "ADLAS serves students internationally, so your data may be processed outside your country of residence. Where required, we rely on appropriate safeguards and keep transfers limited to the service providers needed to answer your inquiry.",
       ],
     },
     {
-      title: "7. Cookies and local storage",
+      title: "7. How long we keep it",
       paragraphs: [
-        "We do not use marketing cookies. Your browser may store the referral source (UTM tags) in sessionStorage so an application can be attributed to a channel. That data stays in your browser until you submit the form and is cleared when the tab closes.",
+        "Inquiries that do not become applications are kept for up to 24 months, then deleted or anonymized. Client files are kept for the period required by the service, accounting rules and any legal obligation, then deleted. You can request earlier deletion at any time.",
       ],
     },
     {
       title: "8. Your rights",
-      contactAfter: true,
-      paragraphs: ["You can:"],
-      list: [
-        "request access to your data;",
-        "correct inaccurate data;",
-        "delete data where there is no legal basis to keep it;",
-        "withdraw consent to processing;",
-        "ask how your data is processed.",
+      paragraphs: [
+        "You may request access to your data, correction, deletion, restriction of processing, a portable copy or withdrawal of consent. Send the request from the contact details you used, or by email, and we will respond within a reasonable period and no later than required by applicable law.",
       ],
     },
     {
-      title: "9. Security",
+      title: "9. Cookies and analytics",
       paragraphs: [
-        "Access to applications is limited to the people working on your profile. We use HTTPS, avoid collecting unnecessary data and do not forward applications through open channels without need. No method of transmission over the internet can be absolutely secure.",
+        "The site does not set advertising cookies or run third-party trackers by default. If privacy-friendly analytics is enabled, it is configured without advertising profiles. The form stores UTM parameters in your browser session only to attribute the inquiry; personal data is not written to that storage.",
       ],
     },
     {
-      title: "10. Changes to this policy",
+      title: "10. Security and changes",
       paragraphs: [
-        "We may update this policy when our processes or legal requirements change. The current version is always on this page; the update date is shown at the top. Material changes affecting data we already hold will be communicated where possible.",
+        "We use reputable hosting and form providers, restrict access to inquiry data and avoid collecting sensitive documents through the public form. No online transmission is completely secure, so please do not send passports, payment details or passwords through the website form.",
+        "We may update this policy when the service or the law changes. The date at the top shows the current version. Material changes will be announced on this page.",
       ],
     },
   ],
-  contact: {
-    before: "To exercise these rights, use the",
-    linkLabel: "application form",
-    between: "or email us at",
-    emailFallback: "the address published on this site.",
-  },
-  finalNote:
-    "This document describes our current practice and does not replace individual legal advice for your jurisdiction.",
 } as const;

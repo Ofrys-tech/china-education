@@ -3,10 +3,15 @@ import { validateLead } from "@/lib/leads/schema";
 
 const valid = {
   name: "Anna Lee",
-  contactMethod: "telegram",
-  contact: "@anna_lee",
+  contactMethod: "whatsapp",
+  contact: "+212600000000",
+  nationality: "Moroccan",
   degree: "master",
   direction: "business",
+  education: "bachelor",
+  destination: "china",
+  budget: "10000_20000",
+  scholarship: "preferred",
   intake: "2027",
   message: "I'm interested in a finance master's. IELTS 7.0.",
   consent: true,
@@ -38,10 +43,19 @@ describe("validateLead", () => {
     if (!result.success) expect(result.errors.contact).toBe("contact_phone");
   });
 
-  it("rejects an invalid Telegram handle", () => {
-    const result = validateLead({ ...valid, contact: "@a!" });
+  it("rejects an invalid Instagram handle", () => {
+    const result = validateLead({ ...valid, contactMethod: "instagram", contact: "@a!" });
     expect(result.success).toBe(false);
-    if (!result.success) expect(result.errors.contact).toBe("contact_telegram");
+    if (!result.success) expect(result.errors.contact).toBe("contact_instagram");
+  });
+
+  it("requires nationality and a destination", () => {
+    const result = validateLead({ ...valid, nationality: "", destination: "" });
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.errors.nationality).toBe("nationality_short");
+      expect(result.errors.destination).toBe("destination");
+    }
   });
 
   it("requires consent", () => {
@@ -56,12 +70,24 @@ describe("validateLead", () => {
     if (!result.success) expect(result.errors.message).toBe("message_long");
   });
 
-  it("requires a selected degree and direction", () => {
-    const result = validateLead({ ...valid, degree: "", direction: "" });
+  it("requires every select to be valid", () => {
+    const result = validateLead({
+      ...valid,
+      degree: "",
+      direction: "",
+      education: "",
+      budget: "",
+      scholarship: "",
+      intake: "",
+    });
     expect(result.success).toBe(false);
     if (!result.success) {
       expect(result.errors.degree).toBe("degree");
       expect(result.errors.direction).toBe("direction");
+      expect(result.errors.education).toBe("education");
+      expect(result.errors.budget).toBe("budget");
+      expect(result.errors.scholarship).toBe("scholarship");
+      expect(result.errors.intake).toBe("intake");
     }
   });
 });

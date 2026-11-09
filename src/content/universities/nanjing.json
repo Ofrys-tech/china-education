@@ -2,13 +2,15 @@
   "name": "Nanjing University",
   "nameZh": "南京大学",
   "city": "Nanjing",
+  "province": "Jiangsu",
   "type": "public",
   "founded": 1902,
-  "strengths": ["Humanities", "Sciences", "Business"],
+  "strengths": ["Science", "Humanities", "Engineering"],
+  "levels": ["language", "bachelor", "master", "phd"],
   "language": "English / Chinese",
   "scholarship": true,
-  "note": "A strong academic university with a historic campus and a calmer pace than Shanghai or Beijing.",
+  "note": "Research university in Nanjing with strengths across science, humanities and engineering. International students apply directly; deadlines and document rules vary by school.",
   "officialUrl": "https://www.nju.edu.cn/en/",
-  "featured": true,
+  "featured": false,
   "order": 6
 }

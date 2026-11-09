@@ -1,54 +1,54 @@
 {
-  "title": "Language year in China",
+  "title": "Chinese Language Year",
   "degree": "language",
-  "summary": "A year of immersive Chinese: from zero to the level needed for a bachelor's or master's.",
+  "summary": "One academic year of intensive Mandarin on a Chinese campus — from zero to the level needed for a degree, with HSK preparation built in.",
   "duration": "1 year · 2 semesters",
   "languages": ["zh"],
-  "tuition": "¥7,000–14,000 / semester",
+  "tuition": "Indicative: ¥7,000–15,000 / semester",
   "overview": [
-    "A language year is the most flexible entry into Chinese education. You study on a university campus, build HSK and learn whether the country, city and study format suit you.",
-    "Programs exist at universities and private language centres. University programs give student status, housing and campus access; private centres can be cheaper but offer a weaker environment. We choose based on your next goal: bachelor's, master's or work."
+    "A language year is the most flexible entry point into Chinese higher education. You study on a university campus, build listening, speaking, reading and writing, and test whether the city and the study format suit you before committing to a degree.",
+    "University language programs give you student status, access to campus facilities and a clear route toward HSK. Private language centres can be cheaper, but they offer a weaker academic environment and fewer paths into a degree. We choose based on your next step, not on the lowest price."
   ],
   "fitFor": [
-    "No HSK, or a level below the requirement",
-    "You need an academic year before a bachelor's",
-    "You want to test China before a longer program",
-    "You're planning a master's and want to improve the language"
+    "You have no HSK certificate or a level below the degree requirement",
+    "You want an academic year in China before starting a bachelor's",
+    "You want to experience China before a longer commitment",
+    "You are preparing for a Chinese-taught master's or PhD"
   ],
   "outcomes": [
-    "HSK 3–5 depending on your start and intensity",
-    "Student status and campus facilities",
-    "First-hand understanding of university requirements",
-    "Readiness to apply for the next level"
+    "HSK 3–5 depending on your starting level and intensity",
+    "Student status, campus housing and university facilities",
+    "A realistic understanding of degree requirements",
+    "A clear application plan for the next academic level"
   ],
   "timeline": [
     {
-      "step": "6–8 months out",
-      "text": "We choose the city, budget and goal, then shortlist language schools and university programs."
+      "step": "6–8 months before",
+      "text": "We agree the city, budget and target level, then shortlist university language programs and compare their hours, class size and progression rules."
     },
     {
-      "step": "4–6 months out",
-      "text": "We prepare the passport, certificate or degree, translations and supporting documents, then apply."
+      "step": "4–6 months before",
+      "text": "Passport, school certificate, translations and supporting documents are prepared; applications are submitted to the chosen programs."
     },
     {
-      "step": "2–3 months out",
-      "text": "Offer, deposit, JW202 and an X1/X2 visa."
+      "step": "2–3 months before",
+      "text": "Offer, deposit, JW202 and the X1/X2 student visa. Housing is confirmed at the same time."
     },
     {
-      "step": "Before departure",
-      "text": "We help with housing, insurance, a SIM card and your first days on campus."
+      "step": "Arrival",
+      "text": "Registration, placement test, residence permit, SIM card, insurance and a first-week orientation."
     }
   ],
   "faq": [
     {
-      "question": "Can I learn Chinese from zero?",
-      "answer": "Yes. Most language programs are designed for beginners and place students in groups after a test. A high school education is usually enough for the visa and enrolment."
+      "question": "Can I start Chinese from zero?",
+      "answer": "Yes. Most university language programs are designed for beginners and place students in groups after a placement test. A high-school certificate is usually enough for enrolment and the student visa."
     },
     {
-      "question": "Does a language year give me the right to enter a Chinese university?",
-      "answer": "Not by itself. The year helps you reach the required HSK and prepare, but admission still requires a certificate or degree, documents and the specific university's requirements."
+      "question": "Does a language year guarantee a place in a degree?",
+      "answer": "No. The year helps you reach the required HSK level and prepares your documents, but admission to a degree still depends on your certificates, results and the university's own selection process."
     }
   ],
-  "featured": false,
-  "order": 2
+  "featured": true,
+  "order": 1
 }

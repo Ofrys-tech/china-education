@@ -1,0 +1,16 @@
+{
+  "name": "Sun Yat-sen University",
+  "nameZh": "中山大学",
+  "city": "Guangzhou",
+  "province": "Guangdong",
+  "type": "public",
+  "founded": 1924,
+  "strengths": ["Business", "Medicine", "Engineering"],
+  "levels": ["language", "bachelor", "master", "phd"],
+  "language": "English / Chinese",
+  "scholarship": true,
+  "note": "Multi-campus university across Guangzhou, Zhuhai and Shenzhen. Business, medicine and engineering are strong; campus choice matters as much as the program.",
+  "officialUrl": "https://www.sysu.edu.cn/sysuen/",
+  "featured": true,
+  "order": 9
+}

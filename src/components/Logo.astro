@@ -1,4 +1,5 @@
 ---
+import Emblem from "@/components/Emblem.astro";
 import { siteConfig } from "@/config/site";
 import { common } from "@/i18n/en/common";
 import { withBase } from "@/lib/url";
@@ -6,21 +7,25 @@ import { withBase } from "@/lib/url";
 interface Props {
   compact?: boolean;
   inverse?: boolean;
+  showTagline?: boolean;
 }
 
-const { compact = false, inverse = false } = Astro.props;
+const { compact = false, inverse = false, showTagline = false } = Astro.props;
 ---
 
-<a class="brand" href={withBase("/")} aria-label={`${siteConfig.name} — ${common.ui.home}`}>
-	<span class="brand__seal" aria-hidden="true">华</span>
-	<span>
-		<span class="brand__name" style={inverse ? "color:var(--color-cream)" : ""}>
-			{siteConfig.name}
-		</span>
-		{!compact && (
-			<span class="brand__zh" style={inverse ? "color:rgba(255,252,246,.64)" : ""}>
-				{siteConfig.nameZh} · {siteConfig.tagline}
-			</span>
-		)}
-	</span>
+<a
+  class:list={["brand", { "brand--inverse": inverse, "brand--compact": compact }]}
+  href={withBase("/")}
+  aria-label={`${siteConfig.fullName} — ${common.ui.home}`}
+>
+  <span class="brand__mark"><Emblem /></span>
+  <span class="brand__type">
+    <span class="brand__name">ADLAS</span>
+    <span class="brand__sub">
+      <span class="brand__rule" aria-hidden="true"></span>
+      <span>STUDY</span>
+      <span class="brand__rule" aria-hidden="true"></span>
+    </span>
+    {showTagline && <span class="brand__tag">{siteConfig.tagline}</span>}
+  </span>
 </a>

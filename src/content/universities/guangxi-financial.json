@@ -1,0 +1,16 @@
+{
+  "name": "Guangxi Financial Vocational College",
+  "nameZh": "广西金融职业技术学院",
+  "city": "Nanning",
+  "province": "Guangxi",
+  "type": "vocational",
+  "founded": 2014,
+  "strengths": ["Finance", "Banking", "Accounting"],
+  "levels": ["language", "vocational"],
+  "language": "Chinese",
+  "scholarship": true,
+  "note": "Public vocational college in Nanning specialising in finance, banking and accounting. Chinese-taught and suited to students seeking applied, career-focused qualifications.",
+  "officialUrl": "https://www.gxjrxy.edu.cn/",
+  "featured": false,
+  "order": 17
+}

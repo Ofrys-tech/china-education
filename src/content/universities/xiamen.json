@@ -1,0 +1,16 @@
+{
+  "name": "Xiamen University",
+  "nameZh": "厦门大学",
+  "city": "Xiamen",
+  "province": "Fujian",
+  "type": "public",
+  "founded": 1921,
+  "strengths": ["Economics", "Management", "Chemistry"],
+  "levels": ["language", "bachelor", "master", "phd"],
+  "language": "English / Chinese",
+  "scholarship": true,
+  "note": "Coastal comprehensive university in Fujian with strengths in economics, management, chemistry and marine studies. Main campus housing is on Xiamen island.",
+  "officialUrl": "https://en.xmu.edu.cn/",
+  "featured": false,
+  "order": 11
+}

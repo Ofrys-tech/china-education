@@ -4,10 +4,15 @@ import type { LeadValues } from "@/lib/leads/schema";
 
 const values: LeadValues = {
   name: "Anna Lee",
-  contactMethod: "telegram",
-  contact: "@anna_lee",
+  contactMethod: "whatsapp",
+  contact: "+212600000000",
+  nationality: "Moroccan",
   degree: "master",
   direction: "business",
+  education: "bachelor",
+  destination: "china",
+  budget: "10000_20000",
+  scholarship: "preferred",
   intake: "2027",
   message: "Finance, IELTS 7.0",
   consent: true,
@@ -28,22 +33,25 @@ describe("buildLeadPayload", () => {
   it("produces flat readable fields and UTM values", () => {
     const payload = buildLeadPayload(values, {
       pageUrl: "https://example.com/apply/",
-      referrer: "https://t.me/channel",
+      referrer: "https://wa.me/8618448601096",
       source: "apply",
       idempotencyKey: "abc-123",
-      submittedAt: "2026-11-07T12:00:00.000Z",
-      utm: { source: "telegram", campaign: "autumn" },
+      submittedAt: "2026-11-09T12:00:00.000Z",
+      utm: { source: "whatsapp", campaign: "autumn" },
     });
 
     expect(payload.name).toBe("Anna Lee");
     expect(payload.consent).toBe(true);
     expect(payload.source).toBe("apply");
-    expect(payload.utm_source).toBe("telegram");
+    expect(payload.nationality).toBe("Moroccan");
+    expect(payload.destination).toBe("china");
+    expect(payload.utm_source).toBe("whatsapp");
     expect(payload.utm_campaign).toBe("autumn");
     expect(payload.utm_medium).toBe("");
     expect(String(payload.summary)).toContain("Anna Lee");
     expect(String(payload.summary)).toContain("Master's");
-    expect(String(payload._subject)).toContain("ChinaPath application");
+    expect(String(payload.summary)).toContain("Moroccan");
+    expect(String(payload._subject)).toContain("ADLAS inquiry");
   });
 
   it("does not let header-breaking characters through the subject", () => {

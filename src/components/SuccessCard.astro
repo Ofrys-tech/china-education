@@ -1,0 +1,60 @@
+---
+import { experience } from "@/i18n/en/experience";
+
+export interface SuccessStory {
+  university: string;
+  short: string;
+  city: string;
+  program: string;
+  level: string;
+  language: string;
+  period: string;
+  funding: string;
+  outcome: string;
+  tuition: string;
+}
+
+interface Props {
+  card: SuccessStory;
+}
+
+const { card } = Astro.props;
+const labels = experience.results;
+
+const rows = [
+  { label: "Program", value: card.program },
+  { label: "Level", value: card.level },
+  { label: "Language", value: card.language },
+  { label: "Period", value: card.period },
+  { label: "Funding", value: card.funding },
+  { label: "Status", value: card.outcome },
+  { label: "Tuition", value: card.tuition },
+];
+---
+
+<article class="success-card reveal">
+  <div class="success-card__top">
+    <div>
+      <span class="success-card__label">{labels.eyebrow}</span>
+      <h3 class="success-card__uni">{card.university}</h3>
+      <span class="success-card__label">{card.city}</span>
+    </div>
+    <span class="success-card__seal" aria-hidden="true">{card.short}</span>
+  </div>
+
+  <div class="success-card__rows">
+    {rows.map((row) => (
+      <div class="success-card__row">
+        <span>{row.label}</span>
+        <strong>{row.value}</strong>
+      </div>
+    ))}
+  </div>
+
+  <div class="success-card__foot">
+    <span class="success-card__redact" style="width:4.2rem" aria-hidden="true"></span>
+    <span class="success-card__redact" style="width:2.6rem" aria-hidden="true"></span>
+    <span>· {labels.redactedLabel}</span>
+    <span>· {labels.documentsLabel}</span>
+  </div>
+</article>

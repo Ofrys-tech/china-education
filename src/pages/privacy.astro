@@ -1,10 +1,8 @@
 ---
-import Breadcrumbs from "@/components/Breadcrumbs.astro";
-import Lines from "@/components/Lines.astro";
+import PageHero from "@/components/PageHero.astro";
 import { siteConfig } from "@/config/site";
 import { copy } from "@/i18n";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { withBase } from "@/lib/url";
 
 const page = copy.privacy;
 
@@ -13,27 +11,19 @@ const pageLd = {
   "@type": "WebPage",
   name: page.meta.title,
   inLanguage: siteConfig.lang,
-  dateModified: "2026-11-07",
+  dateModified: "2026-11-09",
 };
 ---
 
 <BaseLayout title={page.meta.title} description={page.meta.description} noindex jsonLd={pageLd}>
-  <section class="page-hero">
-    <div class="shell">
-      <Breadcrumbs items={[{ label: page.breadcrumb }]} />
-      <div class="page-hero__inner">
-        <div>
-          <span class="eyebrow">{page.hero.eyebrow}</span>
-          <h1 class="display display--l page-hero__title"><Lines lines={page.hero.titleLines} /></h1>
-          <p class="lead page-hero__lead">{page.hero.lead}</p>
-        </div>
-        <div class="page-hero__aside">
-          <p class="mono-label">{page.hero.updatedLabel}</p>
-          <p>{page.hero.updated}</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <PageHero
+    breadcrumb={page.breadcrumb}
+    eyebrow={page.hero.eyebrow}
+    titleLines={page.hero.titleLines}
+    lead={page.hero.lead}
+    aside={`${page.hero.updatedLabel}: ${page.hero.updated}`}
+    emblem={false}
+  />
 
   <section class="section">
     <div class="shell">
@@ -48,23 +38,11 @@ const pageLd = {
               </ul>
             )}
             {"after" in section && section.after && section.after.map((paragraph) => <p>{paragraph}</p>)}
-            {"contactAfter" in section && section.contactAfter && (
-              <p>
-                {page.contact.before}{" "}
-                <a href={withBase("/apply/")}>{page.contact.linkLabel}</a>{" "}
-                {page.contact.between}{" "}
-                {siteConfig.contacts.email ? (
-                  <a href={`mailto:${siteConfig.contacts.email}`}>{siteConfig.contacts.email}</a>
-                ) : (
-                  page.contact.emailFallback
-                )}
-                .
-              </p>
-            )}
           </>
         ))}
-
-        <p class="note mt-5">{page.finalNote}</p>
+        <p class="note mt-5">
+          Questions about this policy: <a href={`mailto:${siteConfig.contacts.email}`}>{siteConfig.contacts.email}</a>.
+        </p>
       </div>
     </div>
   </section>

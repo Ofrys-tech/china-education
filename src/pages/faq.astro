@@ -1,14 +1,11 @@
 ---
 import { getCollection } from "astro:content";
-import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import CtaBand from "@/components/CtaBand.astro";
 import FaqList from "@/components/FaqList.astro";
-import Icon from "@/components/Icon.astro";
-import Lines from "@/components/Lines.astro";
+import PageHero from "@/components/PageHero.astro";
 import { copy } from "@/i18n";
 import { labels } from "@/i18n/en/labels";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { withBase } from "@/lib/url";
 
 const faq = (await getCollection("faq")).sort((a, b) => a.data.order - b.data.order);
 const page = copy.faq;
@@ -26,24 +23,15 @@ const faqLd = {
 ---
 
 <BaseLayout title={page.meta.title} description={page.meta.description} jsonLd={faqLd}>
-  <section class="page-hero">
-    <div class="shell">
-      <Breadcrumbs items={[{ label: page.breadcrumb }]} />
-      <div class="page-hero__inner">
-        <div>
-          <span class="eyebrow">{page.hero.eyebrow}</span>
-          <h1 class="display display--l page-hero__title"><Lines lines={page.hero.titleLines} /></h1>
-          <p class="lead page-hero__lead">{page.hero.lead}</p>
-        </div>
-        <div class="page-hero__aside">
-          <p>{page.hero.aside}</p>
-          <a class="link-arrow mt-2" href={withBase("/apply/")}>
-            {page.hero.link} <Icon name="arrowUpRight" size={14} />
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <PageHero
+    breadcrumb={page.breadcrumb}
+    eyebrow={page.hero.eyebrow}
+    titleLines={page.hero.titleLines}
+    lead={page.hero.lead}
+    aside={page.hero.aside}
+    link={page.hero.link}
+    linkHref="/contact/"
+  />
 
   <section class="section">
     <div class="shell" style="max-width:62rem">

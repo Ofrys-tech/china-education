@@ -1,7 +1,8 @@
 ---
+import Emblem from "@/components/Emblem.astro";
 import Icon from "@/components/Icon.astro";
 import { common } from "@/i18n/en/common";
-import { withBase } from "@/lib/url";
+import { isExternal, withBase } from "@/lib/url";
 
 interface Props {
   eyebrow?: string;
@@ -22,6 +23,9 @@ const {
   secondaryLabel = common.ui.askQuestion,
   secondaryHref = "/faq/",
 } = Astro.props;
+
+const primaryHref = isExternal(ctaHref) ? ctaHref : withBase(ctaHref);
+const secondaryLink = isExternal(secondaryHref) ? secondaryHref : withBase(secondaryHref);
 ---
 
 <section class="cta-band">
@@ -32,22 +36,18 @@ const {
 				<h2 class="display display--l mt-2">{title}</h2>
 			</div>
 			<div>
-				<p class="lead" style="color:var(--color-cream)">{text}</p>
+				<p class="lead">{text}</p>
 				<div class="hero__actions">
-					<a class="btn btn--light" href={withBase(ctaHref)} data-track="band_cta">
+					<a class="btn btn--primary" href={primaryHref} data-track="band_cta">
 						{ctaLabel}
 						<Icon name="arrowUpRight" size={16} />
 					</a>
-					<a
-						class="btn btn--ghost"
-						style="--btn-fg:var(--color-cream);--btn-bd:rgba(255,252,246,.4)"
-						href={withBase(secondaryHref)}
-					>
+					<a class="btn btn--outline-gold" href={secondaryLink}>
 						{secondaryLabel}
 					</a>
 				</div>
 			</div>
 		</div>
 	</div>
-	<span class="cta-band__glyph" aria-hidden="true">往</span>
+	<Emblem class="cta-band__glyph" />
 </section>

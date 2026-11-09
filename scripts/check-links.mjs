@@ -46,7 +46,7 @@ async function probe(url) {
         redirect: "follow",
         signal: controller.signal,
         headers: {
-          "User-Agent": "ChinaPath link checker (+https://github.com/Ofrys-tech)",
+          "User-Agent": "ADLAS STUDY link checker (+https://github.com/Ofrys-tech)",
           Range: "bytes=0-1024",
         },
       });

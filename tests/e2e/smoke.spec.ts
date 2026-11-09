@@ -1,19 +1,19 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-test("landing renders content and navigates to programs", async ({ page }) => {
+test("landing renders content and navigates to destinations", async ({ page }) => {
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
 
   await page.goto("/");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("China");
-  await expect(page.locator(".program-grid article")).toHaveCount(6);
-  await expect(page.locator(".university-row")).toHaveCount(6);
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Education");
+  await expect(page.locator(".program-grid article")).toHaveCount(5);
+  await expect(page.locator(".uni-card")).toHaveCount(6);
   await expect(page.locator(".faq-item")).toHaveCount(5);
 
-  await page.getByRole("link", { name: "Explore programs" }).click();
-  await expect(page).toHaveURL(/\/programs\/$/);
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Programs");
+  await page.getByRole("link", { name: "Explore China" }).click();
+  await expect(page).toHaveURL(/\/destinations\/$/);
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("One active route");
 
   expect(errors).toEqual([]);
 });
@@ -37,6 +37,20 @@ test.describe("mobile menu", () => {
   });
 });
 
+test("university directory filters without a page reload", async ({ page }) => {
+  await page.goto("/universities/");
+  await expect(page.locator(".uni-card")).toHaveCount(17);
+
+  await page.fill("[data-uni-search]", "Shenyang");
+  await expect(page.locator(".uni-card:visible")).toHaveCount(1);
+
+  await page.fill("[data-uni-search]", "");
+  await page.getByRole("button", { name: "PhD" }).click();
+  const visible = page.locator(".uni-card:visible");
+  expect(await visible.count()).toBeGreaterThan(0);
+  await expect(visible.first()).toContainText("PhD");
+});
+
 test("lead form validates, submits and keeps the payload complete", async ({ page }) => {
   let payload: Record<string, unknown> | undefined;
 
@@ -56,12 +70,17 @@ test("lead form validates, submits and keeps the payload complete", async ({ pag
   );
 
   await page.fill("#lead-name", "Anna Lee");
-  await page.selectOption("#lead-contact-method", "telegram");
-  await page.fill("#lead-contact", "@anna_lee");
+  await page.fill("#lead-nationality", "Moroccan");
+  await page.selectOption("#lead-contact-method", "whatsapp");
+  await page.fill("#lead-contact", "+212600000000");
+  await page.selectOption("#lead-education", "bachelor");
   await page.selectOption("#lead-degree", "master");
   await page.selectOption("#lead-direction", "business");
+  await page.selectOption("#lead-destination", "china");
+  await page.selectOption("#lead-scholarship", "preferred");
+  await page.selectOption("#lead-budget", "10000_20000");
   await page.selectOption("#lead-intake", "2027");
-  await page.fill("#lead-message", "Finance, IELTS 7.0, budget up to ¥30,000 per year.");
+  await page.fill("#lead-message", "Finance, IELTS 7.0, budget up to $20,000 per year.");
   await page.check("input[name='consent']");
   await page.waitForTimeout(350);
   await page.getByRole("button", { name: "Send application" }).click();
@@ -69,8 +88,10 @@ test("lead form validates, submits and keeps the payload complete", async ({ pag
   await expect(page.getByRole("heading", { name: /Thank you/ })).toBeVisible();
   expect(payload).toBeTruthy();
   expect(payload?.name).toBe("Anna Lee");
-  expect(payload?.contact).toBe("@anna_lee");
+  expect(payload?.contact).toBe("+212600000000");
+  expect(payload?.nationality).toBe("Moroccan");
   expect(payload?.degree).toBe("master");
+  expect(payload?.destination).toBe("china");
   expect(payload?.consent).toBe(true);
   expect(payload?.idempotencyKey).toBeTruthy();
 });

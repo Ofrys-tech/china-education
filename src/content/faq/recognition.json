@@ -1,7 +1,7 @@
 {
-  "question": "Is a Chinese degree recognised?",
-  "answer": "Degrees from Chinese public universities are generally recognised abroad, but the procedure depends on the country, field and regulator. For medicine, law and engineering, verification is especially important: recognised university lists and exams differ. We check the specific university and program before applying and put the risks in writing, rather than promising automatic recognition everywhere.",
-  "category": "documents",
-  "order": 6,
+  "question": "Are Chinese degrees recognised internationally?",
+  "answer": "Many Chinese universities are recognised abroad, but recognition depends on the institution, the program and the country where you plan to work or continue studying. Before applying, check the degree with the relevant recognition body in your country. ADLAS helps you identify the question; the official body gives the answer.",
+  "category": "admission",
+  "order": 11,
   "home": false
 }

@@ -15,14 +15,12 @@ export type LeadMeta = {
 
 export type LeadPayload = Record<string, string | boolean>;
 
-const singleLine = (value: string) => value.replace(/\p{Cc}+/gu, " ").trim();
-
 /** Strip control characters and newlines from fields that must stay single-line. */
 export function sanitizeText(value: string, multiline = false): string {
   const normalized = value.replace(/\r\n?/g, "\n");
   return multiline
     ? normalized.replace(/\p{Cc}/gu, (char) => (char === "\n" ? "\n" : " ")).trim()
-    : singleLine(normalized);
+    : normalized.replace(/\p{Cc}+/gu, " ").trim();
 }
 
 export function buildLeadPayload(values: LeadValues, meta: LeadMeta = {}): LeadPayload {
@@ -32,26 +30,36 @@ export function buildLeadPayload(values: LeadValues, meta: LeadMeta = {}): LeadP
 
   const summary = [
     `${sanitizeText(values.name)} — ${methodLabel}: ${sanitizeText(values.contact)}`,
+    `Nationality: ${sanitizeText(values.nationality)}`,
     `Program: ${labels.degrees[values.degree]}`,
-    `Field: ${values.direction}`,
-    `Start: ${values.intake}`,
+    `Field: ${labels.directions[values.direction]}`,
+    `Qualification: ${labels.education[values.education]}`,
+    `Destination: ${labels.destinations[values.destination]}`,
+    `Budget: ${labels.budgets[values.budget]}`,
+    `Scholarship: ${labels.scholarships[values.scholarship]}`,
+    `Start: ${labels.intakes[values.intake]}`,
     values.message ? `About: ${sanitizeText(values.message, true)}` : "",
   ]
     .filter(Boolean)
     .join("\n");
 
   const payload: LeadPayload = {
-    _type: "chinapath_lead",
+    _type: "adlas_lead",
     name: sanitizeText(values.name),
     contactMethod: values.contactMethod,
     contact: sanitizeText(values.contact),
+    nationality: sanitizeText(values.nationality),
     degree: values.degree,
     direction: values.direction,
+    education: values.education,
+    destination: values.destination,
+    budget: values.budget,
+    scholarship: values.scholarship,
     intake: values.intake,
     message: sanitizeText(values.message, true),
     consent: values.consent === true,
     summary,
-    _subject: `ChinaPath application · ${sanitizeText(values.name)} · ${labels.degrees[values.degree]}`,
+    _subject: `ADLAS inquiry · ${sanitizeText(values.name)} · ${labels.degrees[values.degree]}`,
     page: url,
     source: sanitizeText(meta.source ?? ""),
     referrer: sanitizeText(meta.referrer ?? ""),

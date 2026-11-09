@@ -1,54 +1,54 @@
 {
-  "title": "Bachelor's in China",
+  "title": "Bachelor's Degree",
   "degree": "bachelor",
-  "summary": "Four years, a degree from a public university and a serious foundation in Chinese, business or engineering.",
-  "duration": "4 years",
+  "summary": "Four years of undergraduate study in China, taught in Chinese or English, with a route from foundation or language year if you need it.",
+  "duration": "4 years · 8 semesters",
   "languages": ["zh", "en"],
-  "tuition": "¥16,000–30,000 / year",
+  "tuition": "Indicative: ¥16,000–30,000 / year",
   "overview": [
-    "A bachelor's in China is a full four-year university program, usually taught in Chinese. English-taught options are fewer and more competitive: they make sense if you need to start without a language year.",
-    "The strengths are cost relative to the US and UK, campus life, internships with local companies and Chinese as a second working language. The weakness is bureaucracy and uneven program quality, so the university and city matter more than a pretty name."
+    "A Chinese bachelor's degree usually takes four years, with medicine, architecture and some engineering programs running five. English-taught degrees are growing, especially in business, computer science and engineering, but the widest choice remains Chinese-taught.",
+    "Entry requirements depend on your school certificate, transcript and language level. Some universities accept students directly after high school; others require a foundation year or HSK 4–5. We map the actual requirement for each program and build a shortlist with realistic, ambitious and safer options."
   ],
   "fitFor": [
-    "High school or college graduates",
-    "You have a certificate that can be translated and legalised",
-    "You're ready for four years and willing to invest in the language",
-    "You and your family want a transparent budget"
+    "You have completed secondary school or will graduate this year",
+    "You want a full undergraduate degree in China",
+    "You are choosing between Chinese-taught and English-taught routes",
+    "You need a clear budget for four years, not just the first semester"
   ],
   "outcomes": [
-    "A bachelor's degree and a Chinese university diploma",
-    "Chinese at HSK 4–6 by graduation",
-    "Internships and campus projects",
-    "A path to a master's in China or abroad"
+    "A recognised undergraduate degree from a Chinese university",
+    "Chinese language skills built alongside your major",
+    "Internship and graduate-study options in China",
+    "A four-year budget and scholarship plan agreed upfront"
   ],
   "timeline": [
     {
-      "step": "10–12 months out",
-      "text": "We choose the field and strategy: language of instruction, city, budget, scholarship odds."
+      "step": "9–12 months before",
+      "text": "We define the major, language route and budget, then shortlist universities with the right entry rules."
     },
     {
-      "step": "6–8 months out",
-      "text": "We assemble the certificate, translations, references and motivation letter. HSK/IELTS prep if needed."
+      "step": "6–8 months before",
+      "text": "Documents, translations, language certificates and motivation letters are prepared and checked."
     },
     {
-      "step": "4–6 months out",
-      "text": "We apply to 3–5 universities, prepare for interviews and entrance tests, and answer admissions requests."
+      "step": "3–5 months before",
+      "text": "Applications are submitted, interviews and entrance exams completed, offers compared."
     },
     {
-      "step": "2–3 months out",
-      "text": "Offer, deposit, JW202, visa, housing and flights."
+      "step": "2–3 months before",
+      "text": "Deposit, JW202, visa, housing and arrival planning. Registration dates are confirmed with the university."
     }
   ],
   "faq": [
     {
-      "question": "Can I get into a bachelor's without HSK?",
-      "answer": "Yes, if there is an English-taught program or the university allows a language year. Requirements differ: some accept HSK 4, some ask for HSK 5 for Chinese-taught programs, and English-taught programs may require IELTS/TOEFL."
+      "question": "Can I study a bachelor's in English in China?",
+      "answer": "Yes, at selected universities and in selected majors, most often business, computer science, engineering and international studies. The catalogue is smaller than for Chinese-taught programs and changes each year."
     },
     {
-      "question": "Is a Chinese bachelor's recognised in my country?",
-      "answer": "Degrees from Chinese public universities are generally recognised, but the procedure and requirements depend on the field and regulator. We check the specific university and program before applying, not after enrolment."
+      "question": "Do I need HSK for an English-taught degree?",
+      "answer": "Usually not for admission, but some universities require basic Chinese by graduation. We confirm the language rule for each program rather than assuming."
     }
   ],
   "featured": true,
-  "order": 1
+  "order": 3
 }

@@ -17,8 +17,22 @@ const legalLinks = [
   <div class="shell">
     <div class="site-footer__top">
       <div class="site-footer__brand">
-        <Logo inverse />
+        <Logo inverse showTagline />
         <p class="site-footer__desc">{common.footer.description}</p>
+        <p class="site-footer__desc" style="color:var(--color-gold);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;margin-top:1rem">
+          {siteConfig.community}
+        </p>
+        <div class="site-footer__social">
+          <a href={siteConfig.contacts.whatsapp} rel="noopener noreferrer" target="_blank">
+            <Icon name="whatsapp" size={14} /> WhatsApp
+          </a>
+          <a href={siteConfig.contacts.instagram} rel="noopener noreferrer" target="_blank">
+            <Icon name="instagram" size={14} /> Instagram
+          </a>
+          <a href={siteConfig.contacts.channel} rel="noopener noreferrer" target="_blank">
+            <Icon name="channel" size={14} /> Channel
+          </a>
+        </div>
       </div>
 
       <div>
@@ -27,24 +41,24 @@ const legalLinks = [
           {common.nav.map((item) => (
             <li><a href={withBase(item.href)}>{item.label}</a></li>
           ))}
-          <li><a href={withBase("/apply/")}>{common.footer.apply}</a></li>
         </ul>
       </div>
 
       <div>
         <p class="site-footer__heading">{common.footer.contact}</p>
         <ul class="site-footer__links">
-          {siteConfig.contacts.email && (
-            <li><a href={`mailto:${siteConfig.contacts.email}`}>{siteConfig.contacts.email}</a></li>
-          )}
-          {siteConfig.contacts.telegram && (
-            <li>
-              <a href={siteConfig.contacts.telegram} rel="noopener noreferrer" target="_blank">
-                Telegram
-              </a>
-            </li>
-          )}
-          <li><a href={withBase("/apply/")}>{common.footer.form}</a></li>
+          <li>
+            <a href={siteConfig.contacts.whatsapp} rel="noopener noreferrer" target="_blank">
+              {siteConfig.contacts.whatsappLabel}
+            </a>
+          </li>
+          <li><a href={`mailto:${siteConfig.contacts.email}`}>{siteConfig.contacts.email}</a></li>
+          <li>
+            <a href={siteConfig.contacts.instagram} rel="noopener noreferrer" target="_blank">
+              {siteConfig.contacts.instagramLabel}
+            </a>
+          </li>
+          <li><a href={withBase("/contact/")}>{common.footer.form}</a></li>
         </ul>
       </div>
 
@@ -54,17 +68,17 @@ const legalLinks = [
           {legalLinks.map((item) => (
             <li><a href={withBase(item.href)}>{item.label}</a></li>
           ))}
+          <li><a href={withBase("/apply/")}>{common.footer.apply}</a></li>
         </ul>
       </div>
     </div>
 
     <div class="site-footer__bottom">
-      <p>© {year} {siteConfig.name}. {common.footer.rights}</p>
+      <p>© {year} {siteConfig.fullName}. {common.footer.rights}</p>
       <p class="site-footer__legal">{common.legal.disclaimer}</p>
-      <a href={withBase("/apply/")} class="link-arrow" style="color:var(--color-cream)">
+      <a href={withBase("/contact/")} class="link-arrow" style="color:var(--color-cream)">
         {common.footer.discuss} <Icon name="arrowUpRight" size={15} />
       </a>
     </div>
   </div>
-  <span class="site-footer__glyph" aria-hidden="true">{siteConfig.nameZh.charAt(0)}</span>
 </footer>

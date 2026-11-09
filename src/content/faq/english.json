@@ -1,7 +1,7 @@
 {
-  "question": "Can I study in China in English?",
-  "answer": "Yes. English-taught programs are more common at master's and MBA level and less common in bachelor's. Usually you need IELTS/TOEFL or proof of previous study in English. For Chinese-taught programs, HSK 4–5 is required — the exact threshold depends on the university. We always verify the language of instruction and certificate requirements on the official program page.",
+  "question": "Are there English-taught programs in China?",
+  "answer": "Yes, especially at master's level and in business, computer science, engineering, medicine and international studies. The English-taught catalogue is smaller than the Chinese-taught one and changes every year, so we check the current program list and the language of each course before shortlisting.",
   "category": "language",
-  "order": 2,
+  "order": 5,
   "home": true
 }

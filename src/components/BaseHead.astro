@@ -21,10 +21,10 @@ const {
   type = "website",
 } = Astro.props;
 
-const fullTitle = title.includes(siteConfig.name) ? title : `${title} — ${siteConfig.name}`;
+const fullTitle = title.includes(siteConfig.fullName) ? title : `${title} — ${siteConfig.fullName}`;
 const canonical = absoluteUrl(path);
 const imageUrl = absoluteUrl(image);
-const siteName = `${siteConfig.name} — ${siteConfig.tagline}`;
+const siteName = `${siteConfig.fullName} — ${siteConfig.tagline}`;
 ---
 
 <meta charset="utf-8" />
@@ -33,7 +33,7 @@ const siteName = `${siteConfig.name} — ${siteConfig.tagline}`;
 <meta name="description" content={description} />
 <link rel="canonical" href={canonical} />
 {noindex && <meta name="robots" content="noindex, nofollow" />}
-<meta name="theme-color" content="#f7f3eb" />
+<meta name="theme-color" content="#0c0c0d" />
 <meta name="color-scheme" content="light" />
 <meta name="generator" content={Astro.generator} />
 

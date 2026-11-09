@@ -1,0 +1,16 @@
+---
+import Icon from "@/components/Icon.astro";
+import { siteConfig } from "@/config/site";
+---
+
+<a
+  class="wa-float"
+  href={siteConfig.contacts.whatsapp}
+  rel="noopener noreferrer"
+  target="_blank"
+  aria-label={`Chat with ADLAS STUDY on WhatsApp: ${siteConfig.contacts.whatsappLabel}`}
+  data-track="whatsapp_float"
+>
+  <Icon name="whatsapp" size={20} />
+  <span>Talk to an advisor</span>
+</a>

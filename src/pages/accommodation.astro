@@ -1,0 +1,140 @@
+---
+import { Image } from "astro:assets";
+import arrivalKey from "@/assets/generated/icons/arrival-key.png";
+import CtaBand from "@/components/CtaBand.astro";
+import Icon from "@/components/Icon.astro";
+import Lines from "@/components/Lines.astro";
+import PageHero from "@/components/PageHero.astro";
+import SectionHead from "@/components/SectionHead.astro";
+import { copy } from "@/i18n";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { absoluteUrl, withBase } from "@/lib/url";
+
+const page = copy.accommodation;
+
+const pageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: page.meta.title,
+  description: page.meta.description,
+  url: absoluteUrl("/accommodation/"),
+};
+---
+
+<BaseLayout title={page.meta.title} description={page.meta.description} jsonLd={pageLd}>
+  <PageHero
+    breadcrumb={page.breadcrumb}
+    eyebrow={page.hero.eyebrow}
+    titleLines={page.hero.titleLines}
+    lead={page.hero.lead}
+    aside={page.hero.aside}
+    link={page.hero.link}
+    linkHref="/contact/"
+  />
+
+  <section class="section">
+    <div class="shell">
+      <SectionHead index={page.rooms.index} eyebrow={page.rooms.eyebrow}>
+        <Fragment slot="title"><Lines lines={page.rooms.titleLines} /></Fragment>
+        <Fragment slot="aside">{page.rooms.aside}</Fragment>
+      </SectionHead>
+
+      <div class="room-grid">
+        {page.rooms.items.map((room, index) => (
+          <article class="room-card reveal">
+            <div class="room-card__art"><span>{String(index + 1).padStart(2, "0")}</span></div>
+            <div class="room-card__body">
+              <p class="mono-label">{room.tag}</p>
+              <h3 class="mt-1">{room.name}</h3>
+              <p>{room.text}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ruled">
+    <div class="shell">
+      <SectionHead index={page.facilities.index} eyebrow={page.facilities.eyebrow}>
+        <Fragment slot="title"><Lines lines={page.facilities.titleLines} /></Fragment>
+        <Fragment slot="aside">{page.facilities.aside}</Fragment>
+      </SectionHead>
+
+      <div class="split">
+        <ul class="checklist">
+          {page.facilities.items.map((item) => (
+            <li><Icon name="check" size={16} /> {item}</li>
+          ))}
+        </ul>
+        <div class="panel panel--gold">
+          <p class="mono-label">Campus life</p>
+          <p class="mt-2" style="font-size:1.02rem;line-height:1.65">
+            {page.facilities.note}
+          </p>
+          <a class="link-arrow mt-3" href={withBase("/experience/")}>
+            Meet the community <Icon name="arrowUpRight" size={14} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ink section">
+    <div class="shell">
+      <SectionHead index={page.costs.index} eyebrow={page.costs.eyebrow}>
+        <Fragment slot="title"><Lines lines={page.costs.titleLines} /></Fragment>
+        <Fragment slot="aside">{page.costs.aside}</Fragment>
+      </SectionHead>
+      <div class="split">
+        <ul class="checklist" style="grid-template-columns:1fr">
+          {page.costs.points.map((point) => (
+            <li><Icon name="yuan" size={16} /> {point}</li>
+          ))}
+        </ul>
+        <div>
+          <Image
+            src={arrivalKey}
+            alt="Gold key and orbit — ADLAS accommodation and arrival support"
+            width={104}
+            widths={[64, 104, 208]}
+            sizes="104px"
+            format="webp"
+            class="section-emblem"
+            loading="lazy"
+          />
+          <p class="lead" style="color:rgba(251,247,238,.7)">{page.costs.note}</p>
+          <a class="btn btn--outline-gold mt-3" href={withBase("/contact/")}>
+            Ask about housing <Icon name="arrowUpRight" size={16} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <SectionHead index={page.support.index} eyebrow={page.support.eyebrow}>
+        <Fragment slot="title"><Lines lines={page.support.titleLines} /></Fragment>
+        <Fragment slot="aside">{page.support.aside}</Fragment>
+      </SectionHead>
+      <div class="value-grid">
+        {page.support.items.map((item, index) => (
+          <article class="lux-card">
+            <span class="lux-card__kicker">0{index + 1} / Support</span>
+            <h3 class="mt-2">{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title={page.cta.title}
+    text={page.cta.text}
+    ctaLabel={page.cta.primary}
+    secondaryLabel={page.cta.secondary}
+    secondaryHref="/experience/"
+  />
+</BaseLayout>

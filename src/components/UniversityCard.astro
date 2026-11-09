@@ -1,0 +1,79 @@
+---
+import Icon from "@/components/Icon.astro";
+import { copy } from "@/i18n";
+import { labels } from "@/i18n/en/labels";
+
+export interface UniversityData {
+  name: string;
+  nameZh: string;
+  city: string;
+  province: string;
+  strengths: string[];
+  levels: string[];
+  language: string;
+  scholarship: boolean;
+  note: string;
+  officialUrl: string;
+  founded?: number;
+}
+
+interface Props {
+  university: UniversityData;
+}
+
+const { university } = Astro.props;
+const page = copy.universities;
+const monogram = university.name
+  .split(" ")
+  .filter((word) => !["of", "and", "the"].includes(word.toLowerCase()))
+  .slice(0, 2)
+  .map((word) => word[0])
+  .join("");
+const levelLabels = university.levels
+  .map((level) => labels.levels[level as keyof typeof labels.levels])
+  .filter(Boolean);
+---
+
+<article
+  class="uni-card reveal"
+  data-uni-card
+  data-search={`${university.name} ${university.nameZh} ${university.city} ${university.province} ${university.strengths.join(" ")}`.toLowerCase()}
+  data-levels={university.levels.join(" ")}
+>
+  <div class="uni-card__head">
+    <span class="uni-card__monogram" aria-hidden="true">{monogram}</span>
+    <span class="uni-card__place">
+      {university.city === university.province
+        ? university.city
+        : `${university.city} · ${university.province}`}
+    </span>
+  </div>
+
+  <div>
+    <h3>{university.name}</h3>
+    <span class="uni-card__zh">{university.nameZh}</span>
+  </div>
+
+  <div class="uni-card__tags">
+    {levelLabels.map((label) => <span>{label}</span>)}
+  </div>
+
+  <p class="uni-card__note">{university.note}</p>
+
+  <div class="uni-card__tags">
+    {university.strengths.slice(0, 3).map((strength) => <span>{strength}</span>)}
+  </div>
+
+  <div class="uni-card__foot">
+    <span>{university.language}</span>
+    <a
+      class="link-arrow"
+      href={university.officialUrl}
+      rel="noopener noreferrer"
+      target="_blank"
+      aria-label={`${page.search.official}: ${university.name}`}
+    >
+      {page.search.official} <Icon name="arrowUpRight" size={13} />
+    </a>
+  </div>
+</article>

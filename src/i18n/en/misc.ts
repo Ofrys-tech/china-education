@@ -1,20 +1,20 @@
 export const notFound = {
   meta: {
     title: "Page not found",
-    description: "This page doesn't exist. Return home or book a consultation.",
+    description: "This page does not exist. Return home or book a consultation.",
   },
   code: "404",
   title: "This page went to study abroad.",
   text: "The link may be out of date. Start from the homepage or go straight to the application.",
   home: "Back home",
-  apply: "Apply now",
+  apply: "Start an application",
 } as const;
 
 export const styleguide = {
   breadcrumb: "Design system",
   meta: {
     title: "Design system",
-    description: "Internal reference for ChinaPath design tokens, typography and components.",
+    description: "Internal reference for ADLAS STUDY design tokens, typography and components.",
   },
   hero: {
     eyebrow: "Internal tool",
@@ -27,7 +27,7 @@ export const styleguide = {
   colors: {
     index: "01 / Colour",
     title: "Palette",
-    aside: "Warm paper, ink and seal red.",
+    aside: "Deep black, metallic gold and warm ivory.",
   },
   type: {
     index: "02 / Typography",
@@ -37,20 +37,20 @@ export const styleguide = {
       {
         label: "Display hero",
         className: "display display--hero",
-        sample: "China, without the guesswork",
+        sample: "Education without borders",
       },
       { label: "Display L", className: "display display--l", sample: "A clear route" },
-      { label: "Display M", className: "display display--m", sample: "Not just the top 10" },
+      { label: "Display M", className: "display display--m", sample: "Not just the famous names" },
       {
         label: "Lead",
         className: "lead",
-        sample: "We match your profile, budget and ambitions with the right program.",
+        sample: "We match your profile, budget and ambition with the right program.",
       },
     ],
   },
   components: {
     index: "03 / Components",
-    title: "Buttons & labels",
+    title: "Buttons and labels",
     aside: "Check every state in the browser, not only in code.",
     buttons: ["Primary", "Ghost", "Light"],
     tags: ["Language year", "Bachelor's", "Scholarships"],
@@ -61,7 +61,7 @@ export const styleguide = {
     selectOptions: ["Business, economics, finance", "Engineering"],
     statusesLabel: "Statuses",
     statuses: [
-      { state: "success", text: "Application received. We'll reply within one business day." },
+      { state: "success", text: "Application received. We will reply within one business day." },
       { state: "error", text: "Please check the highlighted fields." },
       { state: "info", text: "Sending your application…" },
     ],

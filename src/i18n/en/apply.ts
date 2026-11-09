@@ -1,33 +1,33 @@
 export const apply = {
   breadcrumb: "Apply",
   meta: {
-    title: "Book a consultation",
+    title: "Start your application — ADLAS STUDY",
     description:
-      "Apply for a free consultation about studying in China: program matching, documents, scholarships and timelines.",
+      "Tell ADLAS STUDY about your profile, budget and study plans. A free first conversation about universities and programs in China.",
   },
   hero: {
-    eyebrow: "Free · 30 minutes",
-    titleLines: ["Tell us about you.", "We'll bring a plan."],
-    lead: "You don't need a perfect profile. What you have now is enough — we'll ask the missing questions on the call.",
+    eyebrow: "Free · first conversation",
+    titleLines: ["Tell us about you.", "We will bring a plan."],
+    lead: "You do not need a perfect profile. Tell us where you are now — we will ask the missing questions and explain what is realistic.",
     aside: "We reply within one business day. No cold calls, no selling your data, no spam.",
     privacyLink: "Privacy policy",
   },
   form: {
-    label: "Application form",
-    title: "Let's start with your situation.",
+    label: "Student inquiry",
+    title: "Start with your situation.",
     intro:
-      "Fields marked with an asterisk are required. The more precise your contact and field, the more useful the first call.",
+      "Fields marked with an asterisk are required. Do not send passport scans, payment details or passwords through this form.",
   },
   after: {
     label: "What happens next",
     items: [
       {
         title: "We review your request",
-        text: "We check your profile and find a convenient time for a short call. Usually within one business day.",
+        text: "An advisor checks your profile and finds a convenient time for a short conversation. Usually within one business day.",
       },
       {
         title: "A 30-minute conversation",
-        text: "No hour-long pitch: goals, grades, language, budget, timeline. We tell you honestly what is realistic.",
+        text: "Goals, grades, language, budget and timeline. We tell you honestly what is realistic.",
       },
       {
         title: "A plan and a budget",
@@ -38,8 +38,8 @@ export const apply = {
   bring: {
     label: "What helps on the first call",
     items: [
-      "High school certificate or degree (a scan is fine)",
-      "Grades / transcript",
+      "Highest school or degree certificate (a scan is fine)",
+      "Grades or transcript",
       "HSK, IELTS or TOEFL results, if you have them",
       "A rough annual budget",
       "A preferred city or region",

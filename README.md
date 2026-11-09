@@ -1,125 +1,118 @@
-# ChinaPath
+# ADLAS STUDY
 
 **Live:** https://ofrys-tech.github.io/china-education/
 
-Сайт консультационной практики по поступлению в Китай: лендинг, каталог направлений, вузы, процесс, FAQ и приём заявок. Статический сайт на Astro для GitHub Pages.
+International education platform for students who want to study in China: destinations, a university directory, five study pathways, scholarships, accommodation, anonymized admission results, and a student inquiry flow. Static Astro site deployed to GitHub Pages.
 
-**Язык сайта — английский.** Все пользовательские тексты вынесены в `src/i18n/en/**`; страницы не содержат хардкода копирайта. Внутренняя документация и комментарии для команды — на русском.
+**Site language:** English at launch. All user-facing copy lives in `src/i18n/en/**`; the interface is ready for locale routing, but Arabic, French, Spanish, Russian and Persian require reviewed translations before they can be published. Do not ship machine translation as a finished locale.
 
-> **Статус:** дизайн-каркас и рабочая структура для обсуждения. Перед публичным запуском пройдите [чек-лист](#перед-запуском): подключить приём заявок, проверить факты и контакты, подтвердить юридические формулировки.
+## Stack
 
-## Стек
+- **Astro 7** — static generation, zero framework JS.
+- **TypeScript strict + Biome** — types and formatting in one fast gate.
+- **Tailwind CSS 4** — reset/utilities only; the brand system is CSS tokens and components.
+- **Content Collections + Zod** — programs, universities and FAQ validated at build time.
+- **Vitest** — unit tests for validation, payload and content invariants.
+- **Playwright + axe** — navigation, directory filtering, form submission, accessibility.
+- **GitHub Actions → GitHub Pages** — build, checks and deployment.
 
-- **Astro 7** — статическая генерация, zero-JS по умолчанию, острова только там, где нужна интерактивность.
-- **TypeScript strict** + **Biome** — типы и единый формат без медленного ESLint-стека.
-- **Tailwind CSS 4** — только сброс и утилиты; дизайн-система живёт в CSS-токенах и компонентах.
-- **Content Collections + Zod** — программы, вузы и FAQ валидируются на сборке.
-- **i18n-словарь** — весь UI-текст в `src/i18n/en`, готов к добавлению RU/ZH без правки шаблонов.
-- **Vitest** — быстрые unit-тесты. **Playwright** — 4 e2e-теста, включая axe-проверку доступности.
-- **GitHub Actions → GitHub Pages** — деплой с проверками и live-smoke.
-
-## Быстрый старт
+## Quick start
 
 ```bash
 npm ci
 npm run dev          # http://localhost:4321
-npm run verify       # lint + типы + unit + ассеты + build + HTML-проверки (~10 сек)
+npm run verify       # lint + types + unit + assets + build + HTML checks
 ```
 
-Требуется Node >= 22.23.4 (см. `.nvmrc`).
+Node >= 22.23.4 (`.nvmrc`).
 
-## Команды
+## Commands
 
-| Команда                  | Что делает                                 | Когда                             |
-| ------------------------ | ------------------------------------------ | --------------------------------- |
-| `npm run dev`            | dev-сервер                                 | разработка                        |
-| `npm run build`          | статическая сборка в `dist/`               | перед деплоем                     |
-| `npm run verify`         | быстрый обязательный набор                 | перед push/PR                     |
-| `npm run check`          | `astro check` (типы)                       | после правок TS/Astro             |
-| `npm test`               | unit-тесты (18 шт., ~0.2 сек)              | логика форм/контента              |
-| `npm run test:e2e`       | Playwright + axe (4 теста)                 | поведение, навигация, формы, a11y |
-| `npm run check:html`     | битые внутренние ссылки, meta, h1, id      | после build                       |
-| `npm run check:assets`   | манифест и альфа-канал сгенерированных PNG | после генерации картинок          |
-| `npm run check:links`    | внешние ссылки (сеть)                      | перед запуском / по расписанию    |
-| `npm run assets:preview` | WebP-превью 1024px для 4K PNG              | визуальный просмотр               |
-| `npm run og`             | пересобрать OG-картинку                    | после смены бренда                |
-| `npm run lint:fix`       | форматирование Biome                       | перед коммитом                    |
+| Command                  | What it does                              | When                               |
+| ------------------------ | ----------------------------------------- | ---------------------------------- |
+| `npm run dev`            | dev server                                | development                        |
+| `npm run build`          | static build into `dist/`                 | before deploy                      |
+| `npm run verify`         | the required fast gate                    | before push/PR                     |
+| `npm run check`          | `astro check` (types)                     | after TS/Astro edits               |
+| `npm test`               | unit tests                                | logic, content invariants          |
+| `npm run test:e2e`       | Playwright + axe                          | navigation, forms, directory, a11y |
+| `npm run check:html`     | base-aware links, meta, h1, ids           | after build                        |
+| `npm run check:assets`   | generated PNG manifest and alpha          | after image generation             |
+| `npm run check:links`    | external links over the network           | before launch / scheduled          |
+| `npm run assets:preview` | 1024px WebP previews                      | visual review                      |
+| `npm run og`             | rebuild the social preview and touch icon | after a brand change               |
+| `npm run lint:fix`       | Biome formatting                          | before commit                      |
 
-## Маршруты
+## Routes
 
-| Путь              | Назначение                                                                 |
-| ----------------- | -------------------------------------------------------------------------- |
-| `/`               | лендинг: оффер, направления, вузы, процесс, стипендии, FAQ, короткая форма |
-| `/programs/`      | каталог направлений + сравнительная таблица                                |
-| `/programs/[id]/` | детальная страница программы (7 шт.)                                       |
-| `/universities/`  | примеры вузов, критерии выбора, дисклеймер                                 |
-| `/process/`       | 5 этапов, чек-лист документов, календарь набора, риски                     |
-| `/faq/`           | FAQ по категориям                                                          |
-| `/apply/`         | полная форма заявки + что будет дальше                                     |
-| `/about/`         | принципы практики и границы работы                                         |
-| `/privacy/`       | политика конфиденциальности                                                |
-| `/styleguide/`    | внутренняя дизайн-система (noindex)                                        |
-| `/404.html`       | кастомная 404                                                              |
+| Path              | Purpose                                                                                                                          |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `/`               | cinematic landing: philosophy, destinations, programs, universities, funding, community, housing, process, results, FAQ, inquiry |
+| `/destinations/`  | China active; Russia and Malaysia explicitly upcoming                                                                            |
+| `/programs/`      | language year, foundation, bachelor's, master's, PhD + comparison table                                                          |
+| `/programs/[id]/` | detailed pathway page (5 items)                                                                                                  |
+| `/universities/`  | searchable directory of 17 universities with official links                                                                      |
+| `/scholarships/`  | CSC, provincial, municipal, university and institutional funding                                                                 |
+| `/accommodation/` | room types, campus facilities, housing costs and paperwork                                                                       |
+| `/experience/`    | community, labelled illustrative stories and anonymized admission results                                                        |
+| `/process/`       | five stages, document checklist, annual calendar, common risks                                                                   |
+| `/about/`         | mission, vision, nine values, philosophy and boundaries                                                                          |
+| `/contact/`       | WhatsApp, email, Instagram and WhatsApp channel + full inquiry form                                                              |
+| `/apply/`         | full student inquiry form                                                                                                        |
+| `/faq/`           | grouped FAQ                                                                                                                      |
+| `/privacy/`       | privacy policy (noindex)                                                                                                         |
+| `/styleguide/`    | internal design reference (noindex)                                                                                              |
+| `/404.html`       | custom 404                                                                                                                       |
 
-## Структура
+## Structure
 
 ```text
 src/
-  config/site.ts          бренд, контакты, intake (структурные данные)
-  i18n/en/                ВСЕ пользовательские тексты: общие, формы, страницы
-  content/                JSON-контент: programs, universities, faq
-  content.config.ts       Zod-схемы коллекций
+  config/site.ts          brand, official contacts, navigation, intake
+  i18n/en/                ALL user-facing copy, split by page and form labels
+  content/                JSON: programs, universities, faq
+  content.config.ts       Zod schemas
   layouts/BaseLayout.astro
-  components/             Header, Footer, LeadForm, карточки, FAQ…
-  pages/                  маршруты
-  lib/leads/              схема, payload, endpoint-адаптер
-  scripts/                клиентские menu/reveal/form-скрипты
-  styles/tokens.css       ДИЗАЙН-ТОКЕНЫ — начинать редизайн здесь
-  styles/global.css       база + компоненты
-  assets/generated/       сгенерированные изображения + manifest.json
-docs/                     архитектура, деплой, заявки, ассеты, тесты, дизайн
-scripts/                  проверки, OG, превью
+  components/             Header, Footer, Logo/Emblem, PageHero, cards, form…
+  pages/                  routes
+  lib/leads/              schema, payload, endpoint adapter
+  scripts/                menu, reveal, header, float visibility, form, directory search
+  styles/tokens.css       brand tokens — start here for a reskin
+  styles/global.css       layout and legacy component base
+  styles/adlas.css        ADLAS brand layer loaded after the base
+  assets/generated/       generated emblems + manifest.json
+docs/                     architecture, deploy, leads, assets, tests, design
+scripts/                  checks, OG, previews
 tests/unit|e2e
 ```
 
-## Где что менять
+## Where to change what
 
-- **Бренд, контакты и год набора** — `src/config/site.ts`.
-- **Любой текст интерфейса** — `src/i18n/en/**`; не вставляйте строки напрямую в `.astro`.
-- **Внешний вид** — сначала `src/styles/tokens.css`, затем `global.css`; страницы используют токены и компоненты. Живой справочник: `/styleguide/`.
-- **Программы, вузы, FAQ** — JSON в `src/content/…`; схема в `src/content.config.ts`; подробности в [docs/content.md](docs/content.md).
-- **Форма** — `src/components/LeadForm.astro` + `src/scripts/lead-form.ts` + `src/lib/leads/`. Подключение приёмника: [docs/leads.md](docs/leads.md).
-- **Деплой** — [docs/deployment.md](docs/deployment.md).
+- **Brand, official contacts, navigation, intake** — `src/config/site.ts`.
+- **Any interface text** — `src/i18n/en/**`; never hardcode copy in `.astro`.
+- **Visual language** — `src/styles/tokens.css`, then `src/styles/adlas.css`.
+- **Programs, universities, FAQ** — JSON in `src/content/**`, schema in `src/content.config.ts`; see [docs/content.md](docs/content.md).
+- **Forms** — `LeadForm.astro`, `scripts/lead-form.ts`, `lib/leads/`; see [docs/leads.md](docs/leads.md).
+- **Deploy** — [docs/deployment.md](docs/deployment.md).
 
-## Перед запуском
+## Official contacts
 
-1. **Подключить заявки.** В GitHub → Settings → Secrets and variables → Actions → Variables задайте `PUBLIC_LEAD_ENDPOINT` (Formspree short code или полный URL) и `PUBLIC_LEAD_PROVIDER=formspree`, затем перезапустите deploy. Без endpoint форма показывает служебное сообщение. Минимум — задайте `PUBLIC_CONTACT_EMAIL`/`PUBLIC_TELEGRAM_URL` для mailto/прямого контакта. Подробно: [docs/leads.md](docs/leads.md).
-2. **Проверить факты.** Стоимость, дедлайны, требования и признание дипломов — ориентиры, а не оферта. Обновите под актуальный год и юрисдикции.
-3. **Проверить юридические формулировки.** Дисклеймер и политика конфиденциальности — рабочая основа, не заменяют консультацию юриста.
-4. **Заменить бренд при необходимости.** `siteConfig.name`, `nameZh`, тексты и `public/favicon.svg`; OG пересобрать через `npm run og`.
-5. **Добавить реальные контакты** в env/конфиг. Сейчас публичные контакты скрыты, чтобы не публиковать вымышленные данные.
-6. **Прогнать `npm run check:links`** и вручную проверить внешние сайты вузов.
-7. **Проверить форму на живом домене** после деплоя.
+- WhatsApp: [+86 184 4860 1096](https://wa.me/8618448601096)
+- Email: [adlasagency01@gmail.com](mailto:adlasagency01@gmail.com)
+- Instagram: [@adlas.study](https://instagram.com/adlas.study)
+- WhatsApp channel: [ADLAS STUDY](https://whatsapp.com/channel/0029Vb9FmvqJZg3zZ7MpbG17)
 
-## Деплой
+ADLAS operates online and has no public walk-in office. Do not invent an address.
 
-GitHub Pages через Actions. Workflow `deploy.yml` сам подставляет `BASE_PATH=/<repo>/` и `SITE_URL=https://<owner>.github.io`, собирает сайт, деплоит и проверяет live-страницу. Инструкция и настройка кастомного домена — [docs/deployment.md](docs/deployment.md).
+## Before a public launch
 
-## Тесты без культа
+1. **Connect inquiries.** Set `PUBLIC_LEAD_ENDPOINT` and `PUBLIC_LEAD_PROVIDER` in GitHub Actions variables. Without them the form opens a prefilled email; WhatsApp remains the direct fallback. See [docs/leads.md](docs/leads.md).
+2. **Review facts.** Tuition is indicative; requirements, deadlines and scholarships change by intake. Verify against official sources each cycle.
+3. **Review legal text.** The privacy policy and disclaimer are a working basis, not a substitute for legal advice.
+4. **Review translations.** Do not enable Arabic, French, Spanish, Russian or Persian until a human translator has reviewed the full interface and content.
+5. **Run `npm run check:links`** and click through the university links manually.
+6. **Test the form on the live domain** after deployment.
 
-`npm run verify` занимает единицы секунд и покрывает типы, lint, unit-логику, ассеты, сборку и структуру HTML. Playwright запускается отдельно — только для изменений поведения, навигации, форм или доступности, а также по расписанию. Никаких снапшотов текста и «1000 тестов на одну кнопку». Подробнее: [docs/testing.md](docs/testing.md).
+## Deploy
 
-## Документация
-
-- [Архитектура](docs/architecture.md)
-- [Деплой на GitHub Pages](docs/deployment.md)
-- [Приём заявок](docs/leads.md)
-- [Генерация изображений](docs/assets.md)
-- [Контент](docs/content.md)
-- [Дизайн-система](docs/design.md)
-- [Тесты](docs/testing.md)
-- [Инструкция для агентов](AGENTS.md)
-
-## Лицензия
-
-Проприетарный код. См. [LICENSE](LICENSE).
+GitHub Pages via Actions. `deploy.yml` injects `BASE_PATH=/<repo>/` and `SITE_URL=https://<owner>.github.io`, builds, deploys and smoke-checks the live page. See [docs/deployment.md](docs/deployment.md).

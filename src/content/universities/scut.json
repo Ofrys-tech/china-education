@@ -1,0 +1,16 @@
+{
+  "name": "South China University of Technology",
+  "nameZh": "华南理工大学",
+  "city": "Guangzhou",
+  "province": "Guangdong",
+  "type": "public",
+  "founded": 1952,
+  "strengths": ["Engineering", "Computer science", "Architecture"],
+  "levels": ["language", "bachelor", "master", "phd"],
+  "language": "English / Chinese",
+  "scholarship": true,
+  "note": "Engineering and technology university in Guangzhou. English-taught engineering programs and a large international student community; campus registration rules are strict.",
+  "officialUrl": "https://www.scut.edu.cn/en/",
+  "featured": false,
+  "order": 13
+}

@@ -1,54 +1,54 @@
 {
-  "title": "Master's in China",
+  "title": "Master's Degree",
   "degree": "master",
-  "summary": "Two to three years, English- and Chinese-taught programs, research work and access to the Asian market.",
+  "summary": "Two to three years of postgraduate study for holders of a bachelor's degree, with English-taught and Chinese-taught options.",
   "duration": "2–3 years",
   "languages": ["zh", "en"],
-  "tuition": "¥20,000–40,000 / year",
+  "tuition": "Indicative: ¥20,000–45,000 / year",
   "overview": [
-    "A master's is the most popular route for international students in China. Top programs require a bachelor's degree, a motivation letter, references and often a research proposal.",
-    "There are more English-taught master's than bachelor's, but competition is higher. Chinese-taught programs offer a wider choice and lower tuition, yet usually require HSK 4–5. For a career in China, Chinese is almost mandatory."
+    "A Chinese master's degree normally takes two to three years, including coursework, research and a thesis. English-taught programs are common in business, engineering, computer science and public policy; Chinese-taught programs offer a wider choice of supervisors and research groups.",
+    "Admission is program-specific: a recognised bachelor's degree, transcripts, references, a study plan and sometimes an interview or entrance exam. We check whether your degree is accepted, whether the program requires HSK or English proficiency, and how competitive the intake really is."
   ],
   "fitFor": [
     "You already hold a bachelor's degree",
-    "You need a master's taught in English",
-    "You're planning a career in Asia or with international companies",
-    "You're interested in research and a future PhD"
+    "You want a research or professional master's in China",
+    "You are comparing scholarship and self-funded routes",
+    "You need a supervisor or lab before committing"
   ],
   "outcomes": [
-    "A master's degree and a Chinese university diploma",
-    "A portfolio of projects and publications",
-    "Internships with companies in the region",
-    "A foundation for a PhD and an international career"
+    "A master's degree from a Chinese university",
+    "Research experience and a supervisor network",
+    "Stronger Chinese or English academic communication",
+    "A route to PhD study or employment in China"
   ],
   "timeline": [
     {
-      "step": "10–12 months out",
-      "text": "We build a shortlist of programs and check degree, language and reference requirements."
+      "step": "10–12 months before",
+      "text": "We define the research or professional direction, then shortlist programs and supervisors."
     },
     {
-      "step": "7–9 months out",
-      "text": "We prepare essays, a CV, references, a research proposal and language certificates."
+      "step": "7–9 months before",
+      "text": "Transcripts, degree certificate, references, study plan and language evidence are prepared."
     },
     {
-      "step": "4–6 months out",
-      "text": "Applications, correspondence with departments, interviews and sometimes entrance exams."
+      "step": "4–6 months before",
+      "text": "Applications, interviews and scholarship submissions. Offers are compared on funding, not only prestige."
     },
     {
-      "step": "2–3 months out",
-      "text": "Offer, deposit, JW202, visa and relocation."
+      "step": "2–3 months before",
+      "text": "Deposit, JW202, visa, housing and registration. Supervisor contact is confirmed before arrival."
     }
   ],
   "faq": [
     {
-      "question": "Is HSK required for an English-taught master's?",
-      "answer": "Usually not, but some universities ask for basic Chinese or add a language module. Requirements vary by program — we check the official list for each university."
+      "question": "Can I apply for a master's without HSK?",
+      "answer": "Yes, for English-taught programs where the university accepts English proficiency instead. Chinese-taught programs normally require HSK 4–5 or equivalent. The exact rule belongs to the program."
     },
     {
-      "question": "Can I apply with a degree from my country?",
-      "answer": "Yes, a bachelor's degree is accepted with a translation and legalisation/apostille where required. Some fields also need an academic transcript with grades."
+      "question": "Do I need a supervisor before applying?",
+      "answer": "For research-based master's programs, contacting a supervisor early helps. For professional master's programs, admission is usually handled centrally. We confirm which model applies before you invest time in emails."
     }
   ],
-  "featured": false,
-  "order": 3
+  "featured": true,
+  "order": 4
 }

@@ -8,5 +8,54 @@
     "background": "transparent",
     "strictBackground": true
   },
-  "assets": []
+  "assets": [
+    {
+      "id": "emblem-scholarship-laurel",
+      "file": "icons/scholarship-laurel.png",
+      "kind": "icon",
+      "prompt": "Ultra-minimal luxury academic emblem: an open laurel wreath of thin metallic gold line art forming a circle around a delicate four-point star, symmetrical geometric vector style, isolated, no text.",
+      "model": "gpt-image-2",
+      "quality": "high",
+      "size": "1024x1024",
+      "background": "transparent",
+      "alt": "Gold laurel wreath and star — ADLAS scholarship guidance",
+      "usage": [
+        "home:scholarships",
+        "scholarships:intro"
+      ],
+      "createdAt": "2026-11-09T22:14:00.000Z"
+    },
+    {
+      "id": "emblem-global-community",
+      "file": "icons/global-community.png",
+      "kind": "icon",
+      "prompt": "Ultra-minimal luxury global community emblem: an abstract sphere built from three intersecting thin elliptical orbits in metallic gold line art with four tiny four-point stars, geometric vector style, isolated, no text, no continents, no flags.",
+      "model": "gpt-image-2",
+      "quality": "high",
+      "size": "1024x1024",
+      "background": "transparent",
+      "alt": "Gold orbital sphere — the international ADLAS student community",
+      "usage": [
+        "home:experience",
+        "experience:community"
+      ],
+      "createdAt": "2026-11-09T22:14:00.000Z"
+    },
+    {
+      "id": "emblem-arrival-key",
+      "file": "icons/arrival-key.png",
+      "kind": "icon",
+      "prompt": "Ultra-minimal luxury accommodation emblem: a refined key with a circular bow, its stem aligned with a subtle upward arrow, enclosed by a thin orbital arc, metallic gold line art, geometric vector style, isolated, no text.",
+      "model": "gpt-image-2",
+      "quality": "high",
+      "size": "1024x1024",
+      "background": "transparent",
+      "alt": "Gold key and orbit — ADLAS accommodation and arrival support",
+      "usage": [
+        "home:accommodation",
+        "accommodation:costs"
+      ],
+      "createdAt": "2026-11-09T22:14:00.000Z"
+    }
+  ]
 }

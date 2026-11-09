@@ -1,0 +1,16 @@
+{
+  "name": "Beijing Language and Culture University",
+  "nameZh": "北京语言大学",
+  "city": "Beijing",
+  "province": "Beijing",
+  "type": "public",
+  "founded": 1962,
+  "strengths": ["Chinese language", "Culture", "Translation"],
+  "levels": ["language", "bachelor", "master", "phd"],
+  "language": "Chinese / English",
+  "scholarship": true,
+  "note": "Beijing's specialist university for Chinese language and culture. The most direct route for a language year, HSK preparation and Chinese-taught degree progression.",
+  "officialUrl": "https://english.blcu.edu.cn/",
+  "featured": true,
+  "order": 12
+}

@@ -1,0 +1,122 @@
+---
+import CtaBand from "@/components/CtaBand.astro";
+import Icon from "@/components/Icon.astro";
+import LeadForm from "@/components/LeadForm.astro";
+import Lines from "@/components/Lines.astro";
+import PageHero from "@/components/PageHero.astro";
+import SectionHead from "@/components/SectionHead.astro";
+import { siteConfig } from "@/config/site";
+import { copy } from "@/i18n";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { absoluteUrl } from "@/lib/url";
+
+const page = copy.contact;
+const icons = {
+  whatsapp: "whatsapp",
+  mail: "mail",
+  instagram: "instagram",
+  channel: "channel",
+} as const;
+
+const pageLd = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: page.meta.title,
+  description: page.meta.description,
+  url: absoluteUrl("/contact/"),
+};
+---
+
+<BaseLayout title={page.meta.title} description={page.meta.description} jsonLd={pageLd}>
+  <PageHero
+    breadcrumb={page.breadcrumb}
+    eyebrow={page.hero.eyebrow}
+    titleLines={page.hero.titleLines}
+    lead={page.hero.lead}
+    aside={page.hero.aside}
+    link={page.hero.link}
+    linkHref="/apply/"
+  />
+
+  <section class="section">
+    <div class="shell">
+      <SectionHead index={page.channels.index} eyebrow={page.channels.eyebrow}>
+        <Fragment slot="title"><Lines lines={page.channels.titleLines} /></Fragment>
+        <Fragment slot="aside">{page.channels.aside}</Fragment>
+      </SectionHead>
+
+      <div class="value-grid reveal">
+        {page.channels.items.map((item) => (
+          <a
+            class="lux-card contact-channel"
+            href={item.href}
+            rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+            target={item.href.startsWith("http") ? "_blank" : undefined}
+          >
+            <span class="contact-channel__icon"><Icon name={icons[item.icon]} size={20} /></span>
+            <span class="lux-card__kicker">{item.label}</span>
+            <span class="contact-channel__value">{item.value}</span>
+            <span class="contact-channel__note">{item.note}</span>
+          </a>
+        ))}
+      </div>
+      <p class="note mt-3">{page.channels.note}</p>
+    </div>
+  </section>
+
+  <section class="section section--ruled" id="form">
+    <div class="shell">
+      <SectionHead index={page.form.index} eyebrow={page.form.eyebrow}>
+        <Fragment slot="title"><Lines lines={page.form.titleLines} /></Fragment>
+        <Fragment slot="aside">{page.form.aside}</Fragment>
+      </SectionHead>
+
+      <div class="split">
+        <div>
+          <LeadForm variant="full" source="contact" />
+        </div>
+        <div>
+          <p class="mono-label">{page.response.label}</p>
+          <div class="timeline mt-2">
+            {page.response.items.map((item, index) => (
+              <div class="timeline__item">
+                <span class="timeline__step">{String(index + 1).padStart(2, "0")}</span>
+                <div>
+                  <strong style="display:block;font-size:1rem">{item.title}</strong>
+                  <p class="timeline__text">{item.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div class="panel panel--gold mt-4">
+            <p class="mono-label">{page.noOffice.label}</p>
+            <h3 class="display display--m mt-2">{page.noOffice.title}</h3>
+            <p class="mt-2">{page.noOffice.text}</p>
+          </div>
+
+          <div class="cluster mt-3">
+            <a class="btn btn--primary" href={siteConfig.contacts.whatsapp} rel="noopener noreferrer" target="_blank">
+              <Icon name="whatsapp" size={16} /> WhatsApp
+            </a>
+            <a class="btn btn--ghost" href={`mailto:${siteConfig.contacts.email}`}>
+              <Icon name="mail" size={16} /> Email
+            </a>
+            <a class="btn btn--ghost" href={siteConfig.contacts.instagram} rel="noopener noreferrer" target="_blank">
+              <Icon name="instagram" size={16} /> Instagram
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title={page.cta.title}
+    text={page.cta.text}
+    ctaLabel={page.cta.primary}
+    ctaHref={siteConfig.contacts.whatsapp}
+    secondaryLabel={page.cta.secondary}
+    secondaryHref="/apply/"
+  />
+</BaseLayout>
