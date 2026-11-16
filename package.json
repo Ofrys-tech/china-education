@@ -30,7 +30,7 @@
     "@astrojs/sitemap": "3.7.4",
     "@fontsource-variable/golos-text": "5.3.0",
     "@fontsource/prata": "5.3.0",
-    "astro": "7.4.7"
+    "astro": "7.4.11"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.12",
