@@ -27,10 +27,10 @@
     "assets:preview": "node scripts/optimize-assets.mjs"
   },
   "dependencies": {
-    "@astrojs/sitemap": "3.7.4",
+    "@astrojs/sitemap": "3.7.6",
     "@fontsource-variable/golos-text": "5.3.0",
     "@fontsource/prata": "5.3.0",
-    "astro": "7.4.7"
+    "astro": "7.4.13"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.12",
